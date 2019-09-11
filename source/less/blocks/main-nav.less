@@ -1,0 +1,76 @@
+.main-nav {
+  position: relative;
+  width: 280px;
+  background-color: #1d0f1b;
+}
+
+.main-nav__list {
+  position: absolute;
+  top: 0;
+  left: 55px;
+  margin: 0;
+  padding: 0;
+  padding: 30px 30px 45px 30px;
+  list-style: none;
+  width: 280px;
+  background-color: #1d0f1b;
+  animation: showing 0.5s ease-in-out;
+}
+
+@keyframes showing {
+  from {
+    padding: 0;
+    width: 0;
+    transform: translateX(-20px);
+  }
+  to{
+    width: 100%;
+    transform: translateX(0);
+  }
+}
+
+.main-nav__link {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  width: 170px;
+  color: #fefeff;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  margin-bottom: 20px;
+  transition: text-decoration 0.5s;
+}
+
+.main-nav__link:after {
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  content: "";
+  width: 0;
+  height: 2px;
+  opacity: 0;
+  background-color: #e94646;
+  transition: width 0.5s, opacity 1s;
+  transition-delay: 0.1s;
+}
+
+.main-nav__link:hover.main-nav__link:after {
+  width: 100%;
+  opacity: 1;
+}
+
+.main-nav__toggle{
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: none;
+  width: 36px;
+  height: 23px;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url("../img/burger.svg");
+  background-repeat: no-repeat;
+  background-size: 36px 23px;
+}
