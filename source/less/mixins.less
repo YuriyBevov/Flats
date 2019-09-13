@@ -12,27 +12,74 @@
 }
 
 .unfurl-link() {
+  position: relative;
   font-size: 16px;
   font-weight: 400;
   line-height: 32px;
   text-decoration: underline;
-  color: #e94646;
+  color: @primary-pink;
   background: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  outline: 1px solid black;
+  align-self: center;
+  transition: opacity 0.5s 0.1s;
 }
 
 .unfurl-icon() {
   display: block;
-  position: relative;
-  top: 0;
-  right: -10px;
+  position: absolute;
+  top: 50%;
+  right: -15px;
   content: "";
   width: 8px;
   height: 5px;
   background-image: url("../img/unfurl.png");
   background-repeat: no-repeat;
   background-size: 8px 5px;
+}
+
+.unfurl-link__hover {
+  opacity: 0.8;
+}
+
+.pink-btn {
+  width: 345px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0.18px;
+  text-decoration: none;
+  padding: 25px 60px;
+  border-radius: 35px;
+  color: @button-white;
+  background-color: @primary-pink;
+  align-self: center;
+  text-align: center;
+  transition: opacity 0.5s 0.1s, color 0.5s 0.4s, box-shadow 0.5s 0.1s;
+}
+
+.pink-btn__hover {
+  opacity: 0.9;
+  color: @primary-black;
+  box-shadow: 0 2px 5px @primary-black;
+}
+
+.light-btn {
+  width: 345px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0.18px;
+  text-decoration: none;
+  padding: 25px 20px;
+  border-radius: 35px;
+  align-self: center;
+  text-align: center;
+  color: @primary-pink;
+  background-color: @light-pink;
+  transition: background-color 0.7s 0.1s, color 0.5s 0.4s, box-shadow 0.5s 0.1s;
+}
+
+.light-btn__hover {
+  color: @primary-white;
+  background-color: @primary-pink;
+  box-shadow: 0 2px 5px @primary-black;
 }

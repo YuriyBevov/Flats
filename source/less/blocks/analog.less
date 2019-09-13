@@ -1,0 +1,77 @@
+.analog {
+  .container();
+}
+.analog__wrapper {
+  padding: 75px;
+  display: flex;
+  flex-direction: column;
+}
+
+.analog__title {
+  width: 200px;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 32px;
+  margin-bottom: 55px;
+  color: #000000;
+}
+
+.analog__list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.analog__item {
+  display: flex;
+  width: 600px;
+  margin-bottom: 40px;
+}
+
+.analog__item-image {
+  margin-right: 30px;
+}
+
+.analog__item-title {
+  width: 140px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+  color: @primary-pink;
+}
+
+.analog__item-address {
+  width: 210px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: @light-black;
+  font-style: normal;
+}
+
+.analog__item-address__metro {
+  position: relative;
+  padding-left: 35px;
+}
+
+.analog__item-address__metro::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 22px;
+  height: 18px;
+  background-image: url("../img/metro-icon.svg");
+  background-repeat: no-repeat;
+  background-size: 22px 18px;
+}
+
+.analog__link {
+  .light-btn();
+}
+
+.analog__link:hover {
+  .light-btn__hover();
+}
