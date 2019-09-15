@@ -5,8 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Название сайта</title>
   <link href="css/style.css" rel="stylesheet">
+
+
 </head>
   <body>
+    <div style="display:none">
+      <include src="build/img/sprite.svg"></include>
+    </div>
     <header class="main-header">
       <img class="main-header__logo" src="img/logo.png" width="210" height="28"></img>
         <nav class="main-nav">
@@ -34,12 +39,97 @@
         </nav>
     </header>
     <main>
+      <section class="estate">
+        <div class="estate__wrapper">
+          <div class="estate__features">
+            <ul class="estate__features-list">
+              <li class="estate__features-item estate__features-item--sale">
+                <svg width="21" height="22">
+                  <use xlink:href="#icon-feature_sale"></use>
+                </svg>
+                <span class="estate__features-hint estate__features-hint--sale">Скидка&nbsp;иногородним покупателям&nbsp;20&nbsp;000&nbsp;руб</span>
+              </li>
+              <li class="estate__features-item estate__features-item--deal">
+                <svg width="21" height="23">
+                  <use xlink:href="#icon-feature_deal"></use>
+                </svg>
+              <span class="estate__features-hint estate__features-hint--deal">Безопасная&nbsp;сделка</span>
+              </li>
+              <li class="estate__features-item estate__features-item--gift">
+                <svg width="21" height="16">
+                  <use xlink:href="#icon-feature_gift"></use>
+                </svg>
+                <span class="estate__features-hint estate__features-hint--gift">Приемка&nbsp;в&nbsp;подарок</span>
+              </li>
+              <li class="estate__features-item estate__features-item--decor">
+                <svg width="20" height="27">
+                  <use xlink:href="#icon-feature_decor"></use>
+                </svg>
+                <span class="estate__features-hint estate__features-hint--decor">Сертификат&nbsp;на&nbsp;отделку</span>
+              </li>
+              <li class="estate__features-item estate__features-item--conditions">
+                <svg width="30" height="20">
+                  <use xlink:href="#icon-feature_condition"></use>
+                </svg>
+                <span class="estate__features-hint estate__features-hint--gift">Специальные&nbsp;условия для&nbsp;иногородних</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="estate__developer developer">
+          <div class="developer__slider">
+            <h2 class="developer__slider-title">ЖК «Северные высоты»</h2>
+            <ul class="developer__slider-list">
+              <li class="developer__slider-item active">
+                <img src="../img/devSlider-img1.jpg" width="1005" height="610" alt="слайд">
+              </li>
+              <li class="developer__slider-item">
+                <img src="../img/devSlider-img2.jpg" width="1005" height="610" alt="слайд">
+              </li>
+              <li class="developer__slider-item">
+                <img src="../img/devSlider-img1.jpg" width="1005" height="610" alt="слайд">
+              </li>
+              <li class="developer__slider-item">
+                <img src="../img/devSlider-img2.jpg" width="1005" height="610" alt="слайд">
+              </li>
+              <li class="developer__slider-item">
+                <img src="../img/devSlider-img1.jpg" width="1005" height="610" alt="слайд">
+              </li>
+            </ul>
+            <div class="developer__slider-buttons">
+              <span class="developer__slider-leftBtn">
+                <svg width="17" height="13">
+                  <use xlink:href="#icon-arrow_left"></use>
+                </svg>
+              </span>
+              <span class="developer__slider-rightBtn">
+                <svg width="17" height="13">
+                  <use xlink:href="#icon-arrow_right"></use>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="developer__wrapper">
+            <address class="developer__address">
+              <p class="developer__address-metro">Беговая, 21 мин. пешком</p>
+              <p class="developer__address-street">Приморский район, Мебельная улица, 19к2</p>
+            </address>
+            <div class="developer__info">
+              <p class="developer__info-name">ООО «Инвест-Строй»</p>
+              <span class="developer__info-divider"></span>
+              <p class="developer__info-type">Под ключ</p>
+              <a href="tel:8(800)1234556" class="developer__info-phone"><b>8 (800) 123 45 56</b></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="review">
         <div class="review__wrapper">
           <h2 class="review__title">
             Фотообзор ожидание/реальность
           </h2>
-
           <div class="review__gallery">
             <img src="img/review_1.jpg" class="review__gallery-image" width="280" height="190">
             <img src="img/review_2.jpg" alt="ход строительства" class="review__gallery-image" width="280" height="190">
@@ -84,12 +174,15 @@
         </div>
       </section>
 
-      <section class="map">
+      <!--<section class="map">
           <h2 class="map__title">Карта проезда к ЖК «Северные высоты»</h2>
         <div class="map__wrapper">
           <img class="map__image" src="img/map.jpg" alt="карта" width="" height="450">
+          <iframe class="map__online"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63826.73718991362!2d30.108201592552962!3d60.00536619562921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4696369ccdbaa90b%3A0x1de54dfd0a105b11!2z0YPQuy4g0JzQtdCx0LXQu9GM0L3QsNGPLCAxOSwg0KHQsNC90LrRgi3Qn9C10YLQtdGA0LHRg9GA0LMsIDE5MDAwMA!5e0!3m2!1sru!2sru!4v1568451692687!5m2!1sru!2sru" width="" height="450" frameborder="0" style="border:0;" allowfullscreen="">
+          </iframe>
         </div>
-      </section>
+      </section>-->
 
       <section class="progress">
         <div class="progress__wrapper">
@@ -130,6 +223,7 @@
           <a href="#" class="progress__unfurl-link">Показать все фотографии<span class="progress__unfurl-icon"></span></a>
         </div>
       </section>
+
       <section class="analog">
         <div class="analog__wrapper">
           <h2 class="analog__title">Подобные ЖК</h2>
@@ -158,9 +252,63 @@
             <a href="#" class="analog__link">Смотреть все предложения</a>
         </div>
       </section>
+      <footer class="footer">
+        <div class="footer__container">
+          <div class="footer__location location">
+            <h3 class="location__title">Новостройки</h3>
+            <ul class="location__list">
+              <li class="location__list-item"><a href="#" class="location__list-link">В Санкт-Петербурге</a></li>
+              <li class="location__list-item"><a href="#" class="location__list-link">В Ленинградской области</a></li>
+              <li class="location__list-item"><a href="#" class="location__list-link">В Москве</a></li>
+              <li class="location__list-item"><a href="#" class="location__list-link">В Московской области</a></li>
+              <li class="location__list-item"><a href="#" class="location__list-link location__list-link--map">Новостройки на карте</a></li>
+            </ul>
 
+          </div>
+          <div class="footer__popular popular">
+            <h3 class="popular__title">Популярное</h3>
+            <ul class="popular__list">
+              <li class="popular__list-item"><a href="#" class="popular__list-link">До 3 миллионов</a></li>
+              <li class="popular__list-item"><a href="#" class="popular__list-link">До 4 миллионов</a></li>
+              <li class="popular__list-item"><a href="#" class="popular__list-link">До 5 миллионов</a></li>
+            </ul>
+
+          </div>
+          <div class="footer__sales sales">
+            <h3 class="sales__title">Старты продаж новостроек</h3>
+            <ul class="sales__list">
+              <li class="sales__list-item"><a href="#" class="sales__list-link">Видеообзоры ЖК</a></li>
+              <li class="sales__list-item"><a href="#" class="sales__list-link">Новости</a></li>
+              <li class="sales__list-item"><a href="#" class="sales__list-link">Статьи</a></li>
+            </ul>
+          </div>
+          <div class="footer__wrapper">
+            <div class="footer__search">
+              <input type="search" class="footer__search-input" placeholder="Поиск по базе"></input>
+            </div>
+
+            <div class="footer__logo">
+              <a href="#" class="footer__logo-link">
+                PRONovostroyki.com
+              </a>
+            </div>
+            <div class="footer__social">
+              <ul class="footer__social-list">
+                <li class="footer__social-item">
+                  <a href="#" class="footer__social-link">ВКонтакте</a>
+                </li>
+                <li class="footer__social-item">
+                  <a href="#" class="footer__social-link">YouTube</a>
+                </li>
+                <li class="footer__social-item">
+                  <a href="#" class="footer__social-link">Instagramm</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
     </main>
-
   <script src="js/script.min.js"></script>
   </body>
 </html>

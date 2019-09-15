@@ -1,0 +1,47 @@
+.footer {
+  background-color: @footer-black;
+  min-height: 500px;
+}
+
+.footer__container {
+  position: relative;
+  .container();
+  padding: 80px 75px;
+  display: flex;
+  outline: 1px solid red;
+}
+
+.footer__search-input {
+  position: relative;
+  width: 485px;
+  font-family: "Open Sans - Semibold";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 32px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  color: @primary-grey;
+  background-color: #ffffff;
+  z-index: 1;
+
+  &::placeholder {
+    font-family: "Open Sans - Semibold";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 32px;
+    color: @primary-grey;
+  }
+}
+
+.footer__container::after { // изменить привязку, сделать к инпуту
+  position: relative;
+  top: 15px;
+  right: 30px;
+  width: 35px;
+  height: 35px;
+  content: "";
+  background-image: url("../img/magnifying-glass.png");
+  background-repeat: no-repeat;
+  background-size: 22px 22px;
+  z-index: 1000000000;
+}
