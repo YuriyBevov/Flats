@@ -70,10 +70,6 @@
     border: 5px solid #ff833d;
     transition: background-color 1s 0.2s ease;
 
-    &:hover svg {
-      fill: #ff833d;
-    }
-
     &:hover .estate__features-hint {
       display: block;
       animation: showHint 1.2s ease;
@@ -84,10 +80,6 @@
     background-color: #86d3ff;
     border: 5px solid #86d3ff;
     transition: background-color 1s 0.2s ease;
-
-    &:hover svg {
-      fill: #86d3ff;
-    }
 
     &:hover .estate__features-hint {
       display: block;
@@ -100,10 +92,6 @@
     border: 5px solid #66cf6a;
     transition: background-color 1s 0.2s ease;
 
-    &:hover svg {
-      fill: #66cf6a;
-    }
-
     &:hover .estate__features-hint {
       display: block;
       animation: showHint 1.2s ease;
@@ -114,10 +102,6 @@
     background-color: #6677cf;
     border: 5px solid #6677cf;
     transition: background-color 1s 0.2s ease;
-
-    &:hover svg {
-      fill: #6677cf;
-    }
 
     &:hover .estate__features-hint {
       display: block;
@@ -130,10 +114,6 @@
     border: 5px solid #c368da;
     transition: background-color 1s 0.2s ease;
 
-    &:hover svg {
-      fill: #c368da;
-    }
-
     &:hover .estate__features-hint {
       display: block;
       animation: showHint 1.2s ease;
@@ -143,10 +123,30 @@
   &:hover {
     background-color: transparent;
   }
+}
 
-  &:hover svg {
-    fill: #000;
-  }
+.estate__features-item svg{
+  fill: @primary-white;
+}
+
+.estate__features-item--sale:hover svg{
+  fill: #ff833d;
+}
+
+.estate__features-item--deal:hover svg{
+  fill: #86d3ff;
+}
+
+.estate__features-item--gift:hover svg{
+  fill: #66cf6a;
+}
+
+.estate__features-item--decor:hover svg{
+  fill: #6677cf;
+}
+
+.estate__features-item--conditions:hover svg{
+  fill: #c368da;
 }
 
 @keyframes showHint {
@@ -156,84 +156,3 @@
   to {
     opacity: 1;}
   }
-
-/*.estate__features-list {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  padding-left: 300px;
-  padding-top: 40px;
-  background-color: transparent;
-}
-
-.estate__features-item {
-  position: relative;
-  width: 185px;
-  padding: 15px 10px 10px 25px;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
-  color: @primary-black;
-  background-image: url("../img/hint_box.svg");
-  background-size: 185px 100%;
-  margin-bottom: 25px;
-
-  &--sale::before {
-    position: absolute;
-    top: -5px;
-    left: -60px;
-    content: "";
-    width: 55px;
-    height: 55px;
-    background-color: #ff833d;
-    border-radius: 50%;
-  }
-
-  &--deal::before {
-    position: absolute;
-    top: -5px;
-    left: -60px;
-    content: "";
-    width: 55px;
-    height: 55px;
-    background-color: #86d3ff;
-    border-radius: 50%;
-  }
-
-  &--gift::before {
-    position: absolute;
-    top: -5px;
-    left: -60px;
-    content: "";
-    width: 55px;
-    height: 55px;
-    background-color: #66cf6a;
-    border-radius: 50%;
-  }
-
-  &--decor::before {
-    position: absolute;
-    top: -5px;
-    left: -60px;
-    content: "";
-    width: 55px;
-    height: 55px;
-    background-color: #6677cf;
-    border-radius: 50%;
-  }
-
-  &--conditions::before {
-    position: absolute;
-    top: 0;
-    left: -60px;
-    content: "";
-    width: 55px;
-    height: 55px;
-    background-color: #c368da;
-    border-radius: 50%;
-  }
-}*/
