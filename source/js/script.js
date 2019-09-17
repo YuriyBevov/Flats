@@ -10,9 +10,9 @@
   burgerIcon.addEventListener('click', onBurgerMenuClickHandler);
 }());
 
-(function () {
-
   /* Top slider */
+
+(function () {
 
   var sliderItems = document.querySelectorAll('.developer__slider-item');
   var btnLeft = document.querySelector('.developer__slider-leftBtn');
@@ -59,7 +59,23 @@
     }
     addActiveClass();
   };
-  
+
   btnRight.addEventListener('click', onNextBtnClick);
   btnLeft.addEventListener('click', onPreviousBtnClick);
+}());
+
+  // change active feedback-link
+
+(function () {
+  var toggleLinks = document.querySelectorAll('.feedback__toogle-link');
+  var activeLink = document.querySelector('.feedback__toogle-link--active');
+
+  for (var i = 0; i < toggleLinks.length; i++) {
+    toggleLinks[i].addEventListener('click', function(evt) {
+      evt.preventDefault();
+      activeLink.classList.remove('feedback__toogle-link--active');
+      this.classList.add('feedback__toogle-link--active');
+      activeLink = this;
+    });
+  }
 }());

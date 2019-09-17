@@ -1,0 +1,58 @@
+.deadline {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 40px;
+}
+
+.deadline__list {
+  display: none; // temp
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+
+.deadline__list-item {
+  width: 100%;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 19px;
+  border: none;
+  padding: 0;
+  padding: 10px 70px;
+  cursor: pointer;
+  border-top: 2px solid @secondary-white;
+  color: @button-white;
+  background-color: @secondary-black;
+  transition: color 0.5s 0.2s;
+
+  &:hover,
+  &:focus {
+    color: @primary-pink;
+  }
+}
+
+.deadline__nav {
+  align-self: flex-end;
+  width: 1005px;
+}
+
+.deadline__nav-toggle {
+  width: 100%;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 19px;
+  border: none;
+  padding: 0;
+  padding: 10px 70px;
+  cursor: pointer;
+  color: @button-white;
+  background-color: @secondary-black;
+  transition: color 0.5s 0.2s;
+
+  &:hover,
+  &:focus {
+    color: @primary-pink;
+  }
+}
