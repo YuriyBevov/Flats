@@ -5,26 +5,40 @@
 }
 
 .deadline__list {
-  display: none; // temp
-
+  // display: none; // temp
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
   list-style: none;
   margin: 0;
   padding: 0;
   text-align: right;
+  padding: 0 70px;
+  background-color: @secondary-black;
 }
 
 .deadline__list-item {
-  width: 100%;
+  width: 280px;
   font-size: 18px;
   font-weight: 600;
   line-height: 19px;
   border: none;
   padding: 0;
-  padding: 10px 70px;
   cursor: pointer;
-  border-top: 2px solid @secondary-white;
   color: @button-white;
   background-color: @secondary-black;
+}
+
+.deadline__list-link {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  text-align: left;
+  padding: 10px 0;
+  color: @button-white;
   transition: color 0.5s 0.2s;
 
   &:hover,
@@ -46,13 +60,8 @@
   border: none;
   padding: 0;
   padding: 10px 70px;
+  text-align: left;
   cursor: pointer;
   color: @button-white;
   background-color: @secondary-black;
-  transition: color 0.5s 0.2s;
-
-  &:hover,
-  &:focus {
-    color: @primary-pink;
-  }
 }

@@ -139,8 +139,7 @@
   background-color: transparent;
 }
 
-.developer__slider-leftBtn,
-.developer__slider-rightBtn {
+.developer__slider-btn {
   width: 34px;
   height: 34px;
   background-color: @primary-white;
@@ -150,26 +149,27 @@
   align-items: center;
   cursor: pointer;
   transition: background-color 0.5s 0.2s ease, border 0.5s 0.2s ease;
+
+  &--right {
+    transform: rotate(180deg);
+  }
 }
 
-.developer__slider-leftBtn:hover,
-.developer__slider-rightBtn:hover,
-.developer__slider-leftBtn:focus,
-.developer__slider-rightBtn:focus {
+.developer__slider-btn:hover,
+.developer__slider-btn:focus {
   background-color: @primary-pink;
   border: 3px solid @primary-white;
 }
 
-.developer__slider-leftBtn:active,
-.developer__slider-rightBtn:active {
+.developer__slider-btn:active {
   opacity: 0.8;
 }
 
-.developer__slider-leftBtn:hover svg {
-  fill: #ffffff;
+.developer__slider-btn svg {
+  transition: fill 0.5s 0.1s;
 }
 
-.developer__slider-rightBtn:hover svg {
+.developer__slider-btn:hover svg {
   fill: #ffffff;
 }
 
@@ -177,7 +177,7 @@
   display: none;
 }
 
-.active { // for slider !!!!!
+.active {
   display: block;
   animation: showSlider 1.8s;
 }
@@ -185,11 +185,4 @@
 @keyframes showSlider {
   from {transform: scale(1.1);}
   to {transform: scale(1);}
-}
-
-.icons {
-  height: 200px;
-  padding: 100px;
-  text-align: center;
-  background-color: #eee;
 }
