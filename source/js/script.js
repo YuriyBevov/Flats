@@ -15,8 +15,8 @@
 (function () {
 
   var sliderItems = document.querySelectorAll('.developer__slider-item');
-  var btnLeft = document.querySelector('.developer__slider-leftBtn');
-  var btnRight = document.querySelector('.developer__slider-rightBtn');
+  var btnLeft = document.querySelector('.developer__slider-btn--left');
+  var btnRight = document.querySelector('.developer__slider-btn--right');
   var currentPhoto = document.querySelector('.active');
   var activePhoto = 0;
   var sliderLength = sliderItems.length;

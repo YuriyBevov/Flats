@@ -1,12 +1,11 @@
 .calculator {
-
+  margin-bottom: 40px;
 }
 
 .calculator__wrapper {
   display: flex;
   flex-direction: column;
   padding: 60px 70px;
-  outline: 1px solid red;
 }
 
 .calculator__title {
@@ -39,11 +38,13 @@
 
 .calculator__form {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .calculator__form-box {
   width: 310px;
   margin-right: 70px;
+  margin-bottom: 70px;
 
   &:nth-child(3n) {
     margin-right: 0;
@@ -64,7 +65,7 @@
 }
 
 .calculator__form input[type="text"]::placeholder {
-
+  text-align: right;
 }
 
 .calculator__text {
