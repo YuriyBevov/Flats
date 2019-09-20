@@ -79,3 +79,28 @@
     });
   }
 }());
+
+(function () {
+  var items = document.querySelectorAll('.rating__list-item');
+
+
+    window.addEventListener('scroll', function () {
+      var scrollTop = window.pageYOffset;
+      var itemList = document.querySelector('.rating__list');
+
+      var coords = itemList.getBoundingClientRect().top;
+      console.log(coords);
+
+      if (coords <= 600) {
+        for (var i = 0; i < items.length; i++) {
+
+
+
+
+              items[i].classList.add('rating__list-item-animation');
+
+        }
+      }
+    })
+
+}());

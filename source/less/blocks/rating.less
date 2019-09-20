@@ -25,10 +25,12 @@
 
 .rating__list {
   display: flex;
+  flex-wrap: wrap;
   list-style: none;
   margin: 0;
   padding: 0;
   margin-bottom: 65px;
+  overflow: hidden;
 }
 
 .rating__list-item {
@@ -39,10 +41,22 @@
   margin-right: 70px;
   color: @light-black;
   text-align: center;
-  outline: 1px solid red;
+  transform: translateY(250px);
 
   &:last-child {
     margin-right: 0;
+  }
+}
+
+.rating__list-item-animation {
+  animation: showRatingItem 1.5s;
+  transform: translateX(0);
+}
+
+@keyframes showRatingItem {
+  from {transform: translateY(150px)};
+  to {
+    transform: translateY(0)
   }
 }
 
@@ -54,8 +68,6 @@
   margin-bottom: 20px;
   border-radius: 50%;
   background-color: transparent;
-
-  outline: 1px solid black;
 
   &--kids {
     border: 6px solid #e94646;
@@ -82,20 +94,53 @@
   }
 }
 
+.rating__average-box {
+  width: 100%;
+  display: flex;
+}
+
 .rating__average {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
   color: @light-black;
+
+  &-rating {
+  }
+
+  &-building {
+    display: block;
+  }
+}
+
+.rating__average-line {
+  width: 100%;
+  height: 1px;
+  align-self: center;
+  background-color: @primary-black;
+
+  &--left {
+    margin-right: 40px;
+  }
+
+  &--right {
+    margin-left: 40px;
+  }
 }
 
 .rating__average-value {
-  width: 72px;
-  height: 72px;
+  width: 70px;
+  height: 55px;
   font-size: 32px;
   font-weight: 700;
-  line-height: 24px;
   border-radius: 4px;
+  margin-left: 40px;
+  align-self: center;
+  padding: 10px;
   background-color: @primary-pink;
   color: @secondary-white;
 }
