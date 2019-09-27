@@ -6,40 +6,67 @@
   <title>Название сайта</title>
   <link href="css/style.css" rel="stylesheet">
 
-
+  <!--<link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">-->
 </head>
   <body>
     <div style="display:none">
       <include src="build/img/sprite.svg"></include>
     </div>
+    <!-- сверстан -->
     <header class="main-header">
-      <img class="main-header__logo" src="img/logo.png" width="210" height="28"></img>
+      <div class="main-header__wrapper">
+      <img class="main-header__logo" src="img/logo.png"></img>
         <nav class="main-nav">
           <button class="main-nav__toggle" type="button"><span class="visually-hidden">Открыть меню</span></button>
-          <ul class="main-nav__list  hidden">
-            <li class="main-nav___item">
-              <a href="#" class="main-nav__link">Подобрать квартиру</a>
-            </li>
-            <li class="main-nav___item">
-              <a href="#" class="main-nav__link">Характеристики комплекса</a>
-            </li>
-            <li class="main-nav___item">
-              <a href="#" class="main-nav__link">Отзывы</a>
-            </li>
-            <li class="main-nav___item">
-              <a href="#" class="main-nav__link">Авторское описание</a>
-            </li>
-            <li class="main-nav___item">
-              <a href="#" class="main-nav__link">Документы</a>
-            </li>
-            <li class="main-nav___item">
-              <a href="#" class="main-nav__link">Ипотека</a>
-            </li>
-          </ul>
+          <div class="main-nav__wrapper">
+            <ul class="main-nav__list main-nav--nojs">
+              <li class="main-nav__item">
+                <a href="#" class="main-nav__link">Подобрать квартиру</a>
+              </li>
+              <li class="main-nav__item">
+                <a href="#" class="main-nav__link">Характеристики комплекса</a>
+              </li>
+              <li class="main-nav__item">
+                <a href="#" class="main-nav__link">Отзывы</a>
+              </li>
+              <li class="main-nav__item">
+                <a href="#" class="main-nav__link">Авторское описание</a>
+              </li>
+              <li class="main-nav__item">
+                <a href="#" class="main-nav__link">Документы</a>
+              </li>
+              <li class="main-nav__item">
+                <a href="#" class="main-nav__link">Ипотека</a>
+              </li>
+            </ul>
+          </div>
         </nav>
+      </div>
     </header>
     <main>
+
       <section class="estate">
+        <div class="estate__wrapper">
+          <h1 class="estate__title visually-hidden">Новостройки Санкт-Петербурга</h1>
+          <div class="estate__slider-box">
+
+            <div class="estate__slider-item">
+              <img src="img/devSlider-img1.jpg" alt="" width="320" height="220">
+              <div class="estate__slider-item-description">ЖК «Северные высоты»</div>
+            </div>
+            <div class="estate__slider-item">
+              <img src="img/devSlider-img2.jpg" alt="" width="320" height="220">
+              <div class="estate__slider-item-description">ЖК «Северные высоты»</div>
+
+            </div>
+            <div class="estate__slider-item">
+              <img src="img/devSlider-img1.jpg" alt="" width="320" height="220">
+              <div class="estate__slider-item-description">ЖК «Северные высоты»</div>
+            </div>
+        </div>
+      </section>
+
+<!--  <section class="estate">
         <div class="estate__wrapper">
           <div class="estate__features">
             <ul class="estate__features-list">
@@ -69,7 +96,7 @@
               </li>
               <li class="estate__features-item estate__features-item--conditions">
                 <svg width="30" height="20">
-                  <use xlink:href="#icon-feature_conditions"></use>
+                  <use xlink:href="#icon-bus"></use>
                 </svg>
                 <span class="estate__features-hint estate__features-hint--gift">Специальные&nbsp;условия для&nbsp;иногородних</span>
               </li>
@@ -174,21 +201,89 @@
           </ul>
         </div>
       </section>
+ -->
+
       <section class="review">
         <div class="review__wrapper">
-          <h2 class="review__title">
-            Фотообзор ожидание/реальность
-          </h2>
-          <div class="review__gallery">
-            <img src="img/review_1.jpg" class="review__gallery-image" width="280" height="190">
-            <img src="img/review_2.jpg" alt="ход строительства" class="review__gallery-image" width="280" height="190">
-            <img src="img/review_3.jpg" alt="ход строительства" class="review__gallery-image" width="280" height="190">
-            <img src="img/review_4.jpg" alt="ход строительства" class="review__gallery-image" width="280" height="190">
+          <h2 class="review__title">Видеообзоры</h2>
+          <div class="review__video-slider">
+            <div class="review__video-box">
+
+              <div class="review__item">
+                <video> <!-- controls -->
+                  <source src="video/video.mp4" type="video/mp4"><!-- MP4 для Safari, IE9, iPhone, iPad, Android, и Windows Phone 7 -->
+                  <source src="video.webm" type="video/webm"><!-- WebM/VP8 для Firefox4, Opera, и Chrome -->
+                  <source src="video.ogv" type="video/ogg"><!-- Ogg/Vorbis для старых версий браузеров Firefox и Opera -->
+                  <object data="video.swf" type="application/x-shockwave-flash"><!-- добавляем видеоконтент для устаревших браузеров, в которых нет поддержки элемента video -->
+                    <param name="movie" value="video.swf">
+                  </object>
+                </video>
+                <button type="button" class="video__controls">
+                  <svg width="14" height="16">
+                    <use xlink:href="#icon-play"></use>
+                  </svg>
+                </button>
+                <div class="review__description-box">
+                  <span class="review__video-text">Аэросъемка ЖК «Северные высоты»</span>
+                  <span class="review__video-text review__video-text--duration">2:12</span>
+                </div>
+              </div>
+              <div class="review__item">
+                <video>
+                  <source src="video/video.mp4" type="video/mp4"><!-- MP4 для Safari, IE9, iPhone, iPad, Android, и Windows Phone 7 -->
+                  <source src="video.webm" type="video/webm"><!-- WebM/VP8 для Firefox4, Opera, и Chrome -->
+                  <source src="video.ogv" type="video/ogg"><!-- Ogg/Vorbis для старых версий браузеров Firefox и Opera -->
+                  <object data="video.swf" type="application/x-shockwave-flash"><!-- добавляем видеоконтент для устаревших браузеров, в которых нет поддержки элемента video -->
+                    <param name="movie" value="video.swf">
+                  </object>
+                </video>
+                <button type="button" class="video__controls">
+                  <svg width="14" height="16">
+                    <use xlink:href="#icon-play"></use>
+                  </svg>
+                </button>
+                <div class="review__description-box">
+                  <span class="review__video-text">Аэросъемка ЖК «Северные высоты»</span>
+                  <span class="review__video-text review__video-text--duration">2:12</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <a href="#" class="review__unfurl-link">Показать все фотографии<span class="review__unfurl-icon"></span></a>
-          <a href="#" class="review__link">Записаться на экскурсию</a>
+
+          <h2 class="review__title">Ожидание/реальность</h2>
+          <div class="review__photo-slider">
+            <div class="review__photo-box">
+
+              <div class="review__item">
+                <img src="img/devSlider-img1.jpg" alt="" width="320" height="220">
+                <div class="review__description-box">
+                  <span class="review__photo-text">Корпус 2</span>
+                  <span class="review__photo-text review__photo-text--date">28.05.2019</span>
+                </div>
+              </div>
+              <div class="review__item">
+                <img src="img/devSlider-img2.jpg" alt="" width="320" height="220">
+                <div class="review__description-box">
+                  <span class="review__photo-text">Корпус 2</span>
+                  <span class="review__photo-text review__photo-text--date">28.05.2019</span>
+                </div>
+              </div>
+              <div class="review__item">
+                <img src="img/devSlider-img1.jpg" alt="" width="320" height="220">
+                <div class="review__description-box">
+                  <span class="review__photo-text">Корпус 2</span>
+                  <span class="review__photo-text review__photo-text--date">28.05.2019</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        <button type="button" class="review__btn">Записаться на экскурсию</button>
         </div>
       </section>
+
+
+      <!--
       <section class="description">
         <div class="description__wrapper">
           <h2 class="description__title">Характеристики комплекса</h2>
@@ -265,27 +360,63 @@
           <small class="rating-elaboration">Рейтинг составлен на основании отзывов с форумов дольщиков.</small>
           <ul class="rating__list">
             <li class="rating__list-item">
-              <span class="rating__list-figure rating__list-figure--kids"><span class="rating__value">6,7</span></span>
+              <span class="rating__list-figure rating__list-figure--kids">
+                <span class="rating__list-background"></span>
+                  <svg width="64" height="46">
+                    <use xlink:href="#icon-balancer"></use>
+                  </svg>
+                  <span class="rating__value">6,7</span>
+              </span>
               Для детей
             </li>
             <li class="rating__list-item">
-              <span class="rating__list-figure rating__list-figure--infrastructure"><span class="rating__value">6,7</span></span>
+              <span class="rating__list-figure rating__list-figure--infrastructure">
+                <span class="rating__list-background"></span>
+                <svg width="56" height="56">
+                  <use xlink:href="#icon-infrastructure"></use>
+                </svg>
+                <span class="rating__value">6,7</span>
+              </span>
               Инфраструктура
             </li>
             <li class="rating__list-item">
-              <span class="rating__list-figure rating__list-figure--district"><span class="rating__value">6,3</span></span>
+              <span class="rating__list-figure rating__list-figure--district">
+                <span class="rating__list-background"></span>
+                <svg width="57" height="57">
+                  <use xlink:href="#icon-compass"></use>
+                </svg>
+                <span class="rating__value">6,3</span>
+              </span>
               Район
             </li>
             <li class="rating__list-item">
-              <span class="rating__list-figure rating__list-figure--safety"><span class="rating__value">5</span></span>
+              <span class="rating__list-figure rating__list-figure--safety">
+                <span class="rating__list-background"></span>
+                <svg width="39" height="51">
+                  <use xlink:href="#icon-lock"></use>
+                </svg>
+                <span class="rating__value">5</span>
+              </span>
               Безопасность
             </li>
             <li class="rating__list-item">
-              <span class="rating__list-figure rating__list-figure--transport"><span class="rating__value">4.6</span></span>
+              <span class="rating__list-figure rating__list-figure--transport">
+                <span class="rating__list-background"></span>
+                <svg width="62" height="41">
+                  <use xlink:href="#icon-bus"></use>
+                </svg>
+                <span class="rating__value">4.6</span>
+              </span>
               Транспорт
             </li>
             <li class="rating__list-item">
-              <span class="rating__list-figure rating__list-figure--house"><span class="rating__value">3.2</span></span>
+              <span class="rating__list-figure rating__list-figure--house">
+                <span class="rating__list-background"></span>
+                <svg width="55" height="54">
+                  <use xlink:href="#icon-hotel"></use>
+                </svg>
+                <span class="rating__value">3.2</span>
+              </span>
               Квартира/дом
             </li>
           </ul>
@@ -300,42 +431,60 @@
           </div>
         </div>
       </section>
-      <section class="story">
-        <h2 class="story__title">Авторское описание ЖК</h2>
-        <div class="story__wrapper">
-          <b class="story__author">Александр Иванов</b>
-          <small class="story__author-description">автор сайта....</small>
-          <p class="story__description">
-            Если вы жить не можете без Красной площади и ГУМа,
-            но собственная квартира в центре Москвы вам пока не
-            по карману, выход есть – берите квартиру в Подмосковье.
-            Жильё там чем дальше от МКАД, тем дешевле, поэтому в целях
-            экономии можете забраться куда-нибудь вообще далеко.
-            Например, на расстояние 25 километров к северо-востоку от Кольцевой,
-            в ЖК “Лукино-Варино” от компании “СУ-22”. Тогда вы будете жить практически
-            в собственном городе, но ещё и сможете регулярно ездить в столицу – ну чем не сказка?
+-->
+      <section class="blog"> <!--сверстан-->
+        <div class="blog__wrapper">
+          <h2 class="blog__title">Авторское описание ЖК</h2>
+            <picture>
+              <source type="image/webp" srcset="img/author_photo.webp">
+
+              <img class="blog__avatar" src="img/author_photo.jpg" alt="Аватар" width="80" height="80">
+            </picture>
+            <div class="blog__box">
+              <b class="blog__author">Александр Иванов</b>
+              <small class="blog__author-description">автор сайта....</small>
+            </div>
+            <p class="blog__description">
+              Если вы жить не можете без Красной площади и ГУМа,
+              но собственная квартира в центре Москвы вам пока не
+              по карману, выход есть – берите квартиру в Подмосковье.
+              Жильё там чем дальше от МКАД, тем дешевле, поэтому в целях
+              экономии можете забраться куда-нибудь вообще далеко.
+              Например, на расстояние 25 километров к северо-востоку от Кольцевой,
+              в ЖК “Лукино-Варино” от компании “СУ-22”. Тогда вы будете жить практически
+              в собственном городе, но ещё и сможете регулярно ездить в столицу – ну чем не сказка?
+
+          </p>
+          <picture>
+            <source type="image/webp" srcset="img/photo_1.webp">
+
+            <img class="blog__image" src="img/photo_1.jpg" alt="фото ЖК" width="320" height="180">
+          </picture>
+
+          <p class="blog__description">
+            Но с чем-с чем, а вот уж с местом в “Лукино-Варино” никаких проблем точно нет!
+            Наверное, первое, на что обращаешь внимание, когда здесь оказываешься, это просторы дворовых пространств.
+            Благодаря им в большом ЖК, целом микрорайоне с большими же домами, совершенно не чувствуешь себя, как в каком-нибудь “муравейнике”.
+            Внешний вид зданий комплекса тоже следует скорее похвалить, чем поругать.
+            Да, есть среди них самые обычные корпуса с клинкерным кирпичом разных оттенков коричневого в облицовке,
+            но есть и более интересные и яркие здания, в которых какой-то цвет (синий, зелёный, оранжевый) словно осыпается сверху.
+            Разве что архитектуру отметить, в общем, не за что. Но это явно застройщик намеренно решил сделать её не вычурной,
+            а простой, чтобы она никак не отразилась на планировках.
+          </p>
+          <b class="blog__note">30 гектар, 52 здания и СУ-22</b>
+          <p class="blog__description">
+            “Лукино-Варино” – жилой комплекс сказочно большого масштаба,
+            в сказочном лесном окружении и даже с почти сказочным названием (есть в нём что-то от молочных рек и кисельных берегов).
+            Понятно, что современный рынок недвижимости – место серьёзное, но когда оказываешься здесь, да ещё и видишь, какие низкие здесь цены на квартиры,
+            сразу чувствуешь себя ребёнком, попавшим в любимую сказку.
+            И из этой сказки совершенно не хочется выбираться.
+          </p>
+          <picture>
+            <source type="image/webp" srcset="img/photo_2.webp">
+
+            <img class="blog__image" src="img/photo_2.jpg" alt="фото ЖК" width="320" height="180">
+          </picture>
         </div>
-        </p>
-        <img class="story__image" src="img/photo_1.jpg" width="1210" height="620" alt="фото ЖК">
-        <p class="story__description">
-          Но с чем-с чем, а вот уж с местом в “Лукино-Варино” никаких проблем точно нет!
-          Наверное, первое, на что обращаешь внимание, когда здесь оказываешься, это просторы дворовых пространств.
-          Благодаря им в большом ЖК, целом микрорайоне с большими же домами, совершенно не чувствуешь себя, как в каком-нибудь “муравейнике”.
-          Внешний вид зданий комплекса тоже следует скорее похвалить, чем поругать.
-          Да, есть среди них самые обычные корпуса с клинкерным кирпичом разных оттенков коричневого в облицовке,
-          но есть и более интересные и яркие здания, в которых какой-то цвет (синий, зелёный, оранжевый) словно осыпается сверху.
-          Разве что архитектуру отметить, в общем, не за что. Но это явно застройщик намеренно решил сделать её не вычурной,
-          а простой, чтобы она никак не отразилась на планировках.
-        </p>
-        <b class="story__note">30 гектар, 52 здания и СУ-22</b>
-        <p class="story__description">
-          “Лукино-Варино” – жилой комплекс сказочно большого масштаба,
-          в сказочном лесном окружении и даже с почти сказочным названием (есть в нём что-то от молочных рек и кисельных берегов).
-          Понятно, что современный рынок недвижимости – место серьёзное, но когда оказываешься здесь, да ещё и видишь, какие низкие здесь цены на квартиры,
-          сразу чувствуешь себя ребёнком, попавшим в любимую сказку.
-          И из этой сказки совершенно не хочется выбираться.
-        </p>
-        <img class="story__image" src="img/photo_2.jpg" width="1210" height="620" alt="фото ЖК">
       </section>
       <section class="documents">
         <div class="documents__wrapper">
@@ -357,7 +506,8 @@
             <a href="#" class="documents__unfurl-link">Показать еще 5 документов<span class="documents__unfurl-icon"></span></a>
             <a href="#" class="documents__link">Получить консультацию юриста</a>
         </div>
-      </section>
+      </section> <!-- доделать кнопки -->
+        <!--
       <section class="credit">
         <div class="credit__wrapper">
           <h2 class="credit__title">Ипотека от банков</h2>
@@ -409,17 +559,92 @@
           </div>
           </div>
         </div>
+      </section>-->
+
+      <!-- сверстан -->
+      <section class="chart">
+        <div class="chart__wrapper">
+
+          <div class="chart__box">
+            <h2 class="chart__title">Изменение цен за 1 м2 (тыс. руб)</h2>
+            <div class="chart__button-box">
+              <button type="button" class="chart__btn chart__btn--studio">Студия</button>
+              <button type="button" class="chart__btn">1</button>
+              <button type="button" class="chart__btn chart__btn--active" >2</button>
+              <button type="button" class="chart__btn">3</button>
+              <button type="button" class="chart__btn">4</button>
+              <button type="button" class="chart__btn">5+</button>
+            </div>
+            <canvas id="myChart"></canvas>
+          </div>
+
+          <div class="chart__description-box">
+            <b class="chart__note">Проведена проверка экспертами</b>
+            <div class="chart__description">
+              Специалисты исследовали ЖК “Северные высоты”: сравнили обещания застройщика с реальностью, проверили договор ДДУ,
+              собрали статистику по динамике цен, метражу и другим параметрам.
+            </div>
+            <a href="" class="chart__link">Смотреть отчет</a>
+          </div>
+        </div>
       </section>
-      <section class="feedback">
+      <!-- сверстан -->
+      <section class="route">
+        <div class="route__wrapper">
+          <h2 class="route__title">Карта проезда к ЖК «Северные высоты»</h2>
+        </div>
+        <div class="route__map" id="map">
+
+        </div>
+      </section>
+
+      <section class="feedback"> <!-- доделать кнопки, размер шрифтов -->
+        <div class="feedback__wrapper">
         <h2 class="feedback__title">Отзывы</h2>
         <div class="feedback__toggler">
           <a href="" class="feedback__toogle-link feedback__toogle-link--estate feedback__toogle-link--active">О комплексе</a>
           <a href="" class="feedback__toogle-link feedback__toogle-link--developer">О застройщике</a>
         </div>
-        <div class="feedback__wrapper">
+        <div class="feedback__inner">
           <div class="feedback__box">
-            <b class="feedback__author">Самойлова Виктория</b>
-            <small class="feedback__time">вчера в 15:43</small>
+
+            <div class="feedback__container">
+              <div class="feedback__avatar-box">
+                <img src="img/feedback__avatar.png" alt="аватарка" class="feedback__avatar" width="16" height="20">
+              </div>
+
+              <div class="feedback__author-container">
+                <b class="feedback__author">Самойлова Виктория</b>
+                <small class="feedback__time">вчера в 15:43</small>
+              </div>
+            </div>
+
+            <p class="feedback__text">
+              В этом году заселились в квартиру!. Цена соответствует качеству!
+              В этом году заселились в квартиру!. Цена соответствует качеству!
+              В этом году заселились в квартиру!. Цена соответствует качеству!
+              В этом году заселились в квартиру!. Цена соответствует качеству!
+              В этом году заселились в квартиру!. Цена соответствует качеству!
+              В этом году заселились в ... квартиру!. Цена соответствует качеству!
+            </p>
+            <div class="feedback__buttons visually-hidden">
+              <a href="#" class="feedback__answer-link">Ответить</a>
+              <button class="feedback__btn feedback__btn--unfurl">Читать весь отзыв</button>
+              <button class="feedback__btn feedback__btn--furl">Свернуть</button>
+            </div>
+          </div>
+
+          <div class="feedback__box">
+            <div class="feedback__container">
+              <div class="feedback__avatar-box">
+                <img src="img/feedback__avatar.png" alt="аватарка" class="feedback__avatar" width="16" height="20">
+              </div>
+
+              <div class="feedback__author-container">
+                <b class="feedback__author">Самойлова Виктория</b>
+                <small class="feedback__time">вчера в 15:43</small>
+              </div>
+            </div>
             <p class="feedback__text">
               В этом году заселились в квартиру!. Цена соответствует качеству!
               В этом году заселились в квартиру!. Цена соответствует качеству!
@@ -431,61 +656,22 @@
             <div class="feedback__buttons">
               <a href="#" class="feedback__answer-link">Ответить</a>
               <button class="feedback__btn feedback__btn--unfurl">Читать весь отзыв</button>
-            </div>
-          </div>
-
-          <div class="feedback__box">
-            <b class="feedback__author">Самойлова Виктория</b>
-            <small class="feedback__time">вчера в 15:43</small>
-            <p class="feedback__text">
-              В этом году заселились в квартиру!. Цена соответствует качеству!
-              В этом году заселились в квартиру!. Цена соответствует качеству!
-              В этом году заселились в квартиру!. Цена соответствует качеству!
-              В этом году заселились в квартиру!. Цена соответствует качеству!
-              В этом году заселились в квартиру!. Цена соответствует качеству!
-              В этом году заселились в ... квартиру!. Цена соответствует качеству!
-            </p>
-            <div class="feedback__buttons">
-              <a href="#" class="feedback__answer-link">Ответить</a>
-            </div>
-          </div>
-
-          <div class="feedback__box">
-            <b class="feedback__author">Самойлова Виктория</b>
-            <small class="feedback__time">вчера в 15:43</small>
-            <p class="feedback__text">
-              В этом году заселились в квартиру! Цена соответствует качеству!
-              В этом году заселились в квартиру!. Цена соответствует качеству!
-              В этом году заселились в квартиру!. Цена соответствует качеству!
-              В этом году заселились в квартиру!. Цена соответствует качеству!
-              В этом году заселились в квартиру!. Цена соответствует качеству!
-              В этом году заселились в ... квартиру!. Цена соответствует качеству!
-              В этом году заселились в квартиру!. Цена соответствует качеству!
-              В этом году заселились в квартиру!. Цена соответствует качеству!
-              В этом году заселились в квартиру!. Цена соответствует качеству!
-              В этом году заселились в квартиру!. Цена соответствует качеству!
-              В этом году заселились в ... квартиру!. Цена соответствует качеству!
-              В этом году заселились в квартиру!. Цена соответствует качеству!
-              В этом году заселились в квартиру!. Цена соответствует качеству!
-              В этом году заселились в квартиру!. Цена соответствует качеству!
-              В этом году заселились в квартиру!. Цена соответствует качеству!
-              В этом году заселились в ... квартиру!. Цена соответствует качеству!
-            </p>
-            <div class="feedback__buttons">
-              <a href="#" class="feedback__answer-link">Ответить</a>
               <button class="feedback__btn feedback__btn--furl">Свернуть</button>
             </div>
           </div>
-          <a href="#" class="feedback__unfurl-link">Показать все отзывы<span class="feedback__unfurl-icon"></span></a>
+
           <button type="button" class="feedback__add-button">Добавить отзыв</button>
+          <a href="#" class="feedback__unfurl-link">Показать все отзывы<span class="feedback__unfurl-icon"></span></a>
+        </div>
         </div>
       </section>
+      <!--
       <section class="progress">
         <div class="progress__wrapper">
           <h2 class="progress__title">
             Ход строительства ЖК «Северные высоты»
           </h2>
-          <form action="formdata" method="post" name="progress__form" class="progress__form"> <!-- наверно лучше сделать выпадающим списком -->
+          <form action="formdata" method="post" name="progress__form" class="progress__form">
            <p>
              <select name="year" class="progress__form-select">
                <option>2019</option>
@@ -494,7 +680,7 @@
                <option>2016</option>
              </select>
              <select name="month" class="progress__form-select">
-               <option class="progress__form-option">январь</option>
+               <option>январь</option>
                <option>февраль</option>
                <option>март</option>
                <option>апрель</option>
@@ -547,36 +733,13 @@
             <a href="#" class="analog__link">Смотреть все предложения</a>
         </div>
       </section>
-      <footer class="footer">
-        <div class="footer__container">
-          <div class="footer__location location">
-            <h3 class="location__title">Новостройки</h3>
-            <ul class="location__list">
-              <li class="location__list-item"><a href="#" class="location__list-link">В Санкт-Петербурге</a></li>
-              <li class="location__list-item"><a href="#" class="location__list-link">В Ленинградской области</a></li>
-              <li class="location__list-item"><a href="#" class="location__list-link">В Москве</a></li>
-              <li class="location__list-item"><a href="#" class="location__list-link">В Московской области</a></li>
-              <li class="location__list-item"><a href="#" class="location__list-link location__list-link--map">Новостройки на карте</a></li>
-            </ul>
-          </div>
-          <div class="footer__popular popular">
-            <h3 class="popular__title">Популярное</h3>
-            <ul class="popular__list">
-              <li class="popular__list-item"><a href="#" class="popular__list-link">До 3 миллионов</a></li>
-              <li class="popular__list-item"><a href="#" class="popular__list-link">До 4 миллионов</a></li>
-              <li class="popular__list-item"><a href="#" class="popular__list-link">До 5 миллионов</a></li>
-            </ul>
+      -->
 
-          </div>
-          <div class="footer__sales sales">
-            <h3 class="sales__title">Старты продаж новостроек</h3>
-            <ul class="sales__list">
-              <li class="sales__list-item"><a href="#" class="sales__list-link">Видеообзоры ЖК</a></li>
-              <li class="sales__list-item"><a href="#" class="sales__list-link">Новости</a></li>
-              <li class="sales__list-item"><a href="#" class="sales__list-link">Статьи</a></li>
-            </ul>
-          </div>
-          <div class="footer__wrapper">
+      <!-- доделать флекс блоки -->
+      <footer class="footer">
+        <div class="footer__wrapper">
+
+          <div class="footer__box">
             <div class="footer__search">
               <form class="footer__search-form">
                 <input type="text" class="footer__search-input" placeholder="Поиск по базе"></input>
@@ -592,20 +755,135 @@
             <div class="footer__social">
               <ul class="footer__social-list">
                 <li class="footer__social-item">
-                  <a href="#" class="footer__social-link"><img src="../img/logo_vk.png" width="60" height="60" alt="ВКонтакте"></a>
+                  <a href="#" class="footer__social-link"><img src="../img/logo_vk.png" width="50" height="50" alt="ВКонтакте"></a>
                 </li>
                 <li class="footer__social-item">
-                  <a href="#" class="footer__social-link"><img src="../img/logo_youtube.png" width="60" height="60" alt="YouTube"></a>
+                  <a href="#" class="footer__social-link"><img src="../img/logo_youtube.png" width="50" height="50" alt="YouTube"></a>
                 </li>
                 <li class="footer__social-item">
-                  <a href="#" class="footer__social-link"><img src="../img/logo_instagram.png" width="60" height="60" alt="Instagram"></a>
+                  <a href="#" class="footer__social-link"><img src="../img/logo_instagram.png" width="50" height="50" alt="Instagram"></a>
                 </li>
               </ul>
             </div>
+            <div class="footer__container">
+              <div class="footer__buildings buildings">
+                <h3 class="buildings__title">Новостройки</h3>
+                <ul class="buildings__list">
+                  <li class="buildings__list-item"><a href="#" class="buildings__list-link">В Санкт-Петербурге</a></li>
+                  <li class="buildings__list-item"><a href="#" class="buildings__list-link">В Ленинградской области</a></li>
+                  <li class="buildings__list-item"><a href="#" class="buildings__list-link">В Москве</a></li>
+                  <li class="buildings__list-item"><a href="#" class="buildings__list-link">В Московской области</a></li>
+                </ul>
+              </div>
+
+              <div class="footer__catalog catalog">
+                <h3 class="catalog__title">Популярное</h3>
+                <ul class="catalog__list">
+                  <li class="catalog__list-item"><a href="#" class="catalog__list-link">До 3 миллионов</a></li>
+                  <li class="catalog__list-item"><a href="#" class="catalog__list-link">До 4 миллионов</a></li>
+                  <li class="catalog__list-item"><a href="#" class="catalog__list-link">До 5 миллионов</a></li>
+                </ul>
+              </div>
+          </div>
+          <div class="footer__info">
+            <div class="footer__info-box">
+              <a href="#" class="footer__info-link">Новостройки на карте</a>
+              <a href="#" class="footer__info-link">Видеообзоры ЖК</a>
+            </div>
+            <div class="footer__info-box">
+              <a href="#" class="footer__info-link">Старты продаж новостроек</a>
+              <a href="#" class="footer__info-link">Новости</a>
+              <a href="#" class="footer__info-link">Статьи</a>
+            </div>
           </div>
         </div>
+      </div>
       </footer>
     </main>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="js/slick.min.js"></script>
   <script src="js/script.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>-->
+
+  <script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var dataLabels = ['нояб’18', 'дек’18', 'янв’19', 'фев’19', 'март’19', 'апр’19', 'май’19']; //  массив для изменяемыхданных
+    var data = [80, 83, 75, 90, 95, 125, 110]; // массив для изменяемыхданных
+    var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'line',
+
+      // The data for our dataset
+      data: {
+          labels: dataLabels,
+          datasets: [{
+              label: '',
+              backgroundColor: 'rgba(233,70,70, 0.1)',
+              borderColor: 'rgb(233,70,70)',
+              borderWidth: 1,
+              pointHoverBackgroundColor: 'rgb(233,70,70)',
+              spanGaps: true,
+              data: data
+          }]
+      },
+
+      // Configuration options go here
+      options: {
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            gridLines: {
+              display: false
+            }
+          }],
+          yAxes: [{
+            scaleLabel: {
+              display: true
+            },
+            ticks: {
+              min: 0,
+              max: 150,
+              stepSize: 25
+            }
+          }]
+        }
+      }
+    });
+
+  </script>
+
+  <script type="text/javascript">
+    ymaps.ready(function () {
+      var myMap = new ymaps.Map('map', {
+        center: [59.996421, 30.214709],
+        zoom: 14
+      }, {
+        searchControlProvider: 'yandex#search'
+      }),
+      MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+        '<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+      ),
+      myPlacemark = new ymaps.Placemark(myMap.getCenter(), {}, {
+        iconLayout: 'default#image',
+        iconImageHref: 'img/map_pin.png',
+        iconImageSize: [79, 87],
+        iconImageOffset: [-40, -87]
+      })
+      myMap.geoObjects
+        .add(myPlacemark)
+      myMap.behaviors
+        .disable(['scrollZoom', 'rightMouseButtonMagnifier'])
+        .enable('ruler');
+    });
+  </script>
+
   </body>
 </html>

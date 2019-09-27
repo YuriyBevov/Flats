@@ -2,6 +2,9 @@
   var burgerIcon = document.querySelector('.main-nav__toggle');
   var menu = document.querySelector('.main-nav__list');
 
+  menu.classList.remove('main-nav--nojs');
+  menu.classList.add('hidden')
+
   var onBurgerMenuClickHandler = function (evt) {
     evt.preventDefault();
     menu.classList.toggle('hidden');
@@ -10,9 +13,38 @@
   burgerIcon.addEventListener('click', onBurgerMenuClickHandler);
 }());
 
+$(document).ready(function(){
+  $('.estate__slider-box').slick({
+    autoplay: true,
+    autoplaySpeed: 3000,
+    adaptiveHeight: true,
+    arrows: false,
+  });
+});
+
+$(document).ready(function(){
+  $('.review__photo-box').slick({
+    autoplay: true,
+    autoplaySpeed: 3000,
+    adaptiveHeight: true,
+    arrows: false,
+  });
+});
+
+$(document).ready(function(){
+  $('.review__video-box').slick({
+
+    lazyLoad: 'progressive',
+    adaptiveHeight: true,
+    arrows: false,
+
+  });
+});
+
+
   /* Top slider */
 
-(function () {
+/*(function () {
 
   var sliderItems = document.querySelectorAll('.developer__slider-item');
   var btnLeft = document.querySelector('.developer__slider-btn--left');
@@ -80,27 +112,40 @@
   }
 }());
 
+
 (function () {
   var items = document.querySelectorAll('.rating__list-item');
+  var itemList = document.querySelector('.rating__list');
 
+  var coords = itemList.getBoundingClientRect().top;
+  var top = itemList.offsetHeight;
+  var topY = itemList.clientY;
 
-    window.addEventListener('scroll', function () {
-      var scrollTop = window.pageYOffset;
-      var itemList = document.querySelector('.rating__list');
+  var animation = function () {
+    if (coords - top <= 0) {
+      console.log('ok');
+      anime({
+        targets: '.rating__list-item',
+        translateY: 550,
+        duration: 2000,
+        delay: anime.stagger(50)
+      });
 
-      var coords = itemList.getBoundingClientRect().top;
-      console.log(coords);
+      anime({
+        targets: '.rating__list-background',
+        bottom: '0px',
+        left: '-50px',
+        rotate: '90deg',
+        duration: 1500,
+        easing: 'easeInOutQuad',
+        delay: anime.stagger(200)
+      });
+      document.removeEventListener('scroll', animation);
+    } else {
+      console.log('else');
+      document.addEventListener('scroll', animation);
+    }
+  };
 
-      if (coords <= 600) {
-        for (var i = 0; i < items.length; i++) {
-
-
-
-
-              items[i].classList.add('rating__list-item-animation');
-
-        }
-      }
-    })
-
-}());
+document.addEventListener('scroll', animation);
+}());*/

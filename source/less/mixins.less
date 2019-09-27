@@ -1,5 +1,6 @@
 .container() {
   width: 320px;
+
   margin: 0 auto;
 
   @media(min-width: @tablet-width) {
@@ -11,16 +12,60 @@
   }
 }
 
+
+.title-style {
+  font-size: 15px;
+  line-height: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: @primary-black;
+
+  @media (min-width: @tablet-width) {
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  @media (min-width: @desktop-width) {
+    font-size: 22px;
+    line-height: 19px;
+  }
+}
+
+.text-style {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  margin: 0;
+  padding: 0;
+  color: @light-black;
+
+  @media (min-width: @tablet-width) {
+    font-size: 14px;
+    line-height: 19px;
+  }
+
+  @media (min-width: @desktop-width) {
+    font-size: 15px;
+    line-height: 22px;
+  }
+}
+
 .unfurl-link() {
   position: relative;
-  font-size: 16px;
+  font-size: 11px;
   font-weight: 400;
-  line-height: 32px;
   text-decoration: underline;
   color: @primary-pink;
   background: transparent;
   align-self: center;
   transition: opacity 0.5s 0.1s;
+
+  @media(min-width: @desktop-width) {
+
+    font-size: 16px;
+    line-height: 32px;
+    text-decoration: underline;
+  }
 }
 
 .unfurl-icon() {
@@ -29,11 +74,17 @@
   top: 50%;
   right: -15px;
   content: "";
-  width: 8px;
-  height: 5px;
+  width: 5px;
+  height: 4px;
   background-image: url("../img/unfurl.png");
   background-repeat: no-repeat;
-  background-size: 8px 5px;
+  background-size: 5px 4px;
+
+  @media (min-width: @desktop-width) {
+    width: 8px;
+    height: 5px;
+    background-size: 8px 5px;
+  }
 }
 
 .unfurl-link__hover {

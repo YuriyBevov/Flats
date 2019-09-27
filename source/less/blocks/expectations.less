@@ -1,0 +1,35 @@
+.expectations__wrapper {
+  .container();
+  outline: 1px solid red;
+}
+
+.expectations__title {
+  .title-style();
+}
+
+.slick__item img {
+  width: 320px;
+  height: 220px;
+}
+
+@media (min-width: @tablet-width) {
+  .expectations__wrapper {
+    padding: 0 30px;
+  }
+
+  .slick__item img {
+    width: 708px;
+    height: 400px;
+  }
+}
+
+@media (min-width: @desktop-width) {
+  .expectations__wrapper {
+    padding: 0 75px;
+  }
+
+  .slick__item img {
+    width: 1000px;
+    height: 610px;
+  }
+}
