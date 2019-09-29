@@ -13,6 +13,7 @@
   burgerIcon.addEventListener('click', onBurgerMenuClickHandler);
 }());
 
+
 $(document).ready(function(){
   $('.estate__slider-box').slick({
     adaptiveHeight: true,
@@ -28,9 +29,13 @@ $(document).ready(function(){
       }
     ]
   });
-});
 
-$(document).ready(function(){
+  $('.review__video-box').slick({
+    lazyLoad: 'progressive',
+    adaptiveHeight: true,
+    arrows: false,
+  });
+
   $('.review__photo-box').slick({
     autoplay: true,
     autoplaySpeed: 3000,
@@ -40,11 +45,11 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-  $('.review__video-box').slick({
-    lazyLoad: 'progressive',
-    adaptiveHeight: true,
-    arrows: false,
-  });
+
+});
+
+$(document).ready(function(){
+
 });
 
 
