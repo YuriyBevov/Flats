@@ -35,8 +35,10 @@
   font-weight: 600;
   line-height: 23px;
   color: @light-black;
+}
 
-  &:nth-child(2n) {
+@media(max-width: @tablet-width) {
+  .rating__list-item:nth-child(2n) {
     margin-right: 0;
   }
 }
@@ -139,7 +141,7 @@
   }
 
   .rating__list {
-    padding: 0;
+    padding: 0 4px;
     margin-bottom: 40px;
   }
 
@@ -147,10 +149,6 @@
     font-size: 14px;
     margin-right: 20px;
     margin-bottom: 0;
-
-    &:nth-child(2n) {
-      margin-right: 20px;
-    }
 
     &:last-child {
       margin-right: 0;
@@ -203,6 +201,7 @@
   .rating__list {
     font-size: 13px;
     line-height: 28px;
+    padding: 0 10px;
     margin-bottom: 85px;
 
     &-figure {
@@ -218,12 +217,12 @@
 
   .rating__list-item {
     width: 140px;
-    margin-right: 60px;
+    margin-right: 70px;
     font-size: 15px;
     line-height: 32px;
 
-    &:nth-child(2n) {
-      margin-right: 60px;
+    &:last-child {
+      margin-right: 0;
     }
   }
 
