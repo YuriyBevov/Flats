@@ -44,6 +44,17 @@
   }
 }());
 
+// скролл по якорю
+
+$(document).ready(function(){
+	$(".main-nav").on("click","a", function (event) {
+		event.preventDefault();
+		var id  = $(this).attr('href'),
+			top = $(id).offset().top;
+		$('body,html').animate({scrollTop: top}, 2000);
+	});
+});
+
 // slick.init
 
 $(document).ready(function(){
