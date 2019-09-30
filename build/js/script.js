@@ -13,40 +13,20 @@
   burgerIcon.addEventListener('click', onBurgerMenuClickHandler);
 }());
 
-$(document).ready(function(){
-  $('.estate__slider-box').slick({
-    adaptiveHeight: true,
-    arrows: true,
-    prevArrow: '<button id="prev" type="button" class="estate__slider-prevBtn"></button>',
-    nextArrow: '<button id="next" type="button" class="estate__slider-nextBtn"></button>',
-    responsive : [
-      {
-        breakpoint: 768,
-        settings: {
-          arrows: false
-        }
-      }
-    ]
-  });
-});
+(function () {
+  var tableBtn = document.querySelectorAll('.description__table');
 
-$(document).ready(function(){
-  $('.review__photo-box').slick({
-    autoplay: true,
-    autoplaySpeed: 3000,
-    adaptiveHeight: true,
-    arrows: false,
-  });
-});
+  for (var i = 0; i < tableBtn.length; i++) {
 
-$(document).ready(function(){
-  $('.review__video-box').slick({
-    lazyLoad: 'progressive',
-    adaptiveHeight: true,
-    arrows: false,
-  });
-});
+    tableBtn[i].classList.remove('table--nojs');
+    tableBtn[i].addEventListener('click', function (evt) {
+      evt.preventDefault();
 
+      this.classList.toggle('active');
+    })
+  }
+
+})();
 
   // change active feedback-link
 
@@ -63,3 +43,46 @@ $(document).ready(function(){
     });
   }
 }());
+
+// скролл по якорю
+
+$(document).ready(function(){
+	$(".main-nav").on("click","a", function (event) {
+		event.preventDefault();
+		var id  = $(this).attr('href'),
+			top = $(id).offset().top;
+		$('body,html').animate({scrollTop: top}, 2000);
+	});
+});
+
+// slick.init
+
+$(document).ready(function(){
+  $('.estate__slider-box').slick({
+    adaptiveHeight: true,
+    arrows: true,
+    prevArrow: '<button id="prev" type="button" class="estate__slider-prevBtn"></button>',
+    nextArrow: '<button id="next" type="button" class="estate__slider-nextBtn"></button>',
+    responsive : [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: false
+        }
+      }
+    ]
+  });
+
+  $('.review__video-box').slick({
+    lazyLoad: 'progressive',
+    adaptiveHeight: true,
+    arrows: false,
+  });
+
+  $('.review__photo-box').slick({
+    autoplay: true,
+    autoplaySpeed: 3000,
+    adaptiveHeight: true,
+    arrows: false,
+  });
+});
