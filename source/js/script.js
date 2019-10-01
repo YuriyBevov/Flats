@@ -47,12 +47,19 @@
 // скролл по якорю
 
 $(document).ready(function(){
-	$(".main-nav").on("click","a", function (event) {
-		event.preventDefault();
+	$(".main-nav").on("click","a", function (evt) {
+		evt.preventDefault();
 		var id  = $(this).attr('href'),
 			top = $(id).offset().top;
 		$('body,html').animate({scrollTop: top}, 2000);
 	});
+
+  $(".footer__logo").on("click", "a", function(evt) {
+    evt.preventDefault();
+    var scrollUp = $(this).attr('href'),
+    top = $(scrollUp).offset().top;
+    $('body, html').animate({scrollTop: top}, 2000);
+  });
 });
 
 // slick.init

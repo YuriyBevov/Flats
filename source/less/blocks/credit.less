@@ -1,11 +1,17 @@
 .credit__wrapper {
   .container();
+  padding: 0 10px;
   padding-bottom: 10px;
 }
 
 .credit__title {
-  .title-style();
+  font-size: 15px;
+  line-height: 16px;
+  font-weight: 600;
+  margin: 0;
+  padding-left: 10px;
   margin-bottom: 20px;
+  color: @primary-black;
 }
 
 .credit__list {
@@ -17,7 +23,7 @@
 }
 
 .credit__list-item {
-  width: 150px;
+  width: 160px;
   margin-right: 20px;
 
   &:nth-child(2n) {
@@ -26,19 +32,27 @@
 }
 
 @media(min-width: @tablet-width) {
+  .credit__title {
+    font-size: 18px;
+    line-height: 20px;
+    padding-left: 0;
+  }
+
   .credit__wrapper {
     padding: 0 30px;
     padding-bottom: 15px;
   }
 
   .credit__list-item {
-    width: 180px;
+    width: 200px;
     margin-right: 40px;
   }
 }
 
 @media(min-width: @desktop-width) {
   .credit__title {
+    font-size: 22px;
+    line-height: 19px;
     margin-bottom: 60px;
   }
 

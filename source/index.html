@@ -4,6 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Название сайта</title>
+
+  <link rel="preload" href="fonts/opensans.woff2" as="font">
+  <link rel="preload" href="fonts/opensansbold.woff2" as="font">
+  <link rel="preload" href="fonts/OpenSansSemiBold.woff2" as="font">
+  <link rel="preload" href="fonts/opensansbold.woff2" as="font">
   <link href="css/style.css" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -14,7 +19,7 @@
       <include src="build/img/sprite.svg"></include>
     </div>
     <!-- сверстан -->
-    <header class="main-header">
+    <header class="main-header" id="main-header">
       <div class="main-header__wrapper">
       <img class="main-header__logo" src="img/logo.png"></img>
         <nav class="main-nav">
@@ -56,7 +61,7 @@
             <picture>
               <source type="image/webp" srcset="img/devSlider-img1.jpg">
 
-              <img class="estate__slider-img" src="img/devSlider-img1.jpg" alt="фотография ЖК" width="320" height="220">
+              <img class="estate__slider-img" src="img/devSlider-img1.jpg" alt="фотография ЖК" width="360" height="220">
             </picture>
             <h2 class="estate__slider-title">ЖК «Северные высоты»</h2>
             <div class="estate__description-box">
@@ -76,7 +81,7 @@
             <picture>
               <source type="image/webp" srcset="img/devSlider-img1.jpg">
 
-              <img class="estate__slider-img" src="img/devSlider-img1.jpg" alt="фотография ЖК" width="320" height="220">
+              <img class="estate__slider-img" src="img/devSlider-img1.jpg" alt="фотография ЖК" width="360" height="220">
             </picture>
             <h2 class="estate__slider-title">ЖК «Северные высоты»</h2>
             <div class="estate__description-box">
@@ -96,7 +101,7 @@
             <picture>
               <source type="image/webp" srcset="img/devSlider-img1.jpg">
 
-              <img class="estate__slider-img" src="img/devSlider-img1.jpg" alt="фотография ЖК" width="320" height="220">
+              <img class="estate__slider-img" src="img/devSlider-img1.jpg" alt="фотография ЖК" width="360" height="220">
             </picture>
             <h2 class="estate__slider-title">ЖК «Северные высоты»</h2>
             <div class="estate__description-box">
@@ -182,7 +187,7 @@
                     <use xlink:href="#icon-feature_sale"></use>
                   </svg>
                 </div>
-                <span class="advantages__features-hint advantages__features-hint--sale">Скидка&nbsp;иногородним покупателям&nbsp;20&nbsp;000&nbsp;руб</span>
+                <span class="advantages__features-hint advantages__features-hint--sale">Скидка&nbsp;иногородним&nbsp;покупателям&nbsp;200&nbsp;000&nbsp;руб</span>
               </li>
               <li class="advantages__features-item advantages__features-item--sale">
                 <div class="advantages__features-item-box">
@@ -849,7 +854,7 @@
       </section>
 
       <!-- доделать флекс блоки -->
-      <footer class="footer">
+      <!--<footer class="footer">
         <div class="footer__wrapper">
 
           <div class="footer__box">
@@ -911,8 +916,79 @@
           </div>
         </div>
       </div>
-      </footer>
+    </footer>-->
     </main>
+    <footer class="footer">
+      <div class="footer__wrapper">
+        <div class="footer__box">
+          <div class="footer__search">
+            <form class="footer__search-form">
+              <input type="text" class="footer__search-input" placeholder="Поиск по базе"></input>
+              <button type="button" class="footer__search-btn"><span class="visually-hidden">найти</span></button>
+             </form>
+          </div>
+
+          <div class="footer__logo">
+            <a href="#main-header" class="footer__logo-link">
+              PRONovostroyki.com
+            </a>
+          </div>
+          <div class="footer__social">
+            <ul class="footer__social-list">
+              <li class="footer__social-item">
+                <a href="#" class="footer__social-link"><img src="../img/logo_vk.png" width="50" height="50" alt="ВКонтакте"></a>
+              </li>
+              <li class="footer__social-item">
+                <a href="#" class="footer__social-link"><img src="../img/logo_youtube.png" width="50" height="50" alt="YouTube"></a>
+              </li>
+              <li class="footer__social-item">
+                <a href="#" class="footer__social-link"><img src="../img/logo_instagram.png" width="50" height="50" alt="Instagram"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      <div class="footer__info-wrapper">
+        <div class="footer__info-container">
+        <div class="footer__info-buildings buildings">
+          <div class="buildings__wrapper">
+          <h3 class="buildings__title">Новостройки</h3>
+          <ul class="buildings__list">
+            <li class="buildings__item"><a href="#" class="buildings__item-link">В Санкт-Петербурге</a></li>
+            <li class="buildings__item"><a href="#" class="buildings__item-link">В Ленинградской области</a></li>
+            <li class="buildings__item"><a href="#" class="buildings__item-link">В Москве</a></li>
+            <li class="buildings__item"><a href="#" class="buildings__item-link">В Московской области</a></li>
+          </ul>
+          </div>
+        </div>
+
+        <div class="footer__info-catalog catalog">
+          <div class="catalog__wrapper">
+          <h3 class="catalog__title">Популярное</h3>
+          <ul class="catalog__list">
+            <li class="catalog__item"><a href="#" class="catalog__item-link">До 3 миллионов</a></li>
+            <li class="catalog__item"><a href="#" class="catalog__item-link">До 4 миллионов</a></li>
+            <li class="catalog__item"><a href="#" class="catalog__item-link">До 5 миллионов</a></li>
+          </ul>
+        </div>
+      </div>
+      </div>
+        <div class="footer__info-news news">
+          <div class="news__wrapper">
+          <div class="news__box">
+            <a href="#" class="news__link">Новостройки на карте</a>
+            <a href="#" class="news__link">Видеообзоры ЖК</a>
+          </div>
+          <div class="news__box">
+            <a href="#" class="news__link">Старты продаж новостроек</a>
+            <a href="#" class="news__link">Новости</a>
+            <a href="#" class="news__link">Статьи</a>
+          </div>
+        </div>
+        </div>
+      </div>
+      </div>
+    </footer>
 
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
