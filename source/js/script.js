@@ -25,7 +25,6 @@
       this.classList.toggle('active');
     })
   }
-
 })();
 
   // change active feedback-link
@@ -47,24 +46,18 @@
 // скролл по якорю
 
 $(document).ready(function(){
-	$(".main-nav").on("click","a", function (evt) {
+	$(".scrollLink").on("click","a", function (evt) {
 		evt.preventDefault();
 		var id  = $(this).attr('href'),
 			top = $(id).offset().top;
 		$('body,html').animate({scrollTop: top}, 2000);
 	});
-
-  $(".footer__logo").on("click", "a", function(evt) {
-    evt.preventDefault();
-    var scrollUp = $(this).attr('href'),
-    top = $(scrollUp).offset().top;
-    $('body, html').animate({scrollTop: top}, 2000);
-  });
 });
 
 // slick.init
 
 $(document).ready(function(){
+
   $('.estate__slider-box').slick({
     adaptiveHeight: true,
     arrows: true,
@@ -81,15 +74,86 @@ $(document).ready(function(){
   });
 
   $('.review__video-box').slick({
-    lazyLoad: 'progressive',
     adaptiveHeight: true,
-    arrows: false,
+    arrows: false
   });
 
-  $('.review__photo-box').slick({
-    autoplay: true,
-    autoplaySpeed: 3000,
-    adaptiveHeight: true,
-    arrows: false,
-  });
+
 });
+
+
+(function() {
+
+  var sliderOptions = function () {
+    $('.review__photo-box').slick({
+      autoplay: true,
+      autoplaySpeed: 3000,
+      adaptiveHeight: false,
+      arrows: false,
+      mobileFirst: true,
+        responsive: [
+            {
+                breakpoint: 1360,
+                settings: 'unslick'
+            }
+        ]
+    });
+  }
+
+  var flag = false;
+
+  var init = function () {
+    var windowWidth = window.innerWidth;
+    if (windowWidth > 1360) {
+      flag = true;
+      window.addEventListener('resize', sliderInit);
+    } else {
+      sliderOptions();
+      window.addEventListener('resize', sliderDestroy);
+    }
+  }
+
+  var sliderInit = function () {
+    var initWidth = window.innerWidth;
+    if (initWidth < 1360) {
+      if (flag) {
+        sliderOptions();
+        flag = false;
+        window.addEventListener('resize', sliderDestroy);
+      }
+    }
+  }
+
+  var sliderDestroy = function () {
+    destroyWidth = window.innerWidth;
+      if (destroyWidth > 1360) {
+        if (!flag) {
+          init();
+        }
+      }
+  }
+
+  init();
+}());
+
+
+
+// video custom
+
+/*$(document).ready(function() {
+  var controls = {
+    video: $("#video"),
+    play: $("#play")
+  };
+
+  var video = controls.video[0];
+
+  controls.play.click(function(){
+    if(video.paused) {
+      video.play();
+    }
+    else {
+      video.pause();
+    }
+  });
+});*/

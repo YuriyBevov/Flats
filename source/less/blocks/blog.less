@@ -1,6 +1,8 @@
 .blog__wrapper {
   .container();
   padding: 0 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .blog__title {
@@ -51,6 +53,10 @@
 
 .blog__image {
   margin-bottom: 15px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .blog__note {
@@ -64,7 +70,7 @@
 
 @media (min-width: @tablet-width) {
   .blog__wrapper {
-    padding: 0 30px;
+    padding: 0 30px 60px;
   }
 
   .blog__title {

@@ -11,7 +11,108 @@
   }
 }
 
-.unfurl-link() {
+.link__btn {
+
+}
+
+.pink__btn {
+  width: 320px;
+  min-height: 50px;
+  border-radius: 25px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 18px;
+  border: none;
+  padding: 0;
+  align-self: center;
+  cursor: pointer;
+  color: @secondary-white;
+  background-color: @primary-pink;
+
+  @media(min-width: @tablet-width) {
+    font-size: 16px;
+  }
+
+  @media(min-width: @desktop-width) {
+    width: 360px;
+    min-height: 70px;
+    border-radius: 35px;
+    font-size: 18px;
+    line-height: 19px;
+  }
+}
+
+.light__btn {
+  width: 300px;
+  min-height: 50px;
+  border-radius: 25px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 18px;
+  border: none;
+  padding: 0;
+  align-self: center;
+  cursor: pointer;
+  color: @primary-pink;
+  background-color: @light-pink;
+
+  @media(min-width: @tablet-width) {
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  @media(min-width: @desktop-width) {
+    width: 360px;
+    min-height: 70px;
+    border-radius: 35px;
+    font-size: 18px;
+    line-height: 19px;
+  }
+}
+
+.show__btn {
+  position: relative;
+  max-width: 300px;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 32px;
+  border: none;
+  padding: 0;
+  align-self: center;
+  text-decoration: underline;
+  border: none;
+  cursor: pointer;
+  color: @primary-pink;
+  background-color: transparent;
+
+  &::after {
+    position: absolute;
+    top: 15px;
+    right: -10px;
+    width: 5px;
+    height: 4px;
+    content: "";
+    background-image: url('../img/arrow_down.png');
+    background-size: 5px 4px;
+    background-repeat: no-repeat;
+  }
+
+  @media(min-width: @tablet-width) {
+    font-size: 14px;
+
+    &:after {
+      width: 8px;
+      height: 5px;
+      right: -12px;
+      background-size: 8px 5px;
+    }
+  }
+  @media(min-width: @desktop-width) {
+    font-size: 16px;
+  }
+}
+
+/*.unfurl-link() {
   position: relative;
   font-size: 11px;
   font-weight: 400;
@@ -95,4 +196,4 @@
   color: @primary-white;
   background-color: @primary-pink;
   box-shadow: 0 2px 5px @primary-black;
-}
+}*/
