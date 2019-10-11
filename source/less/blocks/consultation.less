@@ -1,0 +1,56 @@
+.consultation__wrapper {
+  .container();
+  padding: 0 20px 40px;
+}
+
+.consultation__form {
+  width: 280px;
+  margin: 0 auto;
+  margin-bottom: 25px;
+}
+
+.consultation__form-input {
+  width: 100%;
+  border-radius: 2px;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid @primary-grey;
+  background-color: @primary-white;
+}
+
+.consultation__form-input::placeholder {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  color: @primary-grey;
+}
+
+@media(min-width: @tablet-width) {
+  .consultation__wrapper {
+    padding: 0 30px 40px;
+  }
+
+  .consultation__form {
+    width: 350px;
+    margin: 0;
+    margin-bottom: 40px;
+  }
+}
+
+@media(min-width: @desktop-width) {
+  .consultation__wrapper {
+
+  }
+
+  .consultation__title-box {
+    background-color: @primary-pink;
+  }
+
+  .consultation__title {
+    color: @primary-white;
+  }
+
+  .consultation__form {
+    width: 350px;
+  }
+}

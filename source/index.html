@@ -5,22 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ПроНовоСтройки</title>
 
-  <link rel="preload" href="fonts/opensans.woff2" as="font">
-  <link rel="preload" href="fonts/opensansbold.woff2" as="font">
-  <link rel="preload" href="fonts/OpenSansSemiBold.woff" as="font">
-  <link rel="preload" href="fonts/opensansbold.woff2" as="font">
-
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
 </head>
   <body>
     <div style="display:none">
       <include src="build/img/sprite.svg"></include>
     </div>
-    <header class="main-header" id="main-header">
+    <header class="header main-header" id="main-header">
       <div class="main-header__wrapper">
-      <img class="main-header__logo" src="img/logo2.svg" alt="логотип">
+        <img class="main-header__logo logo" src="img/logo.svg" width="80" height="46" alt="Логотип">
         <nav class="main-nav scrollLink">
           <button class="main-nav__toggle" type="button"><span class="visually-hidden">Открыть меню</span></button>
           <div class="main-nav__wrapper">
@@ -49,8 +47,7 @@
       </div>
     </header>
     <main>
-
-    <section class="estate">
+      <section class="estate">
       <div class="estate__wrapper">
         <h1 class="estate__title visually-hidden">Новостройки Санкт-Петербурга</h1>
         <div class="estate__slider-box">
@@ -240,8 +237,7 @@
           </div>
         </div>
     </section>
-
-    <section class="flats">
+      <section class="flats">
       <div class="flats__wrapper">
         <ul class="flats__list">
           <li class="flats__item">
@@ -296,119 +292,103 @@
         </div>
       </div>
     </section>
-
       <section class="review">
         <div class="review__wrapper">
-          <h2 class="review__title">Видеообзоры</h2>
-          <div class="review__video-slider">
-            <div class="review__video-box">
+        <h2 class="review__title">Видеообзоры</h2>
+          <div class="review__slider">
+            <div class="review__container" >
 
-              <!--<div class="review__item">
+              <iframe src="https://www.youtube.com/embed/qLcKujZtjgchttps://www.youtube.com/embed/qLcKujZtjgc?rel=0&showinfo=0"
+                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+              </iframe>
 
-                <iframe  src="https://www.youtube.com/embed/RDK-Zt4lasA"
-                  frameborder="0"
-                  allowfullscreen>
-                </iframe>
+              <div class="review__mask"></div>
+              <button class="review__playBtn"><span class="visually-hidden">Play</span></button>
+            </div>
+            <div class="review__container">
 
+              <iframe src="https://www.youtube.com/embed/qLcKujZtjgchttps://www.youtube.com/embed/qLcKujZtjgc?rel=0&showinfo=0"
+                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+              </iframe>
 
-                <div class="review__description-box">
-                  <span class="review__video-text">Аэросъемка ЖК «Северные высоты»</span>
-                  <span class="review__video-text review__video-text--duration">2:12</span>
-                </div>
-              </div>
+              <div class="review__mask"></div>
+              <button class="review__playBtn"><span class="visually-hidden">Play</span></button>
+            </div>
+            <div class="review__container">
 
-              <div class="review__item review__item--video">
+              <iframe src="https://www.youtube.com/embed/qLcKujZtjgchttps://www.youtube.com/embed/qLcKujZtjgc?rel=0&showinfo=0"
+                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+              </iframe>
 
-                <iframe  src="https://www.youtube.com/embed/RDK-Zt4lasA"
-                  frameborder="0"
-                  allowfullscreen>
-                </iframe>
+              <div class="review__mask"></div>
+              <button class="review__playBtn"><span class="visually-hidden">Play</span></button>
+            </div>
+            <div class="review__container">
 
-                <div class="review__description-box">
-                  <span class="review__video-text">Аэросъемка ЖК «Северные высоты»</span>
-                  <span class="review__video-text review__video-text--duration">2:12</span>
-                </div>
-              </div>
-              <div class="review__item review__item--video">
+              <iframe src="https://www.youtube.com/embed/qLcKujZtjgchttps://www.youtube.com/embed/qLcKujZtjgc?rel=0&showinfo=0"
+                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+              </iframe>
 
-                <iframe  src="https://www.youtube.com/embed/RDK-Zt4lasA"
-                  frameborder="0"
-                  allowfullscreen>
-                </iframe>
-
-                <div class="review__description-box">
-                  <span class="review__video-text">Аэросъемка ЖК «Северные высоты»</span>
-                  <span class="review__video-text review__video-text--duration">2:12</span>
-                </div>
-              </div>
-
-              <div class="review__item review__item--video">
-
-                <iframe  src="https://www.youtube.com/embed/RDK-Zt4lasA"
-                  frameborder="0"
-                  allowfullscreen>
-                </iframe>
-
-                <div class="review__description-box">
-                  <span class="review__video-text">Аэросъемка ЖК «Северные высоты»</span>
-                  <span class="review__video-text review__video-text--duration">2:12</span>
-                </div>
-              </div>-->
+              <div class="review__mask"></div>
+              <button class="review__playBtn"><span class="visually-hidden">Play</span></button>
             </div>
           </div>
+        </div>
+      </section>
+      <section class="expectation">
+        <div class="expectation__wrapper">
+          <h2 class="expectation__title">Ожидание/реальность</h2>
+          <div class="expectation__photo-slider">
+            <div class="expectation__photo-box">
 
-          <h2 class="review__title">Ожидание/реальность</h2>
-          <div class="review__photo-slider">
-            <div class="review__photo-box">
-
-              <div class="review__item">
+              <div class="expectation__item">
                 <picture>
                   <source type="image/webp" srcset="img/devSlider-img1.webp">
 
                   <img src="img/devSlider-img1.jpg" alt="" width="320" height="220">
                 </picture>
-                <div class="review__description-box">
-                  <span class="review__photo-text">Корпус 2</span>
-                  <span class="review__photo-text review__photo-text--date">28.05.2019</span>
+                <div class="expectation__description-box">
+                  <span class="expectation__photo-text">Корпус 2</span>
+                  <span class="expectation__photo-text expectation__photo-text--date">28.05.2019</span>
                 </div>
               </div>
-              <div class="review__item">
+              <div class="expectation__item">
                 <picture>
                   <source type="image/webp" srcset="img/devSlider-img1.webp">
 
                   <img src="img/devSlider-img2.jpg" alt="" width="320" height="220">
                 </picture>
-                <div class="review__description-box">
-                  <span class="review__photo-text">Корпус 2</span>
-                  <span class="review__photo-text review__photo-text--date">28.05.2019</span>
+                <div class="expectation__description-box">
+                  <span class="expectation__photo-text">Корпус 2</span>
+                  <span class="expectation__photo-text expectation__photo-text--date">28.05.2019</span>
                 </div>
               </div>
-              <div class="review__item">
+              <div class="expectation__item">
                 <picture>
                   <source type="image/webp" srcset="img/devSlider-img1.webp">
 
                   <img src="img/devSlider-img1.jpg" alt="" width="320" height="220">
                 </picture>
-                <div class="review__description-box">
-                  <span class="review__photo-text">Корпус 2</span>
-                  <span class="review__photo-text review__photo-text--date">28.05.2019</span>
+                <div class="expectation__description-box">
+                  <span class="expectation__photo-text">Корпус 2</span>
+                  <span class="expectation__photo-text expectation__photo-text--date">28.05.2019</span>
                 </div>
               </div>
-              <div class="review__item">
+              <div class="expectation__item">
                 <picture>
                   <source type="image/webp" srcset="img/devSlider-img1.webp">
 
                   <img src="img/devSlider-img2.jpg" alt="" width="320" height="220">
                 </picture>
-                <div class="review__description-box">
-                  <span class="review__photo-text">Корпус 2</span>
-                  <span class="review__photo-text review__photo-text--date">28.05.2019</span>
+                <div class="expectation__description-box">
+                  <span class="expectation__photo-text">Корпус 2</span>
+                  <span class="expectation__photo-text expectation__photo-text--date">28.05.2019</span>
                 </div>
               </div>
             </div>
           </div>
-        <button type="button" class="review__btn pink__btn">Записаться на экскурсию</button>
-        <button type="button" class="review__show-btn show__btn">Показать все фотографии</button>
+        <button type="button" class="expectation__btn pink__btn">Записаться на экскурсию</button>
+        <button type="button" class="expectation__show-btn show__btn">Показать все фотографии</button>
         </div>
       </section>
       <section class="description" id="description">
@@ -616,6 +596,32 @@
           <button type="button" class="blog__show-btn show__btn">Читать полностью</button>
         </div>
       </section>
+      <section class="chart">
+        <div class="chart__wrapper">
+
+          <div class="chart__box">
+            <h2 class="chart__title">Изменение цен за 1 м2 (тыс. руб)</h2>
+            <div class="chart__button-box">
+              <button type="button" class="chart__btn chart__btn--studio">Студия</button>
+              <button type="button" class="chart__btn">1</button>
+              <button type="button" class="chart__btn chart__btn--active" >2</button>
+              <button type="button" class="chart__btn">3</button>
+              <button type="button" class="chart__btn">4</button>
+              <button type="button" class="chart__btn">5+</button>
+            </div>
+            <canvas id="myChart"></canvas>
+          </div>
+
+          <div class="chart__description-box">
+            <b class="chart__note">Проведена проверка экспертами</b>
+            <div class="chart__description">
+              Специалисты исследовали ЖК “Северные высоты”: сравнили обещания застройщика с реальностью, проверили договор ДДУ,
+              собрали статистику по динамике цен, метражу и другим параметрам.
+            </div>
+            <button type="button" class="chart__description-btn light__btn">Смотреть отчет</button>
+          </div>
+        </div>
+      </section>
       <section class="documents" id="documents" >
         <div class="documents__wrapper">
           <h2 class="documents__title">Документы</h2>
@@ -662,7 +668,7 @@
               </form>
 
               <p class="calculator__text">Ваш ежемесячный платеж составит:<b class="calculator__result">23 567,00 руб.</b></p>
-              <button type="submit" class="calculator__btn pink__btn">Подать заявки во все банки</button>
+              <button type="submit" class="calculator__btn pink__btn openModal__btn">Подать заявки во все банки</button>
             </div>
           </div>
 
@@ -685,32 +691,6 @@
                 </div>
               </li>
             </ul>
-          </div>
-        </div>
-      </section>
-      <section class="chart">
-        <div class="chart__wrapper">
-
-          <div class="chart__box">
-            <h2 class="chart__title">Изменение цен за 1 м2 (тыс. руб)</h2>
-            <div class="chart__button-box">
-              <button type="button" class="chart__btn chart__btn--studio">Студия</button>
-              <button type="button" class="chart__btn">1</button>
-              <button type="button" class="chart__btn chart__btn--active" >2</button>
-              <button type="button" class="chart__btn">3</button>
-              <button type="button" class="chart__btn">4</button>
-              <button type="button" class="chart__btn">5+</button>
-            </div>
-            <canvas id="myChart"></canvas>
-          </div>
-
-          <div class="chart__description-box">
-            <b class="chart__note">Проведена проверка экспертами</b>
-            <div class="chart__description">
-              Специалисты исследовали ЖК “Северные высоты”: сравнили обещания застройщика с реальностью, проверили договор ДДУ,
-              собрали статистику по динамике цен, метражу и другим параметрам.
-            </div>
-            <button type="button" class="chart__description-btn light__btn">Смотреть отчет</button>
           </div>
         </div>
       </section>
@@ -925,13 +905,13 @@
           </div>
         </div>
 
-        <div class="footer__info-catalog catalog">
-          <div class="catalog__wrapper">
-          <h3 class="catalog__title">Популярное</h3>
-          <ul class="catalog__list">
-            <li class="catalog__item"><a href="#" class="catalog__item-link">До 3 миллионов</a></li>
-            <li class="catalog__item"><a href="#" class="catalog__item-link">До 4 миллионов</a></li>
-            <li class="catalog__item"><a href="#" class="catalog__item-link">До 5 миллионов</a></li>
+        <div class="footer__info-catalog price">
+          <div class="price__wrapper">
+          <h3 class="price__title">Популярное</h3>
+          <ul class="price__list">
+            <li class="price__item"><a href="#" class="price__item-link">До 3 миллионов</a></li>
+            <li class="price__item"><a href="#" class="price__item-link">До 4 миллионов</a></li>
+            <li class="price__item"><a href="#" class="price__item-link">До 5 миллионов</a></li>
           </ul>
         </div>
       </div>
@@ -953,20 +933,319 @@
       </div>
     </footer>
 
+    <section class="mortgage mortgage__modal modal modal--closed">
+      <div class="mortgage__wrapper modal__wrapper">
+        <header class="modal__header">
+          <a href="index.html"><img class="modal__logo" src="img/logo.svg" width="80" height="46" alt="Логотип"></a>
+          <div class="modal__estate">
+            <picture>
+              <source type="image/webp" srcset="img/devSlider-img1.webp">
 
+              <img class="modal__img" src="img/devSlider-img1.jpg" alt="фотография ЖК" width="320" height="220">
+            </picture>
+            <h2 class="modal__title">ЖК «Северные высоты»</h2>
+            <div class="modal__description-box">
+              <address class="modal__address">
+                <p class="modal__address-metro">Беговая, 21 мин. пешком</p>
+                <p class="modal__address-street">Приморский район, Мебельная улица, 19к2</p>
+              </address>
+              <div class="modal__info">
+                <p class="modal__info-name">ООО «Инвест-Строй»</p>
+                <span class="modal__info-divider"></span>
+                <p class="modal__info-type">Под ключ</p>
+                <a href="tel:8(800)1234556" class="modal__info-phone"><b>8 (800) 123 45 56</b></a>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="modal__title-box">
+          <h3 class="modal__title">Подать заявки во все банки</h3>
+        </div>
+
+        <div class="modal__content mortgage">
+          <form action="#" method="#" class="mortgage__form">
+            <fieldset class="mortgage__income">
+              <label for="mortgage-income" class="mortgage__label">Месячный доход семьи</label>
+              <input class="mortgage__income-input" type="number" name="mortgage-income" id="mortgage-income">
+              <div class="mortgage__income-line">
+                <div class="mortgage__income-pin" tabindex="0">Кнопка изменения глубины эффекта фотографии</div>
+                <div class="mortgage__income-value">Глубина эффекта фотографии</div>
+              </div>
+            </fieldset>
+            <fieldset class="mortgage__work">
+              <label for="mortgage-work" class="mortgage__label">Общий трудовой стаж</label>
+              <input class="mortgage__work-input" type="number" name="mortgage-work" id="mortgage-work">
+              <div class="mortgage__work-line">
+                <div class="mortgage__work-pin" tabindex="0">Кнопка изменения глубины эффекта фотографии</div>
+                <div class="mortgage__work-value">Глубина эффекта фотографии</div>
+              </div>
+            </fieldset>
+            <fieldset class="mortgage__payment">
+              <label for="mortgage-payment" class="mortgage__label">Первоначальный взнос</label>
+              <input class="mortgage__payment-input" type="text" name="mortgage-payment" id="mortgage-payment" placeholder="500 000">
+            </fieldset>
+
+            <fieldset class="mortgage__capital">
+              <p class="mortgage__capital-text">Наличие материнского капитала и субсидий</p>
+              <label for="mortgage-capital">Да</label>
+              <input type="checkbox" id="mortgage-capital"></input>
+            </fieldset>
+
+            <div class="mortgage__chance">
+              <p class="mortgage__expectancy">Вероятность одобрения:</p>
+              <span class="mortgage__expectancy-value">65<span class="mortgage__expectancy-percent">%</span></span>
+            </div>
+
+            <fieldset class="mortgage__info">
+              <input type="text" required placeholder="Ваше имя"></input>
+              <input type="text" required placeholder="Ваш номер телефона"></input>
+            </fieldset>
+
+            <div class="mortgage__info-box">
+              <b class="mortgage__security">Мы не передаем Ваши данные третьим лицам</b>
+              <small class="mortgage__form-invalid">Вы не заполнили поля «имя», «телефон»</small>
+            </div>
+
+          </form>
+        </div>
+
+        <button type="submit" class="modal__btn pink__btn">Отправить</button>
+
+      </div>
+    </section>
+
+    <section class="excursion excursion__modal modal modal--closed">
+
+      <div class="excursion__wrapper modal__wrapper">
+        <header class="modal__header">
+          <a href="index.html"><img class="modal__logo" src="img/logo.svg" width="80" height="46" alt="Логотип"></a>
+          <div class="modal__estate">
+            <picture>
+              <source type="image/webp" srcset="img/devSlider-img1.webp">
+
+              <img class="modal__img" src="img/devSlider-img1.jpg" alt="фотография ЖК" width="320" height="220">
+            </picture>
+            <h2 class="modal__title">ЖК «Северные высоты»</h2>
+            <div class="modal__description-box">
+              <address class="modal__address">
+                <p class="modal__address-metro">Беговая, 21 мин. пешком</p>
+                <p class="modal__address-street">Приморский район, Мебельная улица, 19к2</p>
+              </address>
+              <div class="modal__info">
+                <p class="modal__info-name">ООО «Инвест-Строй»</p>
+                <span class="modal__info-divider"></span>
+                <p class="modal__info-type">Под ключ</p>
+                <a href="tel:8(800)1234556" class="modal__info-phone"><b>8 (800) 123 45 56</b></a>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="modal__title-box">
+          <h3 class="modal__title">Записаться на экскурсию</h3>
+        </div>
+
+        <p class="modal__text">Выберите удобную дату и время</p>
+
+        <div class="modal__content">
+          <form method="#" action="#" class="consultation__form">
+            <input class="excursion__form-input" type="text" placeholder="Ваше имя">
+            <input class="excursion__form-input" type="text" placeholder="Ваш номер телефона">
+          </form>
+        </div>
+
+        <button type="submit" class="modal__btn pink__btn">Записаться на экскурсию</button>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="consultation consultation__modal modal modal--closed">
+
+      <div class="consultation__wrapper modal__wrapper">
+        <header class="modal__header">
+        <a href="index.html"><img class="modal__logo" src="img/logo.svg" width="80" height="46" alt="Логотип"></a>
+        <div class="modal__estate">
+          <picture>
+            <source type="image/webp" srcset="img/devSlider-img1.webp">
+
+            <img class="modal__img" src="img/devSlider-img1.jpg" alt="фотография ЖК" width="320" height="220">
+          </picture>
+          <h2 class="modal__img-title">ЖК «Северные высоты»</h2>
+          <div class="modal__description-box">
+            <address class="modal__address">
+              <p class="modal__address-metro">Беговая, 21 мин. пешком</p>
+              <p class="modal__address-street">Приморский район, Мебельная улица, 19к2</p>
+            </address>
+            <div class="modal__info">
+              <p class="modal__info-name">ООО «Инвест-Строй»</p>
+              <span class="modal__info-divider"></span>
+              <p class="modal__info-type">Под ключ</p>
+              <a href="tel:8(800)1234556" class="modal__info-phone"><b>8 (800) 123 45 56</b></a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="modal__title-box">
+        <h3 class="modal__title">Получить консультацию юриста</h3>
+      </div>
+
+      <p class="modal__text">Оставьте Ваши контактные данные</p>
+
+      <div class="modal__content">
+        <form method="#" action="#" class="consultation__form">
+          <input class="consultation__form-input" type="text" placeholder="Ваше имя">
+          <input class="consultation__form-input" type="text" placeholder="Ваш номер телефона">
+        </form>
+      </div>
+      <button class="modal__btn modal__btn--consultation pink__btn">Записаться</button>
+
+      </div>
+    </section>
+
+    <section class="catalog catalog__modal modal modal--closed">
+
+      <div class="catalog__wrapper modal__wrapper">
+        <header class="modal__header">
+          <a href="index.html"><img class="modal__logo" src="img/logo.svg" width="80" height="46" alt="Логотип"></a>
+          <div class="modal__estate">
+            <picture>
+              <source type="image/webp" srcset="img/devSlider-img1.webp">
+
+              <img class="modal__img" src="img/devSlider-img1.jpg" alt="фотография ЖК" width="320" height="220">
+            </picture>
+            <h2 class="modal__title">ЖК «Северные высоты»</h2>
+            <div class="modal__description-box">
+              <address class="modal__address">
+                <p class="modal__address-metro">Беговая, 21 мин. пешком</p>
+                <p class="modal__address-street">Приморский район, Мебельная улица, 19к2</p>
+              </address>
+              <div class="modal__info">
+                <p class="modal__info-name">ООО «Инвест-Строй»</p>
+                <span class="modal__info-divider"></span>
+                <p class="modal__info-type">Под ключ</p>
+                <a href="tel:8(800)1234556" class="modal__info-phone"><b>8 (800) 123 45 56</b></a>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="catalog__description">
+          <b class="catalog__flat">1-к квартиры</b>
+          <span class="catalog__flat-count">19 квартир</span>
+        </div>
+        <ul class="catalog__list">
+          <li class="catalog__item">
+
+            <b class="catalog__item-name">1-к квартира №115</b>
+
+            <div class="catalog__slider">
+              <div>
+                <img class="catalog__slider-img" src="img/layout.png">
+              </div>
+              <div>
+                <img class="catalog__slider-img" src="img/layout.png">
+              </div>
+              <div>
+                <img class="catalog__slider-img" src="img/layout.png">
+              </div>
+            </div>
+
+            <div class="catalog__item-info">
+
+              <div class="catalog__item-description">
+                <b class="catalog__item-price">2 700 000 руб.</b>
+                <p class="catalog__item-area">29 м2</p>
+                <span class="catalog__item-divider"></span>
+                <p class="catalog__item-floor">12/25 этаж</p>
+              </div>
+
+              <button type="button" class="catalog__item-moreBtn">Подробнее</button>
+
+            </div>
+
+            <button type="button" class="catalog__item-btn pink__btn">Записаться на просмотр</button>
+          </li>
+          <li class="catalog__item">
+
+            <b class="catalog__item-name">1-к квартира №115</b>
+
+            <div class="catalog__slider">
+              <div>
+                <img class="catalog__slider-img" src="img/layout.png">
+              </div>
+              <div>
+                <img class="catalog__slider-img" src="img/layout.png">
+              </div>
+              <div>
+                <img class="catalog__slider-img" src="img/layout.png">
+              </div>
+            </div>
+
+            <div class="catalog__item-info">
+
+              <div class="catalog__item-description">
+                <b class="catalog__item-price">2 700 000 руб.</b>
+                <p class="catalog__item-area">29 м2</p>
+                <span class="catalog__item-divider"></span>
+                <p class="catalog__item-floor">12/25 этаж</p>
+              </div>
+
+              <button type="button" class="catalog__item-moreBtn">Подробнее</button>
+
+            </div>
+
+            <button type="button" class="catalog__item-btn pink__btn">Записаться на просмотр</button>
+          </li>
+          <li class="catalog__item">
+
+            <b class="catalog__item-name">1-к квартира №115</b>
+
+            <div class="catalog__slider">
+              <div>
+                <img class="catalog__slider-img" src="img/layout.png">
+              </div>
+              <div>
+                <img class="catalog__slider-img" src="img/layout.png">
+              </div>
+              <div>
+                <img class="catalog__slider-img" src="img/layout.png">
+              </div>
+            </div>
+
+            <div class="catalog__item-info">
+
+              <div class="catalog__item-description">
+                <b class="catalog__item-price">2 700 000 руб.</b>
+                <p class="catalog__item-area">29 м2</p>
+                <span class="catalog__item-divider"></span>
+                <p class="catalog__item-floor">12/25 этаж</p>
+              </div>
+
+              <button type="button" class="catalog__item-moreBtn">Подробнее</button>
+
+            </div>
+
+            <button type="button" class="catalog__item-btn pink__btn">Записаться на просмотр</button>
+          </li>
+        </ul>
+      </div>
+    </section>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
   <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
   <script src="js/slick.min.js"></script>
-  <script src="js/script.min.js" async></script>
+  <script src="js/script.min.js"></script>
 
   <!-- aos.js -->
   <script>
     AOS.init ({
-      once: false,
+      once: true,
       duration: 700,
       offset: 130
     });
@@ -999,6 +1278,11 @@
       options: {
         legend: {
           display: false
+        },
+        tooltips: {
+          backgroundColor: '#7be37b',
+          bodyFontSize: 16,
+          bodyFontColor: '#fefcfc',
         },
         scales: {
           xAxes: [{

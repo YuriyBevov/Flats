@@ -20,6 +20,11 @@
   line-height: 14px;
   margin-bottom: 15px;
   color: @primary-white;
+
+  &:hover,
+  &:focus {
+    color: @primary-pink;
+  }
 }
 
 @media(min-width: @tablet-width) {
@@ -29,6 +34,7 @@
 }
 @media(min-width: @desktop-width) {
   .news__wrapper {
+    padding-top: 10px;
     flex-direction: column;
   }
   .news__box {
@@ -37,6 +43,17 @@
 
     &:first-child {
     order: 2;
+    }
+
+
+  }
+
+  .news__link {
+    margin-bottom: 19px;
+    transition: color 0.5s 0.1s;
+
+    &:nth-child(2) {
+      margin-bottom: 16px;
     }
   }
 }
