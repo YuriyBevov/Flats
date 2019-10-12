@@ -73,7 +73,7 @@ $(document).ready(function(){
     ]
   });
 
-  $('.review__slider').slick({
+  /*$('.review__slider').slick({
     arrows: false,
     slidesToShow: 1,
     adaptiveHeight: false,
@@ -87,7 +87,7 @@ $(document).ready(function(){
             }
           }
       ]
-  });
+  });*/
 
   $('.catalog__slider').slick({
     arrows: true,
@@ -155,5 +155,66 @@ $(document).ready(function(){
 
   galleryType();
 }());
+
+/*(function () {
+  var modalBtn = document.querySelector('.oneroom__modal');
+  var oneroomModal = document.querySelector('.catalog__modal');
+  var logoBtn = document.querySelector('.modal__link');
+
+  modalBtn.addEventListener('click', function (evt){
+    console.log('click')
+    evt.preventDefault();
+    oneroomModal.classList.remove('modal--closed');
+  });
+
+  logoBtn.addEventListener('click', function(){
+    oneroomModal.classList.add('modal--closed');
+  })
+}())*/
+
+(function(){
+  var modalBtn = document.querySelectorAll('.oneroom__modal');
+  var oneroomModal = document.querySelector('.catalog__modal');
+  var linkItem = document.querySelectorAll('.flats__item');
+
+
+for (var j = 0; j < modalBtn.length; j++) {
+  /*var linkTopCoords = modalBtn[j].offsetTop;
+  var linkLeftCoords = modalBtn[j].offsetLeft;
+  console.log(linkTopCoords);
+  console.log(linkLeftCoords);*/
+
+  var k = j
+
+  var openModal = function () {
+    var coords = linkItem[k].getBoundingClientRect();
+
+    var coordsTop = coords.top + document.body.scrollTop;
+
+    console.log('li + ' + coords);
+    console.log('li + ' + coordsTop);
+    console.log('li + ' + coords);
+
+    modalBtn[k].addEventListener('click', function (evt) {
+      evt.preventDefault();
+      oneroomModal.style.left = coords.left + 'px';
+      console.log('Modalleft = ' + oneroomModal.style.left);
+      oneroomModal.style.top = coords.top + 'px';
+      console.log('Modaltop = ' + oneroomModal.style.top);
+      oneroomModal.classList.remove('modal--closed');
+    })
+  }
+  openModal();
+}
+
+
+  /*for (var i = 0; i < modalBtn.length; i++ ) {
+    modalBtn[i].addEventListener('click', function (evt){
+      console.log('click')
+      evt.preventDefault();
+      oneroomModal.classList.remove('modal--closed');
+    });
+  }*/
+}())
 
 // ?autoplay=1

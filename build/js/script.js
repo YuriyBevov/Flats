@@ -156,5 +156,4 @@ $(document).ready(function(){
   galleryType();
 }());
 
-
 // ?autoplay=1

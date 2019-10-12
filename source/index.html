@@ -246,7 +246,7 @@
                 <span class="flats__text--area">от&nbsp;<span class="flat-area">29</span>&nbsp;м2</span>
                 <span class="flats__text--price">от&nbsp;<span class="flat-price">2 000 030</span>&nbsp;руб.</span>
               </p>
-              <a href="#" class="flats__link"><span class="flat-count">19</span>&nbsp;в&nbsp;продаже</a>
+              <a href="#" class="flats__link oneroom__modal"><span class="flat-count">19</span>&nbsp;в&nbsp;продаже</a>
             </div>
           </li>
           <li class="flats__item">
@@ -255,7 +255,7 @@
                 <span class="flats__text--area">от&nbsp;<span class="flat-area">35</span>&nbsp;м2</span>
                 <span class="flats__text--price">от&nbsp;<span class="flat-price">2 500 030</span>&nbsp;руб.</span>
               </p>
-              <a href="#" class="flats__link"><span class="flat-count">7</span>&nbsp;в&nbsp;продаже</a>
+              <a href="#" class="flats__link oneroom__modal"><span class="flat-count">7</span>&nbsp;в&nbsp;продаже</a>
             </div>
           </li>
           <li class="flats__item">
@@ -264,7 +264,7 @@
                 <span class="flats__text--area">от&nbsp;<span class="flat-area">59</span>&nbsp;м2</span>
                 <span class="flats__text--price">от&nbsp;<span class="flat-price">3 900 030</span>&nbsp;руб.</span>
               </p>
-              <a href="#" class="flats__link"><span class="flat-count">4</span>&nbsp;в&nbsp;продаже</a>
+              <a href="#" class="flats__link oneroom__modal"><span class="flat-count">4</span>&nbsp;в&nbsp;продаже</a>
             </div>
           </li>
           <li class="flats__item">
@@ -273,7 +273,7 @@
                 <span class="flats__text--area">от&nbsp;<span class="flat-area">30</span>&nbsp;м2</span>
                 <span class="flats__text--price">от&nbsp;<span class="flat-price">2 100 030</span>&nbsp;руб.</span>
               </p>
-              <a href="#" class="flats__link"><span class="flat-count">2</span>&nbsp;в&nbsp;продаже</a>
+              <a href="#" class="flats__link oneroom__modal"><span class="flat-count">2</span>&nbsp;в&nbsp;продаже</a>
             </div>
           </li>
         </ul>
@@ -292,48 +292,46 @@
         </div>
       </div>
     </section>
+
       <section class="review">
-        <div class="review__wrapper">
+
         <h2 class="review__title">Видеообзоры</h2>
-          <div class="review__slider">
-            <div class="review__container" >
-
-              <iframe src="https://www.youtube.com/embed/qLcKujZtjgchttps://www.youtube.com/embed/qLcKujZtjgc?rel=0&showinfo=0"
-                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-              </iframe>
-
-              <div class="review__mask"></div>
-              <button class="review__playBtn"><span class="visually-hidden">Play</span></button>
+        <div class="wrapper">
+          <div class="video-slider ">
+            <!------------ Блок с видеороликом ------------>
+            <div class="video-slider__item slide">
+              <div id="player0" class="content slide__video"></div>
+              <div class="content slide__img">
+                <img src="img/img-video-1.jpg">
+                <button class="btn-play" type="button"><img src="img/btn-play.svg" alt="play"></button>
+              </div>
             </div>
-            <div class="review__container">
+            <!-------------------------------------------->
 
-              <iframe src="https://www.youtube.com/embed/qLcKujZtjgchttps://www.youtube.com/embed/qLcKujZtjgc?rel=0&showinfo=0"
-                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-              </iframe>
-
-              <div class="review__mask"></div>
-              <button class="review__playBtn"><span class="visually-hidden">Play</span></button>
+            <div class="video-slider__item slide">
+              <div id="player1" class="content slide__video"></div>
+              <div class="content slide__img">
+                <img src="img/img-video-2.jpg">
+                <button class="btn-play" type="button"><img src="img/btn-play.svg" alt="play"></button>
+              </div>
             </div>
-            <div class="review__container">
 
-              <iframe src="https://www.youtube.com/embed/qLcKujZtjgchttps://www.youtube.com/embed/qLcKujZtjgc?rel=0&showinfo=0"
-                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-              </iframe>
-
-              <div class="review__mask"></div>
-              <button class="review__playBtn"><span class="visually-hidden">Play</span></button>
+            <div class="video-slider__item slide">
+              <div id="player2" class="content slide__video"></div>
+              <div class="content slide__img">
+                <img src="img/img-video-3.jpg">
+                <button class="btn-play" type="button"><img src="img/btn-play.svg" alt="play"></button>
+              </div>
             </div>
-            <div class="review__container">
 
-              <iframe src="https://www.youtube.com/embed/qLcKujZtjgchttps://www.youtube.com/embed/qLcKujZtjgc?rel=0&showinfo=0"
-                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-              </iframe>
-
-              <div class="review__mask"></div>
-              <button class="review__playBtn"><span class="visually-hidden">Play</span></button>
+            <div class="video-slider__item slide">
+              <div id="player3" class="content slide__video"></div>
+              <div class="content slide__img">
+                <img src="img/img-video-4.jpg">
+                <button class="btn-play" type="button"><img src="img/btn-play.svg" alt="play"></button>
+              </div>
             </div>
-          </div>
-        </div>
+
       </section>
       <section class="expectation">
         <div class="expectation__wrapper">
@@ -1109,8 +1107,9 @@
     <section class="catalog catalog__modal modal modal--closed">
 
       <div class="catalog__wrapper modal__wrapper">
+        <div class="catalog__content">
         <header class="modal__header">
-          <a href="index.html"><img class="modal__logo" src="img/logo.svg" width="80" height="46" alt="Логотип"></a>
+          <a href="index.html" class="modal__link"><img class="modal__logo" src="img/logo.svg" width="80" height="46" alt="Логотип"></a>
           <div class="modal__estate">
             <picture>
               <source type="image/webp" srcset="img/devSlider-img1.webp">
@@ -1133,15 +1132,14 @@
           </div>
         </header>
 
+        <div class="modal__content">
         <div class="catalog__description">
           <b class="catalog__flat">1-к квартиры</b>
           <span class="catalog__flat-count">19 квартир</span>
         </div>
         <ul class="catalog__list">
           <li class="catalog__item">
-
             <b class="catalog__item-name">1-к квартира №115</b>
-
             <div class="catalog__slider">
               <div>
                 <img class="catalog__slider-img" src="img/layout.png">
@@ -1153,26 +1151,19 @@
                 <img class="catalog__slider-img" src="img/layout.png">
               </div>
             </div>
-
             <div class="catalog__item-info">
-
               <div class="catalog__item-description">
                 <b class="catalog__item-price">2 700 000 руб.</b>
                 <p class="catalog__item-area">29 м2</p>
                 <span class="catalog__item-divider"></span>
                 <p class="catalog__item-floor">12/25 этаж</p>
               </div>
-
               <button type="button" class="catalog__item-moreBtn">Подробнее</button>
-
             </div>
-
             <button type="button" class="catalog__item-btn pink__btn">Записаться на просмотр</button>
           </li>
           <li class="catalog__item">
-
             <b class="catalog__item-name">1-к квартира №115</b>
-
             <div class="catalog__slider">
               <div>
                 <img class="catalog__slider-img" src="img/layout.png">
@@ -1184,26 +1175,19 @@
                 <img class="catalog__slider-img" src="img/layout.png">
               </div>
             </div>
-
             <div class="catalog__item-info">
-
               <div class="catalog__item-description">
                 <b class="catalog__item-price">2 700 000 руб.</b>
                 <p class="catalog__item-area">29 м2</p>
                 <span class="catalog__item-divider"></span>
                 <p class="catalog__item-floor">12/25 этаж</p>
               </div>
-
               <button type="button" class="catalog__item-moreBtn">Подробнее</button>
-
             </div>
-
             <button type="button" class="catalog__item-btn pink__btn">Записаться на просмотр</button>
           </li>
           <li class="catalog__item">
-
             <b class="catalog__item-name">1-к квартира №115</b>
-
             <div class="catalog__slider">
               <div>
                 <img class="catalog__slider-img" src="img/layout.png">
@@ -1215,23 +1199,38 @@
                 <img class="catalog__slider-img" src="img/layout.png">
               </div>
             </div>
-
             <div class="catalog__item-info">
-
               <div class="catalog__item-description">
                 <b class="catalog__item-price">2 700 000 руб.</b>
                 <p class="catalog__item-area">29 м2</p>
                 <span class="catalog__item-divider"></span>
                 <p class="catalog__item-floor">12/25 этаж</p>
               </div>
-
               <button type="button" class="catalog__item-moreBtn">Подробнее</button>
-
             </div>
-
             <button type="button" class="catalog__item-btn pink__btn">Записаться на просмотр</button>
           </li>
         </ul>
+        <div class="catalog__table-box">
+          <table class="catalog__table">
+            <tr><th>Площадь, м2</th><th>Этаж</th><th>Тип отделки</th><th>Стоимость кв, руб</th></tr>
+            <tr><td>29 м2</td><td>1</td><td>Без отделки</td><td>2 700 000</td></tr>
+            <tr><td>29 м2</td><td>1</td><td>Без отделки</td><td>2 700 000</td></tr>
+            <tr><td>29 м2</td><td>1</td><td>Без отделки</td><td>2 700 000</td></tr>
+            <tr><td>29 м2</td><td>1</td><td>Без отделки</td><td>2 700 000</td></tr>
+            <tr><td>29 м2</td><td>1</td><td>Без отделки</td><td>2 700 000</td></tr>
+            <tr><td>29 м2</td><td>1</td><td>Без отделки</td><td>2 700 000</td></tr>
+            <tr><td>29 м2</td><td>1</td><td>Без отделки</td><td>2 700 000</td></tr>
+            <tr><td>29 м2</td><td>1</td><td>Без отделки</td><td>2 700 000</td></tr>
+          </table>
+          <div class="catalog__table-imgBox">
+            <p class="catalog__image-description">Планировка</p>
+            <img class="catalog__image" src="../img/layout.png" alt="планировка" width="395" height="270">
+          </div>
+        </div>
+      </div>
+    </div>
+
       </div>
     </section>
 
@@ -1248,6 +1247,112 @@
       once: true,
       duration: 700,
       offset: 130
+    });
+  </script>
+
+  <!--video slider-->
+
+  <script>
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // var player;
+
+    var listPlayers = [];
+    var readyPlayer = 0;
+    // --------------------------------ПАРАМЕТРЫ Для изменения--------------------------------
+
+    let countPlayers = 4; //Количество видеороликов
+    let videosId = ['OXuIqaeg0SI', 'G8lVXBN8ZFk', 'G8lVXBN8ZFk',
+      '7qBfdcI-d1Q'
+    ]; // Список с ID видеозаписей. Каждый элемент списка (ID) будет присваиваться по порядку видеороликам. Если Количество ID меньше, чем кол-во видеороликов, то цикл ID-шников пойдет заново.
+    let vars = { //Настройки yooutube плэера (https://developers.google.com/youtube/player_parameters?hl=ru)
+      'autoplay': 0,
+      'controls': 0,
+      'showinfo': 0,
+      'rel': 0,
+      'iv_load_policy': 3,
+      'disablekb': 1,
+      'fs': 0,
+    }
+    //-----------------------------------------------------------------------
+    function onYouTubeIframeAPIReady() {
+      //Здесь создаем список плееров
+      let j = 0;
+      for (let i = 0; i < countPlayers; i++) {
+        if ((j > i) || (j >= videosId.length - 1)) {
+          j = 0;
+        }
+
+        let player = new YT.Player('player' + i, {
+          playerVars: vars,
+          videoId: videosId[j],
+          events: {
+            'onReady': onPlayerReady
+          }
+        });
+        listPlayers[i] = player;
+        j++;
+      }
+
+    }
+
+    function onPlayerReady(event) {
+      readyPlayer += 1;
+    }
+
+    $(document).ready(function () {
+
+      $('.video-slider').slick({
+        centerMode: true,
+        centerPadding: '15%',
+        slidesToShow: 1,
+        arrows: false,
+        dots: false,
+        // variableWidth: true,
+        // infinite: false,
+        responsive: [{
+            breakpoint: 768,
+            settings: {
+              centerPadding: '12%',
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              centerMode: false
+            }
+          }
+        ]
+      });
+
+      $(document).on('click', '.btn-play', function () {
+        let $img = $(this).parent();
+        let $video = $img.siblings('.slide__video');
+        let idVideo = $video.attr('id').replace('player', '');
+        if (readyPlayer == listPlayers.length || readyPlayer >= (1 + idVideo)) {
+          $video.addClass('slide__video-active');
+          $img.addClass('slide__img-none');
+          listPlayers[+idVideo].playVideo();
+        }
+      });
+
+      $('.video-slider').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+        if (currentSlide != nextSlide) {
+          $prevSlide = $('.video-slider').find('.video-slider__item[data-slick-index="' + currentSlide + '"]');
+          let $video = $($prevSlide).children('.slide__video');
+          let idVideo = $video.attr('id').replace('player', '');
+          $video.removeClass('slide__video-active');
+          $video.siblings('.slide__img').removeClass('slide__img-none');
+
+          if (readyPlayer == listPlayers.length || readyPlayer >= (1 + idVideo)) {
+            listPlayers[+idVideo].stopVideo();
+          }
+
+        }
+      });
     });
   </script>
 
