@@ -73,22 +73,6 @@ $(document).ready(function(){
     ]
   });
 
-  /*$('.review__slider').slick({
-    arrows: false,
-    slidesToShow: 1,
-    adaptiveHeight: false,
-    adaptiveWidth: false,
-    mobileFirst: true,
-      responsive: [
-          {
-              breakpoint: 1360,
-              settings: {
-              slidesToShow: 2
-            }
-          }
-      ]
-  });*/
-
   $('.catalog__slider').slick({
     arrows: true,
     prevArrow: '<button id="prev" type="button" class="catalog__slider-prevBtn"></button>',
@@ -156,65 +140,170 @@ $(document).ready(function(){
   galleryType();
 }());
 
-/*(function () {
-  var modalBtn = document.querySelector('.oneroom__modal');
-  var oneroomModal = document.querySelector('.catalog__modal');
-  var logoBtn = document.querySelector('.modal__link');
-
-  modalBtn.addEventListener('click', function (evt){
-    console.log('click')
-    evt.preventDefault();
-    oneroomModal.classList.remove('modal--closed');
-  });
-
-  logoBtn.addEventListener('click', function(){
-    oneroomModal.classList.add('modal--closed');
-  })
-}())*/
 
 (function(){
-  var modalBtn = document.querySelectorAll('.oneroom__modal');
-  var oneroomModal = document.querySelector('.catalog__modal');
-  var linkItem = document.querySelectorAll('.flats__item');
+  var modalBtn = document.querySelectorAll('.flats__modalBtn');
+  var modal = document.querySelector('.catalog__modal');
+  var listItem = document.querySelectorAll('.flats__item');
+  var list = document.querySelector('.flats__list');
+  var windowWidth = window.innerWidth;
+  console.log(windowWidth);
+  var desktop;
+  var deadlineMenu;
 
 
-for (var j = 0; j < modalBtn.length; j++) {
-  /*var linkTopCoords = modalBtn[j].offsetTop;
-  var linkLeftCoords = modalBtn[j].offsetLeft;
-  console.log(linkTopCoords);
-  console.log(linkLeftCoords);*/
+  var deadlineList = document.querySelector('.flats__deadline-list');
+  var deadlineListHeight = deadlineList.clientHeight;
+  var title = document.querySelector('.flats__title');
 
-  var k = j
-
-  var openModal = function () {
-    var coords = linkItem[k].getBoundingClientRect();
-
-    var coordsTop = coords.top + document.body.scrollTop;
-
-    console.log('li + ' + coords);
-    console.log('li + ' + coordsTop);
-    console.log('li + ' + coords);
-
-    modalBtn[k].addEventListener('click', function (evt) {
-      evt.preventDefault();
-      oneroomModal.style.left = coords.left + 'px';
-      console.log('Modalleft = ' + oneroomModal.style.left);
-      oneroomModal.style.top = coords.top + 'px';
-      console.log('Modaltop = ' + oneroomModal.style.top);
-      oneroomModal.classList.remove('modal--closed');
-    })
+  var showDeadlineList = function () {
+    deadlineList.classList.toggle('flats__deadline-list--closed');
   }
-  openModal();
-}
+
+  title.addEventListener('click', showDeadlineList);
+
+  for (var i = 0; i < modalBtn.length; i++) {
+    var j = i;
+
+    var showCurrentModal = function () {
+
+      modalBtn[j].addEventListener('click', function (evt) {
+        evt.preventDefault();
+        modal.classList.toggle('modal--closed');
+        var itemHeight = listItem[j].clientHeight; // !!! temp
+        var coordsX = list.getBoundingClientRect().left;
+        var coordsY = listItem[j].getBoundingClientRect().top + itemHeight + pageYOffset;
+
+        window.addEventListener('resize', function(){
+          coordsX = list.getBoundingClientRect().left;
+          coordsY = listItem[j].getBoundingClientRect().top + itemHeight + pageYOffset;
+        })
+
+        // var itemHeight = listItem[k].clientHeight; // !!! temp
+
+        if (windowWidth > 1360) {
+          desktop = true;
+          modal.style.left = coordsX + 'px';
+          modal.style.top = coordsY + 'px';
+          console.log('это десктоп версия');
+        } else {
+          desktop = false;
+          modal.style.left = 0 + 'px';
+          modal.style.top = 0 + 'px';
+          console.log('это не десктоп версия');
+        }
+
+        window.addEventListener('resize', function(){
+          var currentWidth = window.innerWidth;
+          windowWidth = currentWidth;
+          console.log(windowWidth);
+          if (currentWidth > 1360) {
+            console.log('>1360');
+            desktop = true;
+            modal.style.left = coordsX + 'px';
+            modal.style.top = coordsY + 'px';
+            console.log('это десктоп версия');
+          } else {
+            console.log('<1360');
+            desktop = false;
+            modal.style.left = 0 + 'px';
+            modal.style.top = 0 + 'px';
+            console.log('это не десктоп версия');
+          }
+        })
+      })
+    }
+    showCurrentModal();
+  }
+
+  /*var coordsX = list.getBoundingClientRect().left;
+  var coordsY = listItem[0].getBoundingClientRect().top + pageYOffset;
+
+  window.addEventListener('resize', function(){
+    coordsX = list.getBoundingClientRect().left;
+    coordsY = listItem[0].getBoundingClientRect().top + pageYOffset;
+  })
+
+  // var itemHeight = listItem[k].clientHeight; // !!! temp
+
+  if (windowWidth > 1360) {
+    desktop = true;
+    modal.style.left = coordsX + 'px';
+    modal.style.top = coordsY + 'px';
+    console.log('это десктоп версия');
+  } else {
+    desktop = false;
+    modal.style.left = 0 + 'px';
+    modal.style.top = 0 + 'px';
+    console.log('это не десктоп версия');
+  }
+
+  window.addEventListener('resize', function(){
+    var currentWidth = window.innerWidth;
+    windowWidth = currentWidth;
+    console.log(windowWidth);
+    if (currentWidth > 1360) {
+      console.log('>1360');
+      desktop = true;
+      modal.style.left = coordsX + 'px';
+      modal.style.top = coordsY + 'px';
+      console.log('это десктоп версия');
+    } else {
+      console.log('<1360');
+      desktop = false;
+      modal.style.left = 0 + 'px';
+      modal.style.top = 0 + 'px';
+      console.log('это не десктоп версия');
+    }
+  })*/
 
 
-  /*for (var i = 0; i < modalBtn.length; i++ ) {
-    modalBtn[i].addEventListener('click', function (evt){
-      console.log('click')
-      evt.preventDefault();
-      oneroomModal.classList.remove('modal--closed');
-    });
-  }*/
-}())
+}());
 
-// ?autoplay=1
+/*(function(){
+  var modalBtn = document.querySelectorAll('.flats__modalBtn');
+  var modal = document.querySelector('.catalog__modal');
+  var listItem = document.querySelectorAll('.flats__item');
+  var list = document.querySelector('.flats__list');
+
+  var deadlineList = document.querySelector('.flats__deadline-list');
+  var deadlineListHeight = deadlineList.clientHeight;
+  var title = document.querySelector('.flats__title');
+
+  var showDeadlineList = function () {
+    deadlineList.classList.toggle('flats__deadline-list--closed');
+  }
+
+  title.addEventListener('click', showDeadlineList);
+
+  for (var j = 0; j < modalBtn.length; j++) {
+
+    var k = j
+
+    var openModal = function () {
+
+      var coordsY = listItem[k].getBoundingClientRect().top + pageYOffset;
+
+      modalBtn[k].addEventListener('click', function (evt) {
+        evt.preventDefault();
+
+        var coordsX = list.getBoundingClientRect().left;
+        modal.style.left = coordsX + 'px';
+
+        window.addEventListener('resize', function () {
+          var windowWidth = window.innerWidth;
+
+          coordsX = list.getBoundingClientRect().left;
+          modal.style.left = coordsX + 'px';
+        })
+
+        var itemHeight = listItem[k].clientHeight;
+        console.log(deadlineListHeight);
+        modal.style.top = coordsY + itemHeight + 'px';
+        modal.classList.toggle('modal--closed');
+      })
+    }
+
+    openModal();
+  }
+}());*/

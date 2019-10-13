@@ -246,7 +246,7 @@
                 <span class="flats__text--area">от&nbsp;<span class="flat-area">29</span>&nbsp;м2</span>
                 <span class="flats__text--price">от&nbsp;<span class="flat-price">2 000 030</span>&nbsp;руб.</span>
               </p>
-              <a href="#" class="flats__link oneroom__modal"><span class="flat-count">19</span>&nbsp;в&nbsp;продаже</a>
+              <a href="#" class="flats__link flats__modalBtn"><span class="flat-count">19</span>&nbsp;в&nbsp;продаже</a>
             </div>
           </li>
           <li class="flats__item">
@@ -255,7 +255,7 @@
                 <span class="flats__text--area">от&nbsp;<span class="flat-area">35</span>&nbsp;м2</span>
                 <span class="flats__text--price">от&nbsp;<span class="flat-price">2 500 030</span>&nbsp;руб.</span>
               </p>
-              <a href="#" class="flats__link oneroom__modal"><span class="flat-count">7</span>&nbsp;в&nbsp;продаже</a>
+              <a href="#" class="flats__link flats__modalBtn"><span class="flat-count">7</span>&nbsp;в&nbsp;продаже</a>
             </div>
           </li>
           <li class="flats__item">
@@ -264,7 +264,7 @@
                 <span class="flats__text--area">от&nbsp;<span class="flat-area">59</span>&nbsp;м2</span>
                 <span class="flats__text--price">от&nbsp;<span class="flat-price">3 900 030</span>&nbsp;руб.</span>
               </p>
-              <a href="#" class="flats__link oneroom__modal"><span class="flat-count">4</span>&nbsp;в&nbsp;продаже</a>
+              <a href="#" class="flats__link flats__modalBtn"><span class="flat-count">4</span>&nbsp;в&nbsp;продаже</a>
             </div>
           </li>
           <li class="flats__item">
@@ -273,13 +273,13 @@
                 <span class="flats__text--area">от&nbsp;<span class="flat-area">30</span>&nbsp;м2</span>
                 <span class="flats__text--price">от&nbsp;<span class="flat-price">2 100 030</span>&nbsp;руб.</span>
               </p>
-              <a href="#" class="flats__link oneroom__modal"><span class="flat-count">2</span>&nbsp;в&nbsp;продаже</a>
+              <a href="#" class="flats__link flats__modalBtn"><span class="flat-count">2</span>&nbsp;в&nbsp;продаже</a>
             </div>
           </li>
         </ul>
         <div class="flats__deadline-box">
-          <h2 class="flats__title clicked">Сроки сдачи корпусов</h2>
-          <ul class="flats__deadline-list">
+          <h2 class="flats__title">Сроки сдачи корпусов</h2>
+          <ul class="flats__deadline-list flats__deadline-list--closed">
             <li class="flats__deadline-item">1 корпус - декабрь 2019</li>
             <li class="flats__deadline-item">2 корпус - март 2020</li>
             <li class="flats__deadline-item">1 корпус - декабрь 2019</li>
@@ -294,44 +294,58 @@
     </section>
 
       <section class="review">
-
-        <h2 class="review__title">Видеообзоры</h2>
+        <div class="review__wrapper">
+          <h2 class="review__title">Видеообзоры</h2>
+        </div>
         <div class="wrapper">
-          <div class="video-slider ">
-            <!------------ Блок с видеороликом ------------>
-            <div class="video-slider__item slide">
-              <div id="player0" class="content slide__video"></div>
-              <div class="content slide__img">
-                <img src="img/img-video-1.jpg">
-                <button class="btn-play" type="button"><img src="img/btn-play.svg" alt="play"></button>
-              </div>
-            </div>
-            <!-------------------------------------------->
+      		<div class="video-slider ">
+      			<!------------ Блок с видеороликом ------------>
+      			<div class="video-slider__item slide">
+      				<div class="wrapper-player">
+      					<div id="player0" class="content slide__video"></div>
+      				</div>
+      				<button class="btn-pause"><img src="img/btn-pause.svg" alt="play"></button>
+      				<div class="content slide__img">
+      					<img src="img/img-video-1.jpg">
+      					<button class="btn-play" type="button"><img src="img/btn-play.svg" alt="play"></button>
+      				</div>
+      			</div>
+      			<!-------------------------------------------->
 
-            <div class="video-slider__item slide">
-              <div id="player1" class="content slide__video"></div>
-              <div class="content slide__img">
-                <img src="img/img-video-2.jpg">
-                <button class="btn-play" type="button"><img src="img/btn-play.svg" alt="play"></button>
-              </div>
-            </div>
+      			<div class="video-slider__item slide">
+      				<div class="wrapper-player">
+      					<div id="player1" class="content slide__video"></div>
+      				</div>
+      				<button class="btn-pause"><img src="img/btn-pause.svg" alt="play"></button>
+      				<div class="content slide__img">
+      					<img src="img/img-video-2.jpg">
+      					<button class="btn-play" type="button"><img src="img/btn-play.svg" alt="play"></button>
+      				</div>
+      			</div>
 
-            <div class="video-slider__item slide">
-              <div id="player2" class="content slide__video"></div>
-              <div class="content slide__img">
-                <img src="img/img-video-3.jpg">
-                <button class="btn-play" type="button"><img src="img/btn-play.svg" alt="play"></button>
-              </div>
-            </div>
+      			<div class="video-slider__item slide">
+      				<div class="wrapper-player">
+      					<div id="player2" class="content slide__video"></div>
+      				</div>
+      				<button class="btn-pause"><img src="img/btn-pause.svg" alt="play"></button>
+      				<div class="content slide__img">
+      					<img src="img/img-video-3.jpg">
+      					<button class="btn-play" type="button"><img src="img/btn-play.svg" alt="play"></button>
+      				</div>
+      			</div>
 
-            <div class="video-slider__item slide">
-              <div id="player3" class="content slide__video"></div>
-              <div class="content slide__img">
-                <img src="img/img-video-4.jpg">
-                <button class="btn-play" type="button"><img src="img/btn-play.svg" alt="play"></button>
-              </div>
-            </div>
-
+      			<div class="video-slider__item slide">
+      				<div class="wrapper-player">
+      					<div id="player3" class="content slide__video"></div>
+      				</div>
+      				<button class="btn-pause"><img src="img/btn-pause.svg" alt="play"></button>
+      				<div class="content slide__img">
+      					<img src="img/img-video-4.jpg">
+      					<button class="btn-play btn-start" type="button"><img src="img/btn-play.svg" alt="play"></button>
+      				</div>
+      			</div>
+      		</div>
+      		</div>
       </section>
       <section class="expectation">
         <div class="expectation__wrapper">
@@ -1047,10 +1061,10 @@
         <p class="modal__text">Выберите удобную дату и время</p>
 
         <div class="modal__content">
-          <form method="#" action="#" class="consultation__form">
+          <!--<form method="#" action="#" class="consultation__form">
             <input class="excursion__form-input" type="text" placeholder="Ваше имя">
             <input class="excursion__form-input" type="text" placeholder="Ваш номер телефона">
-          </form>
+          </form>-->
         </div>
 
         <button type="submit" class="modal__btn pink__btn">Записаться на экскурсию</button>
@@ -1104,7 +1118,7 @@
       </div>
     </section>
 
-    <section class="catalog catalog__modal modal modal--closed">
+    <section class="catalog catalog__modal modal modal--catalog modal--closed">
 
       <div class="catalog__wrapper modal__wrapper">
         <div class="catalog__content">
@@ -1251,7 +1265,6 @@
   </script>
 
   <!--video slider-->
-
   <script>
     var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
@@ -1301,6 +1314,9 @@
 
     function onPlayerReady(event) {
       readyPlayer += 1;
+      console.log('готов');
+
+
     }
 
     $(document).ready(function () {
@@ -1328,31 +1344,84 @@
         ]
       });
 
-      $(document).on('click', '.btn-play', function () {
-        let $img = $(this).parent();
-        let $video = $img.siblings('.slide__video');
-        let idVideo = $video.attr('id').replace('player', '');
-        if (readyPlayer == listPlayers.length || readyPlayer >= (1 + idVideo)) {
-          $video.addClass('slide__video-active');
-          $img.addClass('slide__img-none');
-          listPlayers[+idVideo].playVideo();
+      $(document).on('click', '.btn-play, .btn-pause', function () {
+        $(this).removeClass('btn-pause--none');
+        console.log(';удалил класс');
+        if ($(this).hasClass('btn-play')) {
+
+          let $btnImg = $(this).children('img');
+          let $img = $(this).parent();
+          $img.siblings('.btn-pause').removeClass('btn-pause--none');
+          let $video = $img.siblings('.wrapper-player').children('.slide__video');
+          let idVideo = $video.attr('id').replace('player', '');
+          if ($btnImg.attr('src') == 'img/btn-play.svg') {
+            if (readyPlayer == listPlayers.length || readyPlayer >= (1 + idVideo)) {
+              $video.addClass('slide__video-active');
+              $img.addClass('slide__img-none');
+              listPlayers[+idVideo].playVideo();
+              $(this).removeClass('btn-pause--none');
+          console.log(';удалил класс');
+            } else {
+              var idTimeout = setInterval(function () {
+                if (readyPlayer >= (1 + parseInt(idVideo))) {
+                  $video.addClass('slide__video-active');
+                  $img.addClass('slide__img-none');
+                  listPlayers[+idVideo].playVideo();
+                  clearInterval(idTimeout);
+                  $btnImg.attr('src', 'img/btn-pause.svg');
+                  $($btnImg).addClass('pause');
+                }
+              }, 1500);
+              $(this).removeClass('btn-pause--none');
+          console.log(';удалил класс');
+            }
+          } else {
+            listPlayers[+idVideo].pauseVideo();
+            $btnImg.attr('src', 'img/btn-play.svg');
+            $btnImg.removeClass('pause');
+          }
+        } else {
+          console.log('пауза');
+
+          let $video = $(this).siblings('.wrapper-player').children('.slide__video');
+          let $imgVideo = $video.parent().siblings('.slide__img');
+          let idVideo = $video.attr('id').replace('player', '');
+          let $btnImg = $imgVideo.children('.btn-play').children('img');
+          listPlayers[+idVideo].pauseVideo();
+          $(this).addClass('btn-pause--none');
+
+
+          $video.removeClass('slide__video-active');
+          $imgVideo.removeClass('slide__img-none');
+          $btnImg.attr('src', 'img/btn-play.svg');
+          $btnImg.removeClass('pause');
+
         }
       });
 
       $('.video-slider').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
         if (currentSlide != nextSlide) {
           $prevSlide = $('.video-slider').find('.video-slider__item[data-slick-index="' + currentSlide + '"]');
-          let $video = $($prevSlide).children('.slide__video');
+          let $video = $($prevSlide).children('.wrapper-player').children('.slide__video');
           let idVideo = $video.attr('id').replace('player', '');
           $video.removeClass('slide__video-active');
-          $video.siblings('.slide__img').removeClass('slide__img-none');
+          let $imgVideo = $video.parent().siblings('.slide__img');
+          console.log($imgVideo);
 
-          if (readyPlayer == listPlayers.length || readyPlayer >= (1 + idVideo)) {
-            listPlayers[+idVideo].stopVideo();
+          $imgVideo.removeClass('slide__img-none');
+          let $btnImg = $imgVideo.children('.btn-play').children('img');
+
+          console.log($btnImg);
+
+          if (readyPlayer == listPlayers.length || readyPlayer >= (1 + parseInt(idVideo))) {
+            listPlayers[idVideo].pauseVideo();
+            $btnImg.attr('src', 'img/btn-play.svg');
+            $btnImg.removeClass('pause');
           }
 
         }
       });
+
     });
   </script>
 

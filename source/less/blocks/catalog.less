@@ -142,6 +142,10 @@
   display: none;
 }
 
+.catalog__table-imgBox {
+  display: none;
+}
+
 @media(min-width: @tablet-width) {
   .catalog__wrapper {
     padding: 0 30px 40px;
@@ -227,12 +231,18 @@
   .catalog__table {
     display: block;
   }
+
+  .catalog__table-imgBox {
+    display: block;
+  }
+
   .catalog__modal.modal {
     position: absolute;
     top: 0;
     left: 0;
     width: 1360px;
     height: 550px;
+
     box-shadow: 0 4px 9px rgba(0, 0, 0, 0.35);
     border-radius: 2px;
   }
