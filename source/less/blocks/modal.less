@@ -5,8 +5,38 @@
   width: 100%;
   height: 100%;
   z-index: 100000000;
-  background-color: rgba(255,255,255, 1);
-  overflow: auto
+  background-color: rgba(255, 255, 255, 1);
+  overflow: auto;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ;
+}
+
+.modal-close-btn{
+  cursor: pointer;
+}
+
+.modal-header__title-img {
+  position: relative;
+
+  .modal-header__title-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding-left: 25px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    margin-bottom: 4px;
+
+    .modal__title {
+      color: @primary-white;
+    }
+
+  }
+
+  .modal__img {
+    margin: 0;
+  }
 }
 
 .modal__wrapper {
@@ -16,6 +46,15 @@
   transform: translateX(-50%);
 }
 
+.modal__close-btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
 .modal__logo {
   width: 80px;
   height: 46px;
@@ -23,13 +62,13 @@
 }
 
 .modal--closed {
-  display: none;
+  // display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 0.3s, opacity 0.3s ;
 }
 
-/*body {
-  overflow: hidden;
-}*/
-.modal__estate{
+.modal__estate {
   position: relative;
   margin-bottom: 20px;
   border-bottom: 1px solid @primary-grey;
@@ -56,6 +95,7 @@
 }
 
 .modal__description-box {
+  margin-top: 8px;
   padding-left: 50px;
 }
 
@@ -105,6 +145,7 @@
 
 .modal__info-name {
   position: relative;
+
   &::before {
     position: absolute;
     top: -2px;
@@ -116,6 +157,10 @@
     background-repeat: no-repeat;
     background-size: 18px 18px;
   }
+}
+
+.modal__info-phone {
+  margin-bottom: 0;
 }
 
 .modal__info-divider {
@@ -240,9 +285,17 @@
 }
 
 @media(min-width: @desktop-width) {
+  .modal {
+    background-color: transparent;
+  }
+
   .modal__logo {
     width: 150px;
     height: 86px;
+  }
+
+  .consultation__modal .modal__title {
+    color: @primary-white;
   }
 
   .modal__btn--consultation {
