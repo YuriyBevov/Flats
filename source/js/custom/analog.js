@@ -27,7 +27,7 @@
     {
     name: 'ЖК «оооооооооооооооочень длинное название »',
     metro: 'Бухарестские ворота, 30 мин. пешком',
-    street: 'Приморский Приморский  район, Мебельная Приморский улица, 19к2',
+    street: 'Приморский-приморский  район, Мебельная-мебельная улица, 19к2',
     url: 'img/analog_1.jpg'
     },
 
@@ -129,18 +129,24 @@
 
   $('.analog__btn').on('click', function () {
     $('.analog__modal').removeClass('modal--closed');
-    /*$('.analog__modal-slider').slick({ --------------- не работает 
-      adaptiveHeight: true,
+
+    $('.analog__modal-slider').slick({
+      adaptiveHeight: false,
       arrows: true,
-      prevArrow: '<button id="prev" type="button" class="estate__slider-prevBtn"></button>',
-      nextArrow: '<button id="next" type="button" class="estate__slider-nextBtn"></button>',
+      prevArrow: '<button id="prev" type="button" class="analog__slider-prevBtn"></button>',
+      nextArrow: '<button id="next" type="button" class="analog__slider-nextBtn"></button>',
       responsive: [{
         breakpoint: 768,
         settings: {
           arrows: false
         }
       }]
-    });*/
+    });
+  });
+
+  $('.analog__modal-closeBtn').on('click', function () {
+    $('.analog__modal').addClass('modal--closed');
+    $('.analog__modal-slider').slick('unslick');
   });
 
   createAnalogSliderNode();
