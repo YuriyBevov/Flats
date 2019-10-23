@@ -22,7 +22,7 @@
         <div class="main-nav__wrapper">
           <ul class="main-nav__list main-nav--nojs">
             <li class="main-nav__item">
-              <a href="#" class="main-nav__link">Подобрать квартиру</a>
+              <a href="catalog.html" class="main-nav__link">Подобрать квартиру</a>
             </li>
             <li class="main-nav__item">
               <a href="#description" class="main-nav__link">Характеристики комплекса</a>
@@ -881,39 +881,30 @@
         </h2>
         <form action="formdata" method="post" name="progress__form" class="progress__form">
 
-          <select name="year" class="progress__form-select">
-            <option>2019</option>
-            <option selected>2018</option>
-            <option>2017</option>
-            <option>2016</option>
+          <select name="year" class="progress__form-select progress__form-select--year">
+            <option id="2019" value="2019" selected>2019</option>
+            <option id="2020" value="2020">2020</option>
+            <option id="2021" value="2021">2021</option>
           </select>
-          <select name="month" class="progress__form-select">
-            <option>январь</option>
-            <option>февраль</option>
-            <option>март</option>
-            <option>апрель</option>
-            <option>май</option>
-            <option selected>июнь</option>
-            <option>июль</option>
-            <option>август</option>
-            <option>сентябрь</option>
-            <option>октябрь</option>
-            <option>ноябрь</option>
-            <option>декабрь</option>
+          <select name="month" class="progress__form-select progress__form-select--month">
+            <option id="january" value="january" selected>январь</option>
+            <option id="february" value="february">февраль</option>
+            <option id="march" value="march">март</option>
+            <option id="aprel" value="aprel">апрель</option>
+            <option id="may" value="may">май</option>
+            <option id="june" value="june">июнь</option>
+            <option id="jule" value="jule">июль</o ption>
+            <option id="august" value="august">август</option>
+            <option id="september" value="september">сентябрь</option>
+            <option id="october" value="october">октябрь</option>
+            <option id="november" value="november">ноябрь</option>
+            <option id="december" value="december">декабрь</option>
           </select>
 
         </form>
 
-        <ul class="progress__gallery-list">
-          <template id="progress-foto">
-            <li class="progress__gallery-item">
-              <picture>
-                <source type="image/webp" srcset="">
-
-                <img class="progress__image" src="" alt="фото ЖК" width="310" height="180">
-              </picture>
-            </li>
-          </template>
+        <ul class="progress__gallery-list" id="progressGalleryList">
+          <!-- progress-gallery template-->
         </ul>
         <button type="button" class="progress__btn show__btn">Показать все фотографии</button>
       </div>
@@ -1387,6 +1378,16 @@
           <p class="analog__item-street"><!-- улица --></p>
         </address>
       </div>
+    </li>
+  </template>
+
+  <template id="progress-gallery">
+    <li class="progress__gallery-item">
+      <picture>
+        <source type="image/webp" srcset="">
+
+        <img class="progress__image" src="" alt="фото ЖК" width="310" height="180">
+      </picture>
     </li>
   </template>
 

@@ -29,13 +29,27 @@ gulp.task('scripts', function () {
     .pipe(gulp.src('source/js/custom/*.js'))
     .pipe(concat('totalScript.js'))
     .pipe(gulp.dest('./build/js'))
+
     // .pipe(gulp.src(['source/js/jquery-3.4.1.min.js', 'source/js/lazyload.min.js', 'source/js/script.js', 'source/js/']))
     .pipe(gulp.src('source/js/*.js'))
     .pipe(gulp.dest('./build/js'));
 });
+gulp.task('scriptsCatalog', function () {
+  return gulp.src(['source/js/libs/*.js'])
+    .pipe(concat('tempMin.js'))
+    .pipe(jsmin())
+    .pipe(gulp.src('source/js/customCatalog/*.js'))
+    .pipe(concat('totalScriptsCatalog.js'))
+    .pipe(gulp.dest('./build/js'))
+});
 
 gulp.task('watchEgor', function () {
-  gulp.watch(['source/less/**/*.less', 'source/js/libs/*.js', 'source/js/custom/*.js', 'source/*.html'], gulp.parallel('css', 'scripts', 'html'));
+  gulp.watch(['source/less/**/*.less', 'source/js/libs/*.js', 'source/js/custom/*.js', 'source/js/customCatalog/*.js', 'source/*.html'], gulp.parallel('css', 'scripts', 'html', 'scriptsCatalog'));
+  gulp.watch(['source/img/**/*.{jpg,png,svg}'], gulp.parallel('image'));
+});
+gulp.task('watchEgorCatalog', function () {
+  gulp.watch(['source/less/**/*.less', 'source/*.html'], gulp.parallel('css', 'html'));
+  gulp.watch(['source/js/customCatalog/*.js','source/js/libs/*.js'], gulp.parallel('scriptsCatalog'));
   gulp.watch(['source/img/**/*.{jpg,png,svg}'], gulp.parallel('image'));
 });
 //---------------------------------------------
