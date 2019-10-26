@@ -164,63 +164,6 @@ $(document).ready(function () {
   title.addEventListener('click', showDeadlineList);
 }());
 
-
-//
-$(document).ready(function () {
-  var ctx = document.getElementById('myChart').getContext('2d');
-  var dataLabels = ['нояб’18', 'дек’18', 'янв’19', 'фев’19', 'март’19', 'апр’19',
-    'май’19'
-  ]; //  массив для изменяемыхданных
-  var data = [80, 83, 75, 90, 95, 125, 110]; // массив для изменяемыхданных
-  var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
-
-    // The data for our dataset
-    data: {
-      labels: dataLabels,
-      datasets: [{
-        label: '',
-        backgroundColor: 'rgba(233,70,70, 0.1)',
-        borderColor: 'rgb(233,70,70)',
-        borderWidth: 1,
-        pointHoverBackgroundColor: 'rgb(233,70,70)',
-        spanGaps: true,
-        data: data
-      }]
-    },
-
-    // Configuration options go here
-    options: {
-      legend: {
-        display: false
-      },
-      tooltips: {
-        backgroundColor: '#7be37b',
-        bodyFontSize: 16,
-        bodyFontColor: '#fefcfc',
-      },
-      scales: {
-        xAxes: [{
-          gridLines: {
-            display: false
-          }
-        }],
-        yAxes: [{
-          scaleLabel: {
-            display: true
-          },
-          ticks: {
-            min: 0,
-            max: 150,
-            stepSize: 25
-          }
-        }]
-      }
-    }
-  });
-});
-
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
