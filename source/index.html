@@ -806,7 +806,7 @@
 
             <form action="" method="" class="calculator__form">
               <div class="calculator__form-box">
-                <label for="contribution" class="calculator__form-label">Первоначальный взнос</label>
+                <label for="contribution" class="calculator__form-label">Сумма кредита</label>
                 <input type="text" id="contribution" placeholder="руб." value="">
               </div>
               <div class="calculator__form-box">
@@ -1388,6 +1388,20 @@
 
         <img class="progress__image" src="" alt="фото ЖК" width="310" height="180">
       </picture>
+    </li>
+  </template>
+
+  <template id="bank">
+    <li class="credit__list-item bank">
+      <div class="bank__wrapper">
+        <div class="bank__title-wrapper">
+          <img class="bank__logo" src="" width="27" height="26" alt="bankLogo">
+          <h3 class="bank__title"></h3>
+        </div>
+        <b class="bank__term">Первый взнос&nbsp;-<span class="bank__term-description">&nbsp;от&nbsp;<span class="deposit"></span>%</span></b>
+        <b class="bank__term">Ставка&nbsp;-<span class="bank__term-description">&nbsp;от&nbsp;<span class="rate"></span>%</span></b>
+        <b class="bank__term">Срок ипотеки&nbsp;-<span class="bank__term-description">&nbsp;от&nbsp;<span class="timeFrom"></span>&nbsp;до&nbsp;<span class="timeTo"></span> лет</span></b>
+      </div>
     </li>
   </template>
 

@@ -92,7 +92,7 @@
   var fragment = document.createDocumentFragment(); // fragment
   var template = document.querySelector('#analog-template'); // template
   var analogBox = document.querySelector('#analogList'); // box
-  var analogModal = document.querySelector('#analogModal') // analog Modal
+  //var analogModal = document.querySelector('#analogModal') // analog Modal
 
   var analogItems = 2;
 
@@ -116,44 +116,98 @@
       analogBox.appendChild(fragment);
   };
 
-  var createAnalogSliderNode = function () {
-    for(var i = 0; i < analogArray.length; i++) {
-      var currentItem = template.content.cloneNode(true); // clone template
-      var analogData = analogArray[i]; // current analog
-
-      fillAnalogNode(currentItem, analogData); // run fill func
-
-      fragment.appendChild(currentItem);
-    };
-      analogModal.appendChild(fragment);
-  };
-
-  $('.analog__btn').on('click', function () {
-    $('.analog__modal').removeClass('modal--closed');
-
-    $('.analog__modal-slider').slick({
-      adaptiveHeight: false,
-      arrows: true,
-      prevArrow: '<button id="prev" type="button" class="analog__slider-prevBtn"></button>',
-      nextArrow: '<button id="next" type="button" class="analog__slider-nextBtn"></button>',
-      responsive: [{
-        breakpoint: 768,
-        settings: {
-          arrows: false
-        }
-      }]
-    });
-  });
-
-  $('.analog__modal-closeBtn').on('click', function () {
-    $('.analog__modal').addClass('modal--closed');
-    $('.analog__modal-slider').slick('unslick');
-  });
-
-  createAnalogSliderNode();
   createAnalogNode();
 
 })();
+
+'use string';
+
+(function() {
+  var bankList = [
+    {
+      name: 'Сбербанк',
+      img: 'img/sberbank.png',
+      deposit: '15',
+      rate: '10.00',
+      timeFrom: '1',
+      timeTo: '15'
+    },
+
+    {
+      name: 'Райффайзен',
+      img: 'img/sberbank.png',
+      deposit: '5',
+      rate: '14.00',
+      timeFrom: '1',
+      timeTo: '50'
+    },
+
+    {
+      name: 'ВТБ',
+      img: 'img/sberbank.png',
+      deposit: '19',
+      rate: '9.00',
+      timeFrom: '1',
+      timeTo: '15'
+    },
+
+    {
+      name: 'УРАЛсиб',
+      img: 'img/sberbank.png',
+      deposit: '85',
+      rate: '4.00',
+      timeFrom: '1',
+      timeTo: '40'
+    },
+
+    {
+      name: 'ГазпромБанк',
+      img: 'img/sberbank.png',
+      deposit: '15',
+      rate: '10.00',
+      timeFrom: '1',
+      timeTo: '15'
+    },
+
+    {
+      name: 'ГазпромБанк',
+      img: 'img/sberbank.png',
+      deposit: '15',
+      rate: '10.00',
+      timeFrom: '1',
+      timeTo: '15'
+    },
+  ];
+
+
+  var fragment = document.createDocumentFragment();
+  var template = document.querySelector('#bank'); //template
+  var bankNode = document.querySelector('.credit__list'); // node
+
+  var fillBankList = function (element, bankData) {
+    element.querySelector('.bank__logo').setAttribute('src', bankData.img);
+    element.querySelector('.bank__title').textContent = bankData.name;
+    element.querySelector('.deposit').textContent = bankData.deposit;
+    element.querySelector('.rate').textContent = bankData.rate;
+    element.querySelector('.timeFrom').textContent = bankData.timeFrom;
+    element.querySelector('.timeTo').textContent = bankData.timeTo;
+  };
+
+  var createBankCard= function () {
+
+    for(var i = 0; i < bankList.length; i++) {
+      var currentItem = template.content.cloneNode(true); // clone template
+      var bankData = bankList[i]; // current item
+
+      fillBankList(currentItem, bankData); // run fill func
+
+      fragment.appendChild(currentItem);
+    };
+      bankNode.appendChild(fragment);
+  };
+
+  createBankCard();
+}());
 
 function toNumber(x) { //Делает пробелы, между числами
   var parts = x.toString().split(".");
@@ -1754,7 +1808,7 @@ var fillProgressGallery = function (element, photoData) {
   element.querySelector('.progress__image').setAttribute('src', photoData.photo);
 };
 
-var createProgressGalleryNode = function () { // before adding new elems, you need to remove before created elems
+var createProgressGalleryNode = function () {
 
   $('#progressGalleryList').empty();
 
@@ -1769,22 +1823,31 @@ var createProgressGalleryNode = function () { // before adding new elems, you ne
     progressGalleryBox.appendChild(fragment);
 };
 
-// clearPhotosToShow();
-setPhoto();
+  setPhoto();
 
-createProgressGalleryNode();
-
-
+  createProgressGalleryNode();
 
 }());
 
 
 //--------------------------AOS--------------------------
-AOS.init({
-  once: false,
-  duration: 700,
-  offset: 120
+$(document).ready(function () {
+  AOS.init({
+    once: false,
+    duration: 700,
+    offset: 60
+  });
+
+  setTimeout(function () {
+    AOS.refresh();
+  }, 200);
+
+
+  $(window).on('resize', function () {
+    AOS.refresh();
+  });
 });
+
 //--------------------------AOS--------------------------
 
 $('.main-nav__list').removeClass('main-nav--nojs');
@@ -1820,37 +1883,6 @@ $('.main-nav__toggle').on('click', function() {
   $('.main-nav__list').toggle('hidden');
 });
 
-/*(function () {
-  var photoList = [
-    'progress_foto.png', 'progress_foto.png','progress_foto.png','progress_foto.png','progress_foto.png','progress_foto.png','progress_foto.png',
-    'progress_foto.png', 'progress_foto.png','progress_foto.png','progress_foto.png','progress_foto.png','progress_foto.png','progress_foto.png',
-    'progress_foto.png', 'progress_foto.png','progress_foto.png','progress_foto.png','progress_foto.png','progress_foto.png','progress_foto.png'
-  ];
-
-  var fragment = document.createDocumentFragment();
-  var galleryPhoto = document.querySelector('#progress-foto');
-
-  var photoToShow = 4;
-
-  $('.progress__btn').on('click', function() {
-    photoToShow = photoList.length;
-    fillPhotos();
-    $(this).hide();
-  });
-
-  var fillPhotos = function () {
-    for (var i = 0; i < photoToShow; i++) {
-      var currentPhoto = galleryPhoto.content.cloneNode(true);
-      fragment.appendChild(currentPhoto);
-    }
-    var progressGallery = document.querySelector('.progress__gallery-list');
-    progressGallery.appendChild(fragment);
-  }
-  fillPhotos();
-}());*/
-
-
-
 (function () {
   var tableBtn = document.querySelectorAll('.description__table');
 
@@ -1864,8 +1896,6 @@ $('.main-nav__toggle').on('click', function() {
     })
   }
 })();
-
-// change active feedback-link
 
 // скролл по якорю
 

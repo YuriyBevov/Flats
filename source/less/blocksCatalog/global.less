@@ -5,6 +5,38 @@
   padding: 0 14px;
 }
 
-body{
-  overflow-x: hidden;
+.body-catalog{
+  // overflow-x: hidden;
+  // overflow-y: scroll;
+  height: auto;
+  overflow: hidden;
+}
+
+body.body--fixed {
+  overflow: hidden;
+  height: 100vh;
+
+  .header-catalog {
+    background: #fff;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    .hr{
+      display: none;
+    }
+  }
+
+}
+
+@media (max-width: @tablet-width) {
+  .body--fixed {
+    .header-catalog {
+      position: static;
+
+      .header-catalog__cities {
+        display: none;
+      }
+    }
+  }
 }

@@ -34,8 +34,7 @@
 
     });
 
-
-
+   
     $('.catalog-nav__item ').click(function (e) { //header buttons
       if (!$(this).hasClass('catalog-nav__item-menu')) {
         $(this).siblings().removeClass('catalog-nav__item--active');

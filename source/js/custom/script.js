@@ -1,10 +1,22 @@
 
 //--------------------------AOS--------------------------
-AOS.init({
-  once: false,
-  duration: 700,
-  offset: 120
+$(document).ready(function () {
+  AOS.init({
+    once: false,
+    duration: 700,
+    offset: 60
+  });
+
+  setTimeout(function () {
+    AOS.refresh();
+  }, 200);
+
+
+  $(window).on('resize', function () {
+    AOS.refresh();
+  });
 });
+
 //--------------------------AOS--------------------------
 
 $('.main-nav__list').removeClass('main-nav--nojs');
@@ -40,37 +52,6 @@ $('.main-nav__toggle').on('click', function() {
   $('.main-nav__list').toggle('hidden');
 });
 
-/*(function () {
-  var photoList = [
-    'progress_foto.png', 'progress_foto.png','progress_foto.png','progress_foto.png','progress_foto.png','progress_foto.png','progress_foto.png',
-    'progress_foto.png', 'progress_foto.png','progress_foto.png','progress_foto.png','progress_foto.png','progress_foto.png','progress_foto.png',
-    'progress_foto.png', 'progress_foto.png','progress_foto.png','progress_foto.png','progress_foto.png','progress_foto.png','progress_foto.png'
-  ];
-
-  var fragment = document.createDocumentFragment();
-  var galleryPhoto = document.querySelector('#progress-foto');
-
-  var photoToShow = 4;
-
-  $('.progress__btn').on('click', function() {
-    photoToShow = photoList.length;
-    fillPhotos();
-    $(this).hide();
-  });
-
-  var fillPhotos = function () {
-    for (var i = 0; i < photoToShow; i++) {
-      var currentPhoto = galleryPhoto.content.cloneNode(true);
-      fragment.appendChild(currentPhoto);
-    }
-    var progressGallery = document.querySelector('.progress__gallery-list');
-    progressGallery.appendChild(fragment);
-  }
-  fillPhotos();
-}());*/
-
-
-
 (function () {
   var tableBtn = document.querySelectorAll('.description__table');
 
@@ -84,8 +65,6 @@ $('.main-nav__toggle').on('click', function() {
     })
   }
 })();
-
-// change active feedback-link
 
 // скролл по якорю
 

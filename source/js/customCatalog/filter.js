@@ -2,6 +2,9 @@
 (function () {
   $(document).ready(function () {
     var mapComplex, clusterer;
+    var coordsCenter = [59.931973315391325,30.26679547713465]//Координаты центра карты (в данном случае Санкт-Петербург)
+    var coordsCenterMoscow = [55.760189227727665,37.62209300000001]//Координаты центра карты Москвы
+
     var countObjects = 4; //Колитчество комплексов на странице
     var pageNum = 1; //текущая страница
 
@@ -70,25 +73,25 @@
     let complexList = []; //Список комплексов
     //Временная переменная, которая хранит описание комплекса
     let description = 'Неподалёку от Санкт-Петербурга, в городе Кудрово Всеволожского района, ООО "Отделстрой" возводит довольно масштабный жилой комплекс с загадочным и красивым названием "Новый Оккервиль". Удачно расположившись на 50 га живописного берега одноимённой реки, комплекс привлекает разнообразием планировок (да ещё каким, более 200 вариантов квартир) и близостью (ближе некуда, 300 м - и Питер) к Северной столице. Что ещё интересного будет в "Новом Оккервиле", что - не очень, и куда делся старый - расскажем далее подробно. <br> Неподалёку от Санкт-Петербурга, в городе Кудрово Всеволожского района, ООО "Отделстрой" возводит довольно масштабный жилой комплекс с загадочным и красивым названием "Новый Оккервиль". Удачно расположившись на 50 га живописного берега одноимённой реки, комплекс привлекает разнообразием планировок (да ещё каким, более 200 вариантов квартир) и близостью (ближе некуда, 300 м - и Питер) к Северной столице. Что ещё интересного будет в "Новом Оккервиле", что - не очень, и куда делся старый - расскажем далее подробно. ';
-    complexList[0] = {'name': 'ЖК "Новое Мурино"','developer': 'ООО «Инвест-Строй»','description': description, 'metro': 'Девяткино', 'area': 'Район 1', 'img': 'img/analog_1.jpg', 'coords':[59.98112349964049, 30.07416582306103], 'flats': complexFlatsList, 'minCost':'2800000', 'maxCost':'10800000', 'minSquare':18, 'maxSquare':54, 'minCostSquare':'78,4', 'maxCostSquare':'107,4','address': 'Большой проспект Васильевского острова'};
-    complexList[1] = {'name': 'ЖК "Старое Мурино"','developer': 'ООО «Инвест-Строй» 2','description': description, 'metro': 'Девяткино', 'area': 'Район 1', 'img': 'img/analog_1.jpg', 'coords':[59.95157511900833,30.219135840848985], 'flats': complexFlatsList2, 'minCost':'2900000', 'maxCost':'8800000', 'minSquare':18, 'maxSquare':60, 'minCostSquare':'94,4', 'maxCostSquare':'160,4','address': 'Большой проспект Васильевского острова'};
-    complexList[2] = {'name': 'ЖК "Среднее Мурино"','developer': 'ООО «Инвест-Строй» 2','description': description, 'metro': 'Девяткино', 'area': 'Район 1', 'img': 'img/analog_1.jpg', 'coords':[59.92194290293241,30.324192603544304], 'flats': complexFlatsList, 'minCost':'2200000', 'maxCost':'12800000', 'minSquare':18, 'maxSquare':54, 'minCostSquare':'105,4', 'maxCostSquare':'140,4','address': 'Большой проспект Васильевского острова'};
-    complexList[3] = {'name': 'ЖК "Маленькое Мурино"','developer': 'ООО «Инвест-Строй» 3','description': description, 'metro': 'Девяткино', 'area': 'Район 1', 'img': 'img/analog_1.jpg', 'coords':[59.98244159964049, 30.07456582306103], 'flats': complexFlatsList2, 'minCost':'1700000', 'maxCost':'9800000', 'minSquare':18, 'maxSquare':54, 'minCostSquare':'89,7', 'maxCostSquare':'150,2','address': 'Большой проспект Васильевского острова'};
-    complexList[4] = {'name': 'ЖК "Большое Мурино"','developer': 'ООО «Инвест-Строй» 3','description': description, 'metro': 'Девяткино', 'area': 'Район 1', 'img': 'img/analog_1.jpg', 'coords':[60.01054659964049, 30.05126582306103], 'flats': complexFlatsList, 'minCost':'3700000', 'maxCost':'16800000', 'minSquare':18, 'maxSquare':54, 'minCostSquare':'78,4', 'maxCostSquare':'107,4','address': 'Большой проспект Васильевского острова'};
-    complexList[5] = {'name': 'ЖК "Старое Мурино"','developer': 'ООО «Инвест-Строй» 2','description': description, 'metro': 'Девяткино', 'area': 'Район 2', 'img': 'img/analog_1.jpg', 'coords':[59.92191049496494,30.28636254651455], 'flats': complexFlatsList2, 'minCost':'2900000', 'maxCost':'8800000', 'minSquare':18, 'maxSquare':60, 'minCostSquare':'58,4', 'maxCostSquare':'158,4','address': 'Большой проспект Васильевского острова'};
-    complexList[6] = {'name': 'ЖК "Среднее Мурино"','developer': 'ООО «Инвест-Строй» 2','description': description, 'metro': 'Девяткино', 'area': 'Район 3', 'img': 'img/analog_1.jpg', 'coords':[59.927080822637755,30.29906548840907], 'flats': complexFlatsList, 'minCost':'2200000', 'maxCost':'82800000', 'minSquare':18, 'maxSquare':54, 'minCostSquare':'78,4', 'maxCostSquare':'107,4','address': 'Большой проспект Васильевского острова'};
-    complexList[7] = {'name': 'ЖК "Маленькое Мурино"','developer': 'ООО «Инвест-Строй» 3','description': description, 'metro': 'Девяткино', 'area': 'Район 2', 'img': 'img/analog_1.jpg', 'coords':[59.94551507554389,30.271599668096567], 'flats': complexFlatsList2, 'minCost':'1700000', 'maxCost':'2800000', 'minSquare':18, 'maxSquare':54, 'minCostSquare':'140,4', 'maxCostSquare':'210,4','address': 'Большой проспект Васильевского острова'};
-    complexList[8] = {'name': 'ЖК "Большое Мурино"','developer': 'ООО «Инвест-Строй» 3','description': description, 'metro': 'Девяткино', 'area': 'Район 3', 'img': 'img/analog_1.jpg', 'coords':[59.960496096818105,30.295288938116098], 'flats': complexFlatsList, 'minCost':'3700000', 'maxCost':'16800000', 'minSquare':18, 'maxSquare':54, 'minCostSquare':'105,4', 'maxCostSquare':'240,4','address': 'Большой проспект Васильевского острова'};
+    complexList[0] = {'id':0, 'tel':'+7 985 985 98 85', 'name': 'ЖК "Новое Мурино"','developer': 'ООО «Инвест-Строй»','description': description, 'metro': 'Девяткино', 'area': 'Район 1', 'img': 'img/analog_1.jpg', 'coords':[59.96366228831891,30.33065350936121], 'flats': complexFlatsList, 'minCost':'2800000', 'maxCost':'10800000', 'minSquare':18, 'maxSquare':54, 'minCostSquare':'78,4', 'maxCostSquare':'107,4','address': 'Большой проспект Васильевского острова'};
+    complexList[1] = {'id':1, 'tel':'+7 985 985 98 85', 'name': 'ЖК "Старое Мурино"','developer': 'ООО «Инвест-Строй» 2','description': description, 'metro': 'Девяткино', 'area': 'Район 1', 'img': 'img/analog_1.jpg', 'coords':[59.95157511900833,30.219135840848985], 'flats': complexFlatsList2, 'minCost':'2900000', 'maxCost':'8800000', 'minSquare':18, 'maxSquare':60, 'minCostSquare':'94,4', 'maxCostSquare':'160,4','address': 'Большой проспект Васильевского острова'};
+    complexList[2] = {'id':2, 'tel':'+7 985 985 98 85', 'name': 'ЖК "Среднее Мурино"','developer': 'ООО «Инвест-Строй» 2','description': description, 'metro': 'Девяткино', 'area': 'Район 1', 'img': 'img/analog_1.jpg', 'coords':[59.91194290293241,30.324192603544304], 'flats': complexFlatsList, 'minCost':'2200000', 'maxCost':'12800000', 'minSquare':18, 'maxSquare':54, 'minCostSquare':'105,4', 'maxCostSquare':'140,4','address': 'Большой проспект Васильевского острова'};
+    complexList[3] = {'id':3, 'tel':'+7 985 985 98 85', 'name': 'ЖК "Маленькое Мурино"','developer': 'ООО «Инвест-Строй» 3','description': description, 'metro': 'Девяткино', 'area': 'Район 1', 'img': 'img/analog_1.jpg', 'coords':[59.98244159964049, 30.07456582306103], 'flats': complexFlatsList2, 'minCost':'1700000', 'maxCost':'9800000', 'minSquare':18, 'maxSquare':54, 'minCostSquare':'89,7', 'maxCostSquare':'150,2','address': 'Большой проспект Васильевского острова'};
+    complexList[4] = {'id':4, 'tel':'+7 985 985 98 85', 'name': 'ЖК "Большое Мурино"','developer': 'ООО «Инвест-Строй» 3','description': description, 'metro': 'Девяткино', 'area': 'Район 1', 'img': 'img/analog_1.jpg', 'coords':[60.01054659964049, 30.05126582306103], 'flats': complexFlatsList, 'minCost':'3700000', 'maxCost':'16800000', 'minSquare':18, 'maxSquare':54, 'minCostSquare':'78,4', 'maxCostSquare':'107,4','address': 'Большой проспект Васильевского острова'};
+    complexList[5] = {'id':5, 'tel':'+7 985 985 98 85', 'name': 'ЖК "Старое Мурино"','developer': 'ООО «Инвест-Строй» 2','description': description, 'metro': 'Девяткино', 'area': 'Район 2', 'img': 'img/analog_1.jpg', 'coords':[59.89128425214093,30.38833173201744], 'flats': complexFlatsList2, 'minCost':'2900000', 'maxCost':'8800000', 'minSquare':18, 'maxSquare':60, 'minCostSquare':'58,4', 'maxCostSquare':'158,4','address': 'Большой проспект Васильевского острова'};
+    complexList[6] = {'id':6, 'tel':'+7 985 985 98 85', 'name': 'ЖК "Среднее Мурино"','developer': 'ООО «Инвест-Строй» 2','description': description, 'metro': 'Девяткино', 'area': 'Район 3', 'img': 'img/analog_1.jpg', 'coords':[59.946099329616665,30.395541509849473], 'flats': complexFlatsList, 'minCost':'2200000', 'maxCost':'82800000', 'minSquare':18, 'maxSquare':54, 'minCostSquare':'78,4', 'maxCostSquare':'107,4','address': 'Большой проспект Васильевского острова'};
+    complexList[7] = {'id':7, 'tel':'+7 985 985 98 85', 'name': 'ЖК "Маленькое Мурино"','developer': 'ООО «Инвест-Строй» 3','description': description, 'metro': 'Девяткино', 'area': 'Район 2', 'img': 'img/analog_1.jpg', 'coords':[59.94551507554389,30.251599668096567], 'flats': complexFlatsList2, 'minCost':'1700000', 'maxCost':'2800000', 'minSquare':18, 'maxSquare':54, 'minCostSquare':'140,4', 'maxCostSquare':'210,4','address': 'Большой проспект Васильевского острова'};
+    complexList[8] = {'id':8, 'tel':'+7 985 985 98 85', 'name': 'ЖК "Большое Мурино"','developer': 'ООО «Инвест-Строй» 3','description': description, 'metro': 'Девяткино', 'area': 'Район 3', 'img': 'img/analog_1.jpg', 'coords':[59.960496096818105,30.295288938116098], 'flats': complexFlatsList, 'minCost':'3700000', 'maxCost':'16800000', 'minSquare':18, 'maxSquare':54, 'minCostSquare':'105,4', 'maxCostSquare':'240,4','address': 'Большой проспект Васильевского острова'};
     filterComplex = getDataInputFilter();
 
     $('.count-complex').text(complexList.length);//Количество жилых комплексов
-    
+
     updateComplexes(complexList);
     ymaps.ready(initMap); //yandex maps
     function initMap() {
       mapComplex = new ymaps.Map('map', {
-        center: [59.99174159964049, 30.00736882306103],
-        zoom: 10,
+        center: coordsCenter,
+        zoom: 11,
         controls: [],
       }, {
         searchControlProvider: 'yandex#search',
@@ -97,13 +100,13 @@
       clusterer = new ymaps.Clusterer({
         preset: 'islands#invertedRedClusterIcons',
         // clusterIcons: [{
-        //   href: 'img/icons/bookmark-star.svg',
-        //   size: [40, 40],
-        //   offset: [-20, -20]
+        //   // href: 'img/icons/bookmark-star.svg',
+        //   // size: [40, 40],
+        //   // offset: [-20, -20]
         // }],
         // clusterNumbers: [10],
         groupByCoordinates: false,
-        clusterDisableClickZoom: true,
+        // clusterDisableClickZoom: true,
         clusterHideIconOnBalloonOpen: false,
         geoObjectHideIconOnBalloonOpen: false
       });
@@ -116,14 +119,15 @@
         });
       getPointData = function (index, complex) {
         return {
-          balloonContentHeader: '<div class="map-flat-header"><a target="_blank" href="#">' + complex[index].name + ', ' +
-            complex[index]
-            .minCostSquare + ' м2 - ' + complex[index].maxCostSquare + ' м2.</a></div>',
+
           balloonContentBody: '<div class="map-flat"><div class="map-flat__img"><img src="' + complex[index]
-            .img + '" alt="img"></div><div class="map-flat__info"><div class="map-flat__cost">' +
-            Math.round(parseInt(complex[index].minCost))/1000000 + ' руб. - ' + Math.round(parseInt(complex[index].maxCost))/1000000 + ' руб.</div><div class="map-flat__type"></div><div class="map-flat__complex"></div></div></div>',
-          balloonContentFooter: '<div class="map-flat__address">' + complex[index].address + '</div>',
-          clusterCaption: complex[index].name + ' <div>' + complex[index].developer+'</div>'
+          .img + '" alt="img"></div><div class="map-flat__info"><div class="map-flat__complex">'+complex[index].name+'</div><div class="map-flat__cost-square">' + complex[index].minCostSquare + ' тыс. - ' + complex[index].maxCostSquare + ' тыс. руб/м<sup>2</sup></div><div class="map-flat__cost">от ' +
+          Math.round(parseInt(complex[index].minCost))/1000000 + ' - до ' + Math.round(parseInt(complex[index].maxCost))/1000000 + ' млн. руб.</div></div></div>',
+          // balloonContentBody: '<div class="map-flat"><div class="map-flat__img"><img src="' + complex[index]
+          //   .img + '" alt="img"></div><div class="map-flat__info"><div class="map-flat__cost">' +
+          //   Math.round(parseInt(complex[index].minCost))/1000000 + ' руб. - ' + Math.round(parseInt(complex[index].maxCost))/1000000 + ' руб.</div><div class="map-flat__type"></div><div class="map-flat__complex"></div></div></div>',
+          // balloonContentFooter: '<div class="map-flat__address">' + complex[index].address + '</div>',
+          clusterCaption: complex[index].name
         };
       };
 
@@ -154,7 +158,7 @@
         let costTo = parseInt($('.map-filter__cost-to').val());
         let squareFrom = parseInt($('.map-filter__square-from').val());
         let squareTo = parseInt($('.map-filter__square-to').val());
-        
+
         let filter = {
           'area': area,
           'metro': metro,
@@ -180,6 +184,36 @@
           $('.map-filter').removeClass('map-filter--active');
         }
       });
+
+      let height = ($(window).height() - 50 - 80 + 1);//нужная высота
+
+      if ($(window).width() <= 768) {
+        $('#map').css('height', height + 'px');
+        $('.map-filter').css('height', height + 'px');
+        $('.map__complex-info').css('height', (height+50)+ 'px');
+        mapComplex.container.fitToViewport();
+      } else {
+        // $('#map').css('height', 700+'px');
+        $('#map').css('height','100%');
+        $('.map-filter').css('height', 'auto');
+        $('.map__complex-info').css('height', 'auto');
+        mapComplex.container.fitToViewport();
+      }
+      $(window).on('resize', function () {
+        if ($(window).width() <= 768) {
+          height = ($(window).height() - 50 - 80 + 1);
+          $('#map').css('height', height + 'px');
+          $('.map-filter').css('height', height + 'px');
+          $('.map__complex-info').css('height', (height+50)+ 'px');
+        } else {
+          // $('#map').css('height', 700+'px');
+          $('#map').css('height','100%');
+          $('.map-filter').css('height', 'auto');
+          $('.map__complex-info').css('height', 'auto');
+        }
+        mapComplex.container.fitToViewport();
+
+      });
     }
 
     function getListPlacemarks(listPlacemarks) {
@@ -189,8 +223,9 @@
           iconLayout: 'default#image',
           iconImageHref: 'img/placemark.svg',
           iconImageSize: [23, 23],
-          // iconImageOffset: [-5, -38]
-          placemarkClick: false
+          iconImageOffset: [-10, 0],
+          placemarkClick: false,
+          idComplex: listPlacemarks[i].id
         });
         geoObjects[i] = placemark;
         placemark.events
@@ -204,6 +239,26 @@
           })
           .add('click', function (e) {
             e.get('target').options.set('placemarkClick', true);
+
+            for (let i = 0; i < complexList.length; i++) {
+              if (complexList[i].id == e.get('target').options.get('idComplex')) {
+                $('.map-modal').addClass('map-modal--active-complex-info');
+                $('.map__complex-info-inner').html('');
+                showComplex(complexList[i], $('.map__complex-info-inner'));
+                //Назначаем обработчики
+                $('.btn-phone').on('click', function () {
+                  $(this).children('.text').text($(this).attr('data-phone'));
+                });
+                $('.map__complex-info-inner .filter__input').on('click', clickFilterInput);
+                let $slider = $('.map__complex-info-inner .catalog-complex__slider');
+                if ($slider.hasClass('slick-initialized')) {
+                  $($slider).slick('unslick'); //ЧТобы не было ошибок, нужно уничтожить слайдер
+                }
+                initSlidersComplexes($slider);
+                break;
+             }
+            }
+
           });
       }
       return geoObjects;
@@ -217,18 +272,22 @@
       map.geoObjects.add(clusterer);
     }
     $('.filter__btn-show-map, .list-type__btn.list-type__btn-map, .list-character__btn-map').on('click', function () {
+      $(window).scrollTop(0);
+      $('.map-modal').scrollTop(0);
       $('.map-modal').addClass('map-modal--open');
-      
-      
+      $('body').addClass('body--fixed');
+
+
       let filter = getDataInputFilter();
       let filterList = getFilterListComplex(complexList, filter); //Возвращает отфильтрованный список комплексов (filter - объект, с которым будут сравниваться другие объекты)
 
       updateMapObjects(mapComplex, clusterer, filterList);
-      $(window).scrollTop(100);
+
     });
 
 
     function showMapComplex() { //Открытие карты, при нажатии на кнопку у элемента
+      $(window).scrollTop(0);
       let $item = $(this).closest('.catalog-complex__item'); //Сам эелемент списка
       let complexName = $item.find('.complex').text();
 
@@ -236,21 +295,20 @@
         return $(this).html() == complexName;
       }).val(); //Получаем value option select
       $('.map-filter__complex').val(complexOptionIndex);
-      let filter = {
-        'complex': complexName
-      } //Наш фильтр, с которым мы будем сравнивать объекты
+      filterComplex.complex = [complexName];//Наш фильтр, с которым мы будем сравнивать объекты
 
-      let filterList = getFilterListComplex(complexList, filter); //Возвращает отфильтрованный список квартир (filter - объект, с которым будут сравниваться другие объекты)
+      let filterList = getFilterListComplex(complexList, filterComplex); //Возвращает отфильтрованный список квартир (filter - объект, с которым будут сравниваться другие объекты)
       // let geoObjectsFilter = getListPlacemarks(filterList);
       updateMapObjects(mapComplex, clusterer, filterList);
 
+      $('.map-modal').scrollTop(0);
       $('.map-modal').addClass('map-modal--open');
-      $(window).scrollTop(0);
+      $('body').addClass('body--fixed');
     }
 
     function updateComplexes(filterList) { //Обновляет список комплексов на странице
 
-      $slider = $('.catalog-complex__slider');
+      let $slider = $('.catalog-complex__slider');
       if ($slider.hasClass('slick-initialized')) {
         $($slider).slick('unslick'); //ЧТобы не было ошибок, нужно уничтожить слайдеры, затем опять создать
       }
@@ -260,13 +318,14 @@
       } else {
         $('.catalog-complex__list').html('');
         $('.catalog-complex__show-more').removeClass('catalog-complex__show-more--hidden');
-        
+
       }
       let j = 0; //Счетчик объектов, выводимых на страницу
+      console.log(filterList);
 
       for (let i = (pageNum - 1) * 4; i < filterList.length && j < countObjects; i++) {
         j++;
-        showComplex(filterList[i]);
+        showComplex(filterList[i], $('.catalog-complex__list'));//Вторым параметром передаем родителя, куда будут добавляться данные
       }
 
       if (j == 0) {
@@ -301,19 +360,7 @@
       }
 
       $slider = $('.catalog-complex__slider');
-      if ($slider.length) {
-        $slider.on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) { //Счетчик на слайдах
-          $status = $(slick.$slider[0]).siblings('.catalog-complex__slider-counter');
-          var i = (currentSlide ? currentSlide : 0) + 1;
-          $status.text(i + ' / ' + slick.slideCount);
-        });
-        $slider.slick({
-          adaptiveHeight: true,
-          arrows: true,
-          prevArrow: '<button id="prev" type="button" class="catalog-complex__slider-prev-btn"><img src="img/catalog-slider-prev.svg" alt="img"></button>',
-          nextArrow: '<button id="next" type="button" class="catalog-complex__slider-next-btn"><img src="img/catalog-slider-next.svg" alt="img"></button>',
-        });
-      }
+      initSlidersComplexes($slider);
 
       //Заново назначаем обработчики
       $('.catalog-complex__btn-show-map').click(showMapComplex); //Открыть карту с фильтрацией, + прокрутка страницы в самый вверх
@@ -327,7 +374,7 @@
       return cloneList;
     }
 
-    function getSortByCost(complexList) { //возвращает отсортированный по цене список 
+    function getSortByCost(complexList) { //возвращает отсортированный по цене список
       let cloneComplexList = getCloneList(complexList);
       for (let i = 0, endI = cloneComplexList.length - 1; i < endI; i++) {
         for (let j = 0, endJ = endI - i; j < endJ; j++) {
@@ -451,9 +498,9 @@
       let costTo = parseInt($('.filter__cost-to').val());
       let squareFrom = parseInt($('.filter__square-from').val());
       let squareTo = parseInt($('.filter__square-to').val());
-      
-      
-      
+
+
+
       let filter = {
         'area': area,
         'metro': metro,
@@ -470,24 +517,37 @@
         'payment': payment,
         'bank': bank
       } //Наш фильтр, с которым мы будем сравнивать объекты
-      
+
       return filter;
     }
-
-    function showComplex(infoList) {
+    function initSlidersComplexes(slider) {
+      if ($(slider).length) {
+        $(slider).on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) { //Счетчик на слайдах
+          $status = $(slick.$slider[0]).siblings('.catalog-complex__slider-counter');
+          var i = (currentSlide ? currentSlide : 0) + 1;
+          $status.text(i + ' / ' + slick.slideCount);
+        });
+        $(slider).slick({
+          adaptiveHeight: true,
+          arrows: true,
+          prevArrow: '<button id="prev" type="button" class="catalog-complex__slider-prev-btn"><img src="img/catalog-slider-prev.svg" alt="img"></button>',
+          nextArrow: '<button id="next" type="button" class="catalog-complex__slider-next-btn"><img src="img/catalog-slider-next.svg" alt="img"></button>',
+        });
+      }
+    }
+    function showComplex(infoList, parent) {//parent-родитель куда будут добавляться данные
       let str = '<div class="catalog-complex__item"><div class="catalog-complex__item-header"><div class="catalog-complex__slider"><div class="catalog-complex__slide"><img src="img/img-video-1.jpg" alt="img"><div class="catalog-complex__slide-icons"><img src="img/slide-heart.svg" alt="img"><img src="img/slide-build.svg" alt="img"></div></div><div class="catalog-complex__slide"><img src="img/analog_1.jpg" alt=""><div class="catalog-complex__slide-icons"><img src="img/slide-heart.svg" alt="img"><img src="img/slide-build.svg" alt="img"></div></div></div><div class="catalog-complex__slider-counter"></div><div class="catalog-complex__buttons-wrap catalog-complex__item-header-buttons"><button type="button" class="catalog-complex__btn-more pink__btn">Подробнее</button><button type="button" class="catalog-complex__btn-show-map pink__btn"><img src="img/placeholder-red.svg" alt="">На карте</button></div><ul class="complex-advantages__features-list"><li class="complex-advantages__features-item complex-advantages__features-item--sale"><div class="complex-advantages__features-item-box"><svg width="13" height="14"><use xlink:href="#icon-feature_sale"></use></svg></div><span class="complex-advantages__features-hint complex-advantages__features-hint--sale">Скидка партнерам</span></li><li class="complex-advantages__features-item complex-advantages__features-item--deal"><div class="complex-advantages__features-item-box"><svg width="14" height="14"><use xlink:href="#icon-feature_deal"></use></svg></div><span class="complex-advantages__features-hint complex-advantages__features-hint--deal">Безопасная&nbsp;сделка</span></li><li class="complex-advantages__features-item complex-advantages__features-item--gift"><div class="complex-advantages__features-item-box"><svg width="13" height="10"><use xlink:href="#icon-feature_gift"></use></svg></div><span class="complex-advantages__features-hint complex-advantages__features-hint--gift">Приемка&nbsp;в&nbsp;подарок</span></li><li class="complex-advantages__features-item complex-advantages__features-item--decor"><div class="complex-advantages__features-item-box"><svg width="12" height="17"><use xlink:href="#icon-feature_decor"></use></svg></div><span class="complex-advantages__features-hint complex-advantages__features-hint--decor">Сертификат&nbsp;на&nbsp;отделку</span></li><li class="complex-advantages__features-item complex-advantages__features-item--conditions"><div class="complex-advantages__features-item-box"><svg width="18" height="13"><use xlink:href="#icon-bus"></use></svg></div> <span class="complex-advantages__features-hint complex-advantages__features-hint--gift">Специальные&nbsp;условия для&nbsp;иногородних</span></li></ul></div><div class="catalog-complex__item-content" ><div class="inner">';
       let costSquare = getCostSquare(infoList.flats);
       let minCost = Math.round(parseInt(infoList.minCost) / 1000000);
       let maxCost = Math.round(parseInt(infoList.maxCost) / 1000000);
 
-
-      str += '<div class="complex">' + infoList.name + '</div><div class="developer"><span class="text">' + infoList.developer + '</span><img src="img/developer_logo.svg" alt=""></div></div><div class="catalog-complex__cost-block"><span class="cost-block__cost-from">' + minCost + '</span> - <span class="cost-block__cost-to">' + maxCost + '</span> млн. руб.</div><div class="square-metr">' + infoList.minCostSquare + ' - ' + costSquare.maxCostSquare + ' тыс. руб/м2</div><div class="address">' + infoList.address + '</div><div class="metro"><img src="img/metro-el.svg" alt=""><span class="metro__name">' + infoList.metro + '</span><span class="metro__distance">15 мин пешком</span></div><div class="flat-deadline-field"><div class="flat-deadline-field__select-arrow"><img src="img/arrow__down-input-grey.svg"></div><select class="flat-deadline" name="flat-deadline" id="flat-deadline">';
-      str += '<option value="0" hidden disabled selected>Срок сдачи</option>';
+      str += '<div class="complex">' + infoList.name + '</div><div class="developer"><span class="text">' + infoList.developer + '</span><img src="img/developer_logo.svg" alt=""></div></div><div class="catalog-complex__cost-block"><span class="cost-block__cost-from">' + minCost + '</span> - <span class="cost-block__cost-to">' + maxCost + '</span> млн. руб.</div><div class="square-metr">' + infoList.minCostSquare + ' - ' + costSquare.maxCostSquare + ' тыс. руб/м2</div><div class="address">' + infoList.address + '</div><div class="metro"><img src="img/metro-el.svg" alt=""><span class="metro__name">' + infoList.metro + '</span><span class="metro__distance">15 мин пешком</span></div> <div class="filter-field complex-field-deadlines"><div class="filter-field__select-arrow"><svg viewBox="0 0 284.929 284.929"><path d="M282.082,76.511l-14.274-14.273c-1.902-1.906-4.093-2.856-6.57-2.856c-2.471,0-4.661,0.95-6.563,2.856L142.466,174.441L30.262,62.241c-1.903-1.906-4.093-2.856-6.567-2.856c-2.475,0-4.665,0.95-6.567,2.856L2.856,76.515C0.95,78.417,0,80.607,0,83.082c0,2.473,0.953,4.663,2.856,6.565l133.043,133.046c1.902,1.903,4.093,2.854,6.567,2.854s4.661-0.951,6.562-2.854L282.082,89.647c1.902-1.903,2.847-4.093,2.847-6.565C284.929,80.607,283.984,78.417,282.082,76.511z" /></svg></div><div class="select-input"><input type="text" value="" name="complex__deadlines" class="select filter__complex__deadlines filter__input" readonly  placeholder="Срок сдачи:"><div class="checkboxes"><div class="checkboxes__inner">';
 
       for (let i = 0; i < infoList.flats.length; i++) {
-        str += '<option value="' + i + '">корпус ' + infoList.flats[i].corpus + ', ' + infoList.flats[i].deadline + ' г.</option>'
+        str += '<label><input type="checkbox" name="complex__deadlines" value="' + i + '" /><span class="check"></span><span class="text">корпус ' + infoList.flats[i].corpus +', ' + infoList.flats[i].deadline + ' г.</span></label>';
       }
-      str += '</select></div><div class="catalog-complex-info-wrap">';
+
+      str += '</div></div></div></div><div class="catalog-complex-info-wrap">';
 
       let flatsGroupByRoom = infoList.flats.reduce(function (r, a) {
         r[a.room] = r[a.room] || [];
@@ -515,10 +575,6 @@
         infoThreeRoom = getFlatInfo(flatsGroupByRoom['3 ккв']);
       }
 
-
-
-
-
       if (infoStudio != false) {
         str += '<div class="flat-type studio"><div class="flat-type__left-box">Студия от <span class="flat-type__square"><span class="flat-type__square-value">' + infoStudio.minCostSquare + '</span>м<sup>2</sup></span></div><div class="flat-type__right-box"><span class="flat-type__cost-from">' + infoStudio.minCost + '</span> - <span class="flat-type__cost-to">' + infoStudio.maxCost + '</span> млн. руб. </div></div>';
       }
@@ -531,10 +587,14 @@
       if (infoThreeRoom != false) {
         str += '<div class="flat-type studio"><div class="flat-type__left-box">3-комнатная кв. от <span class="flat-type__square"><span class="flat-type__square-value">' + infoThreeRoom.minCostSquare + '</span>м<sup>2</sup></span></div><div class="flat-type__right-box"><span class="flat-type__cost-from">' + infoThreeRoom.minCost + '</span> - <span class="flat-type__cost-to">' + infoThreeRoom.maxCost + '</span> млн. руб. </div></div>';
       }
+      if ($(parent).hasClass('map__complex-info-inner')) {
 
-      str += '</div><div class="catalog-complex__description"><p class="description">' + infoList.description + '</p></div><div class="catalog-complex__buttons-wrap"><button type="button" class="catalog-complex__btn-more pink__btn">Подробнее</button><button type="button" class="catalog-complex__btn-show-map pink__btn"><img src="img/placeholder-red.svg"alt="">На карте</button></div></div></div>';
-
-      $('.catalog-complex__list').append(str);
+        str += '</div><button type="button" data-phone="'+infoList.tel+'" class="btn-phone"><img class="img-phone" src="img/icon-phone.svg" alt=""><span class="text">+7 Показать телефон</span></button></div></div>';
+      } else {
+        str += '</div><div class="catalog-complex__description"><p class="description">' + infoList.description + '</p></div><div class="catalog-complex__buttons-wrap"><button type="button" class="catalog-complex__btn-more pink__btn">Подробнее</button><button type="button" class="catalog-complex__btn-show-map pink__btn"><img src="img/placeholder-red.svg"alt="">На карте</button></div></div></div>';
+      }
+      
+      $(parent).append(str);
     }
 
     //-----------------------------------------------------------------------------
@@ -544,8 +604,9 @@
     function getFilterListComplex(listComplex, filter) { //Возвращает отфильтрованный список комплексов
       let tempListComplex = []; //список отфильтрованных комплексов
       for (let j = 0; j < listComplex.length; j++) {
-        
+
         let isFilter = true;
+
         if (filter.area[0].length) {
         for (let i = 0; i < filter.area.length; i++) {
           if (filter.area[i] != '') {
@@ -558,7 +619,10 @@
           }
           }
         }
-        
+        if (!isFilter) {
+          continue;
+        }
+
         if (filter.metro[0].length) {
           for (let i = 0; i < filter.metro.length; i++) {
             if (filter.metro[i] != '') {
@@ -571,7 +635,10 @@
             }
             }
         }
-        
+        if (!isFilter) {
+          continue;
+        }
+
         if (filter.deadline[0].length) {
           for (let i = 0; i < filter.metro.length; i++) {
             let filterDeadline = filter.deadline[i];
@@ -585,11 +652,14 @@
               break;
             }
             }
-         }
+        }
+        if (!isFilter) {
+          continue;
+        }
         if (filter.complex[0].length) {
           for (let i = 0; i < filter.complex.length; i++) {
             if (filter.complex[i] != '') {
-              
+
               if (filter.complex[i].toLowerCase() == listComplex[j].name.toLowerCase()) {
                 isFilter = true;
                 break;
@@ -598,7 +668,11 @@
               }
             }
             }
-          }
+        }
+        if (!isFilter) {
+          continue;
+        }
+
         if (filter.developer[0].length) {
           for (let i = 0; i < filter.developer.length; i++) {
             if (filter.developer[i] != '') {
@@ -611,9 +685,11 @@
             }
             }
           }
-      
+          if (!isFilter) {
+            continue;
+          }
         if (filter.room[0].length) {
-          
+
           for (let z = 0; z < filter.room.length; z++) {
             if (filter.room[z] != '') {
               isFilter = false;
@@ -628,7 +704,10 @@
               }
             }
             }
-          }
+        }
+        if (!isFilter) {
+          continue;
+        }
         if (filter.typeProperty[0].length) {
           for (let z = 0; z < filter.typeProperty.length; z++) {
             if (filter.typeProperty[z] != '') {
@@ -645,7 +724,10 @@
             }
             }
         }
-        
+        if (!isFilter) {
+          continue;
+        }
+
         if (filter.type[0].length) {
           for (let z = 0; z < filter.type.length; z++) {
             if (filter.type[z] != '') {
@@ -661,6 +743,9 @@
               }
             }
             }
+        }
+        if (!isFilter) {
+          continue;
         }
 
         if (filter.payment[0].length) {
@@ -679,6 +764,9 @@
             }
             }
         }
+        if (!isFilter) {
+          continue;
+        }
 
         if (filter.bank[0].length) {
           for (let z = 0; z < filter.bank.length; z++) {
@@ -695,6 +783,9 @@
               }
             }
             }
+        }
+        if (!isFilter) {
+          continue;
         }
 
         if ((filter.costTo == 0) || (filter.squareTo == 0)) {
@@ -841,18 +932,18 @@
         room[0] = 'Студия';
       }
       filterComplex.room= room;
-      
+
       let filterList = getFilterListComplex(complexList, filterComplex); //Возвращает отфильтрованный список квартир (filter - объект, с которым будут сравниваться другие объекты)
       // let geoObjectsFilter = getListPlacemarks(filterList);
       updateComplexes(filterList);
 
     });
 
-    //------------------------------------------------------------------------  
+    //------------------------------------------------------------------------
     $('.pagination__item').click(function (e) { //Пагинация
       $(this).siblings().removeClass('pagination__item--active');
       $(this).addClass('pagination__item--active');
-
+      countObjects = 4;
       pageNum = parseInt($(this).text());
 
       let filterList = getFilterListComplex(complexList, filterComplex);
@@ -864,8 +955,8 @@
 
     $('.catalog-complex__show-more').click(function (e) { //Показать еще
       $(this).addClass('catalog-complex__show-more--hidden');
-      $('.pagination').addClass('pagination--hidden');
-      
+      // $('.pagination').addClass('pagination--hidden');
+
 
       let filterList = getFilterListComplex(complexList, filterComplex);
       countObjects = filterList.length;
@@ -875,7 +966,10 @@
 
     $('.map-modal__close .close').on('click', function () {
       $('.map-modal').removeClass('map-modal--open');
-      // $('body').removeClass('body--fixed');
+      $('body').removeClass('body--fixed');
+    });
+    $('.complex-info__close .close').on('click', function () {
+      $('.map-modal').removeClass('map-modal--active-complex-info');
     });
 
     $('.catalog-complex__btn-show-map').click(showMapComplex); //Открыть карту с фильтрацией, + прокрутка страницы в самый вверх
@@ -909,19 +1003,26 @@
 
     $('.map-footer__btn-open-filter').click(function (e) { //Открытие/Закрытие фильтра на телефонах на карте
       $('.map-filter').toggleClass('map-filter--active');
+      $('.map-filter').scrollTop(0);
     });
     $('.map-footer__btn-open-list').click(function (e) { //Закрытие карты на телефоне
       $('.map-filter').removeClass('map-filter--active');
+      $('.map-filter').scrollTop(0);
       $('.map-modal').removeClass('map-modal--open');
+      $('.map-modal').removeClass('map-modal--active-complex-info');
+      $('body').removeClass('body--fixed');
     });
 
 
     $('.filter__btn-show').click(function (e) { //Показать комплексы
       //Получаем именно тексты выбранных пунктов в select's
+      $('.list-type-flats__btn').removeClass('list-type-flats__btn--active');
+      $('.list-character__btn').removeClass('list-character__btn--active');
+      $('.list-character__btn.list-character__btn-sort-by-recomend').addClass('list-character__btn--active');
       filterComplex = getDataInputFilter();
-      $('.pagination').removeClass('pagination--hidden');
+      // $('.pagination').removeClass('pagination--hidden');
       $('.first-page').addClass('pagination__item--active').siblings().removeClass('pagination__item--active');
-      
+
       pageNum = 1;
       countObjects = 4;
       let filterList = getFilterListComplex(complexList, filterComplex); //Возвращает отфильтрованный список комплексов (filter - объект, с которым будут сравниваться другие объекты)
@@ -938,28 +1039,54 @@
     //     }
     //   }
     // });
-    $('.filter__input, .map-filter__input').on('click', function () {
+    function clickFilterInput() {
+      console.log('click');
+
+      $('.filter__form-inner').find('.filter__input').removeClass('filter__input--active-select');
+      $('.map-filter__form-inner').find('.map-filter__input').removeClass('filter__input--active-select');
+      $(this).closest('.filter__form-inner').find('.filter-field').removeClass('filter-field--active-select');
+      $(this).closest('.map-filter__form-inner').find('.map-filter-field').removeClass('filter-field--active-select');
+      $(this).closest('.filter-field').removeClass('filter-field--active-select');
+
       if ($(this).hasClass('map-filter__input')) {
         $(this).closest('.map-filter-field').siblings().find('.checkboxes').removeClass('checkboxes--active');
       }
       else if (!$(this).siblings('.checkboxes').hasClass('checkboxes--active')) {
         $(this).closest('.filter__form-inner').find('.checkboxes').removeClass('checkboxes--active');
-        
       }
-      if ($(this).siblings('.checkboxes').hasClass('checkboxes--active')) {
-        
-      }
-      
       $checboxes = $(this).siblings('.checkboxes');
       $checboxes.toggleClass('checkboxes--active');
+      if ($(this).siblings('.checkboxes').hasClass('checkboxes--active')) {
+        $(this).closest('.filter-field').addClass('filter-field--active-select');
+        $(this).closest('.map-filter-field').addClass('filter-field--active-select');
+      }
+
+      if ($(this).siblings('.checkboxes').hasClass('checkboxes--active')) {
+        $(this).addClass('filter__input--active-select');
+        $(this).closest('.filter-field').addClass('filter-field--active-select');
+      }
+      if ($(this).parents('.filter-field-cost__wrap').length || $(this).parents('.map-filter-field-cost__wrap').length) {
+        $(this).addClass('filter__input--active-select');
+      }
       if ($('.filter .checkboxes--active').length) {
         $('.filter').addClass('filter--select-active');
       } else {
         $('.filter').removeClass('filter--select-active');
       }
-      // if ($(window).width() <= 1024) {
-      //   $('.filter').removeClass('filter--select-active');
-      // }
+
+    }
+    $('.filter__input, .map-filter__input').on('click', clickFilterInput);
+
+    $('.header-catalog__cities-btn').click(function (e) { //Главные кнопки переключения между Москвой и СПб
+      $(this).addClass('header-catalog__cities-btn--active').siblings().removeClass('header-catalog__cities-btn--active');
+
+      if ($(this).attr('data-city') == 'moscow') {
+        mapComplex.setCenter(coordsCenterMoscow);
+        $('.sort-box__title-box .title').text('Новостройки Москвы');
+      } else if ($(this).attr('data-city') == 'spb') {
+        mapComplex.setCenter(coordsCenter);
+        $('.sort-box__title-box .title').text('Новостройки Санкт-Петербурга');
+      }
 
     });
 
@@ -968,7 +1095,7 @@
       if (!$($field).length) {
         $field = $(this).closest('.select-input').children('.map-filter__input');
       }
-      
+
       let value = $field.val();
       let str = $(this).siblings('.text').text().replace(/\s+/g, " ") + "; ";
       if ($(this).prop('checked')) {
@@ -979,16 +1106,26 @@
         $field.val(newResult);
       }
     });
+
+
+
     $('body').on('click', function (e) {
       if (!$(e.target).parents('.select-input').length) {
         $('.checkboxes').removeClass('checkboxes--active');
         $('.filter').removeClass('filter--select-active');
+        $('.select-input .filter__input').removeClass('filter__input--active-select');
+        $('.select-input .map-filter__input').removeClass('filter__input--active-select');
+        $('.filter-field').removeClass('filter-field--active-select');
+        $('.map-filter-field').removeClass('filter-field--active-select');
+      }
+      if (!$(e.target).parents('.filter-field-cost__wrap').length) {
+        $('.filter-field-cost__wrap .filter__input').removeClass('filter__input--active-select');
+      }
+      if (!$(e.target).parents('.map-filter-field-cost__wrap').length) {
+        $('.map-filter-field-cost__wrap .map-filter__input').removeClass('filter__input--active-select');
       }
     });
 
 
   });
 })();
-
-
-

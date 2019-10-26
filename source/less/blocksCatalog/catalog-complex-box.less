@@ -33,7 +33,7 @@
   &__item-header-buttons {
     display: none;
   }
-  
+
   &__show-more {
     display: flex;
     justify-content: center;
@@ -42,10 +42,10 @@
     margin: 18px auto 38px;
     transition: all 0.3s;
 
-    &--hidden{
+    &--hidden {
       display: none;
     }
-    
+
     img {
       margin-left: 10px;
     }
@@ -154,7 +154,7 @@
         margin-left: 8px;
       }
     }
-   
+
     .address {
       margin-top: 18px;
       font-weight: 700;
@@ -185,7 +185,7 @@
     }
   }
 
-  .nothing{
+  .nothing {
     font-size: 30px;
     font-weight: 700;
     text-align: center;
@@ -256,6 +256,7 @@
       position: static;
       transform: none;
       width: auto;
+
       .pink__btn {
         margin-right: 32px;
 
@@ -283,7 +284,7 @@
       .description {
         font-size: 13px;
         line-height: 18px;
-        font-weight: 700;
+        font-weight: 400;
         margin: 0;
         margin-bottom: 10px;
       }
@@ -315,7 +316,116 @@
     }
   }
 
+}
 
+.filter-field.complex-field-deadlines {
+  width: 190px;
+  margin-top: 18px;
+  margin-bottom: 0;
+  padding-left: 0;
+
+  .filter-field__select-arrow {
+    margin-right: 6px;
+    width: auto;
+  }
+  .filter__input--active-select{
+    border-color: @primary-grey;
+  }
+  .checkboxes {
+    padding: 0;
+    border-top: none;
+    top: 27px;
+    max-height: auto;
+    border: 1px solid @primary-grey;
+    border-radius: 2px;
+    box-shadow: 0px 5px 6px -2px rgba(134, 134, 134, 0.3);
+    border-top: none;
+    padding-right: 14px;
+    padding-bottom: 18px;
+    overflow: hidden;
+
+    &__inner {
+      padding: 16px 8px;
+      padding-top: 8px;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      max-height: 153px;
+
+      &::-webkit-scrollbar {
+        display: block;
+        width: 4px;
+        height: 4px;
+        border-radius: 40px;
+        margin-right: 10px;
+      }
+
+      &::-webkit-scrollbar-track {
+        display: block;
+        background-color: @secondary-grey;
+        border-radius: 40px;
+        margin-right: 10px;
+        height: 16px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        display: block;
+        background-color: @primary-grey;
+        border-radius: 40px;
+        margin-right: 10px;
+        height: 16px;
+      }
+
+      &::-webkit-scrollbar-button {
+        display: none;
+      }
+
+      &::-webkit-scrollbar-corner {
+        display: none;
+      }
+    }
+
+    .text {
+      font-size: 13px;
+    }
+
+    label {
+      margin-bottom: 16px;
+      cursor: default;
+      pointer-events: none;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .check {
+      display: none;
+    }
+  }
+
+  .filter__input {
+    height: 30px;
+    font-size: 13px;
+
+    &::-webkit-input-placeholder {
+      opacity: 1;
+      font-size: 13px;
+    }
+
+    &::-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      opacity: 1;
+      font-size: 13px;
+    }
+
+    &::placeholder {
+      opacity: 1;
+      font-size: 13px;
+    }
+
+
+  }
 
 
 }
@@ -671,7 +781,7 @@
     text-align: center;
     background-color: #fff;
   }
-  
+
   .flat-deadline {
     cursor: pointer;
     width: 100%;
@@ -704,9 +814,10 @@
   //   position: absolute;
   //   left: -30px;
   // }
-  &--hidden{
+  &--hidden {
     display: none;
   }
+
   &__item {
     width: 25px;
     height: 25px;
@@ -755,7 +866,7 @@
 
     .catalog-complex {
 
-      &__item{
+      &__item {
         flex-direction: column;
       }
 
@@ -763,20 +874,21 @@
         max-width: 100%;
       }
 
-      &__slide{
+      &__slide {
         border-top-right-radius: 6px;
         border-top-left-radius: 6px;
         overflow: hidden;
       }
-      &__item-content{
+
+      &__item-content {
         width: 100%;
       }
 
-      &__item-header-buttons{
+      &__item-header-buttons {
         margin-top: 28px;
         margin-bottom: 22px;
 
-        .pink__btn{
+        .pink__btn {
           width: 100%;
         }
       }
@@ -872,7 +984,7 @@
       font-size: 12px;
       margin-bottom: 30px;
 
-     
+
 
     }
 
