@@ -1,8 +1,10 @@
 
+
+
 //--------------------------AOS--------------------------
 $(document).ready(function () {
   AOS.init({
-    once: false,
+    once: true,
     duration: 700,
     offset: 60
   });
@@ -100,20 +102,44 @@ $(document).ready(function () {
 
 (function () {
 
+
+
   var WIDTH = 1360;
 
   var sliderOptions = function () {
+    if ($('.expectation__photo-box').hasClass('slick-initialized')) {
+      $('.expectation__photo-box').slick('unslick');
+      $('.expectation__photo-box.slick-slider').off('click', nextSlide);
+    }
     $('.expectation__photo-box').slick({
       autoplay: true,
       autoplaySpeed: 3000,
       adaptiveHeight: false,
       arrows: false,
       mobileFirst: true,
+      // speed: 500,
+      // fade: true,
       responsive: [{
         breakpoint: 1360,
         settings: 'unslick'
       }]
     });
+    if ($(window).width() >= 1360) {
+      $('.expectation__photo-box.slick-slider').off('click', nextSlide);
+    } else {
+      $('.expectation__photo-box.slick-slider').on('click', nextSlide);
+    }
+    $(window).on('resize', function () {
+      if ($(window).width() >= 1360) {
+        $('.expectation__photo-box.slick-slider').off('click', nextSlide);
+      } else {
+        $('.expectation__photo-box.slick-slider').on('click', nextSlide);
+      }
+    });
+
+    function nextSlide() {
+      $(this).slick('slickNext');
+    }
   }
 
   var flag = false;
@@ -212,6 +238,13 @@ function onPlayerReady(event) {
 }
 
 $(document).ready(function () {
+
+  //------------------------------------
+
+  $('.blog__show-btn').click(function () {//Читать полностью
+    $('.blog__wrapper').find('.hidden').removeClass('hidden');
+    $(this).addClass('hidden');
+  });
   //-----------------калькулятор модальное окно--------------------
   let valueMortgageWork = 2;
   let valueMortgageIncome = 50000;
@@ -259,12 +292,20 @@ $(document).ready(function () {
   $('.mortgage .modal__close-btn').on('click', function () {
     $('.mortgage.mortgage__modal').addClass('modal--closed ');
   });
+  $('.modal-photo-galery .modal__close-btn').on('click', function () {
+    $('.modal-photo-galery').removeClass('modal-photo-galery--active');
+  });
 
   $('#btnOpenExcursionModal').on('click', function () {
     $('.excursion.excursion__modal').removeClass('modal--closed ');
   });
   $('.excursion .modal-close-btn').on('click', function () {
     $('.excursion.excursion__modal').addClass('modal--closed');
+  });
+  $('.modal__header-btn-close').on('click', function () {
+    $(this).closest('.modal').addClass('modal--closed');
+    console.log($(this).closest('.modal').addClass('modal--closed'));
+
   });
 
 
@@ -361,7 +402,7 @@ $(document).ready(function () {
       result = +result.toFixed(2);
       result = toNumber(result);
       if (result != NaN && result != undefined && result != 'NaN') {
-        console.log(result);
+
         $('.calculator__result').text(result + ' руб.');
       } else {
         $('.calculator__result').text(0 + ' руб.');

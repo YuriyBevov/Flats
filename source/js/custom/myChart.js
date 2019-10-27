@@ -35,7 +35,7 @@ var fillChart = function (currentData) {
     'май’19'
   ]; //  массив для изменяемыхданных
 
-  console.log(currentData);
+  // console.log(currentData);
 
   var chart = new Chart(ctx, {
     // The type of chart we want to create

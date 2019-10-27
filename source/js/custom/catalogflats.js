@@ -159,9 +159,10 @@ $(document).ready(function () {
 
   function catalogSliderInit() {
     $('.catalog__slider').slick({
-      arrows: true,
-      prevArrow: '<button id="prev" type="button" class="catalog__slider-prevBtn"></button>',
-      nextArrow: '<button id="next" type="button" class="catalog__slider-nextBtn"></button>',
+      arrows: false,
+      // arrows: true,
+      // prevArrow: '<button id="prev" type="button" class="catalog__slider-prevBtn"></button>',
+      // nextArrow: '<button id="next" type="button" class="catalog__slider-nextBtn"></button>',
       slidesToShow: 1,
       mobileFirst: true,
     });

@@ -148,36 +148,35 @@
   var showCard = function () {
     if (bankList.length > visibleItems) {
       for(var i = visibleItems; i < bankList.length; i++){
-        console.log('ok')
-        bankItem[i].classList.add('hidden');
+        // console.log('ok')
+        bankItem[i].classList.add('visually-hidden');
       }
     } else {
-      showMoreBtn.classList.add('hidden');
+      showMoreBtn.classList.add('visually-hidden');
     }
   };
 
   var showMoreCard = function () {
     for (var i = 0; i < visibleItems; i++) {
-      if(bankItem[i].classList.contains('hidden')) {
-        bankItem[i].classList.remove('hidden');
+      if(bankItem[i].classList.contains('visually-hidden')) {
+        bankItem[i].classList.remove('visually-hidden');
       }
     }
   }
 
   showMoreBtn.addEventListener('click', function() {
-    console.log('btn')
+    // console.log('btn')
     if ((bankList.length - visibleItems) > 4) {
       visibleItems += 4;
-      console.log(visibleItems);
+      // console.log(visibleItems);
       showMoreCard();
     } else {
       visibleItems = bankList.length;
       showMoreCard();
-      showMoreBtn.classList.add('hidden');
+      showMoreBtn.classList.add('visually-hidden');
     }
   });
 
   showCard();
-
 
 }());
