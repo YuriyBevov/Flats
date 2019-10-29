@@ -97,6 +97,10 @@ $(document).ready(function () {
       }
     }]
   });
+
+  $('.estate__slider-item').on('click', function () {
+    $('.estate__slider-box').slick('slickNext');
+  });
 });
 
 
@@ -105,7 +109,12 @@ $(document).ready(function () {
 
 
   var WIDTH = 1360;
-
+$(document).ready(function () {
+  if ($(window).width() >= 1360) {
+  } else {
+    sliderOptions();
+  }
+});
   var sliderOptions = function () {
     if ($('.expectation__photo-box').hasClass('slick-initialized')) {
       $('.expectation__photo-box').slick('unslick');
@@ -286,6 +295,22 @@ $(document).ready(function () {
     checkExpectancy();
   });
   //Открытие закрытие модальных окон
+  $('body').on('click', function (e) {
+    if(!$(e.target).hasClass('light__btn')){
+    if (!$('.modal').hasClass('modal--closed')) {
+      if (!$(e.target).closest('.modal__wrapper').length) {
+        $('.modal').addClass('modal--closed');
+      }
+    }
+    
+    if (!$(e.target).closest('.consultation__wrapper').length) {
+      $('.consultation__modal').addClass('modal--closed');
+      }
+    if (!$(e.target).closest('.modal-feedback__wrapper').length) {
+      $('.modal-feedback').removeClass('modal-feedback--active');
+      }
+    }
+  });
   $('#btnOpenMortgage').on('click', function () {
     $('.mortgage.mortgage__modal').removeClass('modal--closed');
   });
@@ -304,7 +329,6 @@ $(document).ready(function () {
   });
   $('.modal__header-btn-close').on('click', function () {
     $(this).closest('.modal').addClass('modal--closed');
-    console.log($(this).closest('.modal').addClass('modal--closed'));
 
   });
 

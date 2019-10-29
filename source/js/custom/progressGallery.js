@@ -46,7 +46,7 @@
     filter.year = $year;
     filter.month = $month;
     let filterList = getFilterList(arrayPhotos, filter); //Получаем отфильтрованный список
-    
+
     let $parent = $('.progress__gallery-list');
     updateGalery(filterList, $parent);
 
@@ -54,33 +54,30 @@
     $('.progress__form-select--year, .progress__form-select--month').on('change', function () {
       $year = $('.progress__form-select--year').val();
       $month = $('.progress__form-select--month').val();
-      
+
       filter.year = $year;
       filter.month = $month;
       filterList = getFilterList(arrayPhotos, filter); //Получаем отфильтрованный список
-      console.log(filterList);
       updateGalery(filterList, $parent);
     });
 
-    function updateGalery(listObjects, parent) {
+    function updateGalery(listObjects, parent, begin) {
       $('.progress__btn.show__btn').removeClass('hidden');
       $('.progress__wrapper .nothing').addClass('hidden');
       let strHTML = '';
       if ($(parent).hasClass('galery__slider')) {
         $('.galery__slider').html('');
         for (let i = 0; i < listObjects.length; i++) {
-          strHTML += '<div class="galery__item"><img src="' + listObjects[i].photoLarge + '" alt="image"></div>';
+          strHTML += '<div class="galery__item"><div class="galery__item-img"><span class="close">&#10006;</span><img src="' + listObjects[i].photo + '" alt="image"></div></div>';
         }
         $('.galery__slider').html(strHTML);
-        console.log( $('.galery__slider').html());
-        
+
       } else {
         $('.progress__gallery-list').html('');
         let j = 0;
         for (let i = 0; i < listObjects.length && i < countVisible; i++) {
-          console.log(i);
           j++;
-          strHTML += '<li class="progress__gallery-item modal-image__item"><picture><source type="image/webp" srcset=""><img class="progress__image" src="' + listObjects[i].photo + '" data-big-src="' + listObjects[i].photoLarge + '" alt="фото ЖК" width="310" height="180"></picture></li>';
+          strHTML += '<li class="progress__gallery-item modal-image__item"><picture><source type="image/webp" srcset=""><img class="progress__image" src="' + listObjects[i].photo + '" data-big-src="' + listObjects[i].photoLarge + '" data-index="'+i+'"alt="фото ЖК" width="310" height="180"></picture></li>';
         }
         if (j == 0) {
           $('.progress__btn.show__btn').addClass('hidden');
@@ -89,54 +86,36 @@
         $(parent).append(strHTML);
       }
       
-
-      
+      $('.progress__image').off('click');
+      $('.progress__image').on('click', clickImg);
       if ($(parent).hasClass('galery__slider')) {
         let $slider = $('.galery__slider');
-        if ($slider.length && $slider.hasClass('slick-initialized')) {
-          $($slider).slick('unslick');
-          
-        }
-        setTimeout(initSlidersModalPhoto, 200, $slider);
+        initSlidersModalPhoto($slider, begin);//функция из modal-photo-galery.js
+        // setTimeout(initSlidersModalPhoto, 10, $slider);
       }
-      $('.modal-image__item').on('click', function () {
-        let src = $(this).find('img').attr('src');
-        let srcBig = $(this).find('img').attr('data-big-src');
-        $('.modal-image').addClass('modal-image--active');
-        if (srcBig != '') {
-          $('.modal-image img').attr('src', srcBig);
-        } else {
-          $('.modal-image img').attr('src', src);
-        }
-
-      });
-
-      $('.modal-image__close').on('click', function () {
-        $('.modal-image').removeClass('modal-image--active');
-      });
-
-      
-      
-    }
-    function initSlidersModalPhoto(slider) {
-      console.log('init slider');
-      console.log(slider);
-      
-      // $(slider).on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) { //Счетчик на слайдах
-      //   $status = $(slick.$slider[0]).siblings('.catalog-complex__slider-counter');
-      //   var i = (currentSlide ? currentSlide : 0) + 1;
-      //   $status.text(i + ' / ' + slick.slideCount);
+     
+      function clickImg() {
+        let begin = $(this).attr('data-index');
+        updateGalery(filterList, $('.galery__slider'), begin);
+        $('.modal-photo-galery').addClass('modal-photo-galery--active');
+      }
+      // $('.modal-image__item').on('click', function () {
+      //   // let src = $(this).find('img').attr('src');
+      //   // let srcBig = $(this).find('img').attr('data-big-src');
+      //   // $('.modal-image').addClass('modal-image--active');
+      //   // if (srcBig != '') {
+      //   //   $('.modal-image img').attr('src', srcBig);
+      //   // } else {
+      //   //   $('.modal-image img').attr('src', src);
+      //   // }
+      //   updateGalery(filterList, $('.galery__slider'));
+      //   $('.modal-photo-galery').addClass('modal-photo-galery--active');
       // });
-      $(slider).slick({
-        arrows: false,
-      //   speed: 500,
-      //  fade: true,
-      });
 
-      $(slider).on('click', function () {
-        $(slider).slick('slickNext');
-      });
     }
+
+    
+
     function getFilterList(arrayPhotos, filter) { //Получить отфильтрованный список
       let tempList = [];
       for (let i = 0; i < arrayPhotos.length; i++) {
@@ -148,11 +127,12 @@
     }
 
     $('.progress__btn').click(function () {
-      
       updateGalery(filterList, $('.galery__slider'));
       $('.modal-photo-galery').addClass('modal-photo-galery--active');
     });
-
+    
+   
+    
   });
 })();
 

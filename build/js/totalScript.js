@@ -307,185 +307,387 @@ function toNumber(x) { //Делает пробелы, между числами
   var parts = x.toString().split(".");
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   return parts.join(",");
-}
+};
+(function () {
+  $(document).ready(function () {
 
-$(document).ready(function () {
-  //Списки квартир (1 массив = 1 группа квартир одной планировки)
-  let flats1 = [];
-  flats1[0] = {'square': 18,'floor': 3,'totalFloor': 3,'type': 'Без отделки','cost': '2400000'
-  };
-  flats1[1] = {'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000'
-  };
-  flats1[2] = {'square': 28,'floor': 3,'totalFloor': 12,'type': 'С отделкой','cost': '2500000'
-  };
-  flats1[3] = {'square': 33,'floor': 8,'totalFloor': 12,'type': 'С отделкой','cost': '5700000'
-  };
-  flats1[4] = {'square': 33,'floor': 6,'totalFloor': 20,'type': 'С отделкой','cost': '5700000'
-  };
-  flats1[5] = {'square': 40,'floor': 8,'totalFloor': 12,'type': 'С отделкой','cost': '5700000'
-  };
-  let flats2 = [];
-  flats2[0] = {'square': 18,'floor': 3,'totalFloor': 3,'type': 'Без отделки','cost': '3700000'
-  };
-  flats2[1] = {'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2400000'
-  };
-  flats2[2] = {'square': 28,'floor': 3,'totalFloor': 12,'type': 'С отделкой','cost': '2400000'
-  };
-  flats2[3] = {'square': 33,'floor': 8,'totalFloor': 12,'type': 'С отделкой','cost': '2700000'
-  };
-  flats2[4] = {'square': 33,'floor': 8,'totalFloor': 12,'type': 'С отделкой','cost': '2700000'
-  };
-  let flats3 = [];
+    let arrImg = ['img/analog_1.jpg', 'img/img-video-2.jpg'] //массив фоток для одной квартиры (в данном случае этот массив пойдет всем квартирам)
+    let flats = []; //Список квартир 
+    flats[0] = {
+      'id': 0, 'square': 18, 'floor': 3, 'totalFloor': 3, 'type': 'Без отделки', 'cost': '2400000', 'room': 1, 'imgPlan': 'img/layout.png', 'images': arrImg,
+    };
+    flats[1] = {'id':1,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[2] = {'id':2,'square': 28,'floor': 3,'totalFloor': 12,'type': 'С отделкой','cost': '2500000', 'room': 2, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[3] = {'id':3,'square': 33,'floor': 8,'totalFloor': 12,'type': 'С отделкой','cost': '5700000', 'room': 2, 'imgPlan': 'img/layout.png', 'images': arrImg,
+    };
+    flats[4] = {'id':4,'square': 33,'floor': 6,'totalFloor': 20,'type': 'С отделкой','cost': '5700000', 'room': 3, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[5] = {'id':5,'square': 40,'floor': 8,'totalFloor': 12,'type': 'С отделкой','cost': '5700000', 'room': 3, 'imgPlan': 'img/layout.png', 'images': arrImg,
+    };
+    flats[6] = {'id':6,'square': 18,'floor': 3,'totalFloor': 3,'type': 'Без отделки','cost': '2400000', 'room': 4, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[7] = {'id':7,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 4, 'imgPlan': 'img/layout.png', 'images': arrImg,
+    };
+    flats[8] = {'id':8,'square': 28,'floor': 3,'totalFloor': 12,'type': 'С отделкой','cost': '2500000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[9] = {'id':9,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 4, 'imgPlan': 'img/layout.png', 'images': arrImg,
+    };
+    flats[10] = {'id':10,'square': 28,'floor': 3,'totalFloor': 12,'type': 'С отделкой','cost': '2500000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[11] = {'id':11,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[12] = {'id':12,'square': 28,'floor': 3,'totalFloor': 12,'type': 'С отделкой','cost': '2500000', 'room': 2, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[13] = {'id':13,'square': 33,'floor': 8,'totalFloor': 12,'type': 'С отделкой','cost': '5700000', 'room': 2, 'imgPlan': 'img/layout.png', 'images': arrImg,
+    };
+    flats[14] = {'id':14,'square': 33,'floor': 6,'totalFloor': 20,'type': 'С отделкой','cost': '5700000', 'room': 3, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[15] = {'id':15,'square': 40,'floor': 8,'totalFloor': 12,'type': 'С отделкой','cost': '5700000', 'room': 3, 'imgPlan': 'img/layout.png', 'images': arrImg,
+    };
+    flats[16] = {'id':16,'square': 18,'floor': 3,'totalFloor': 3,'type': 'Без отделки','cost': '2400000', 'room': 4, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[17] = {'id':17,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 4, 'imgPlan': 'img/layout.png', 'images': arrImg,
+    };
+    flats[18] = {'id':18,'square': 28,'floor': 3,'totalFloor': 12,'type': 'С отделкой','cost': '2500000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[19] = {'id':19,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 4, 'imgPlan': 'img/layout.png', 'images': arrImg,
+    };
+    flats[20] = {'id':20,'square': 28,'floor': 3,'totalFloor': 12,'type': 'С отделкой','cost': '2500000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[21] = {'id':21,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[22] = {'id':22,'square': 28,'floor': 3,'totalFloor': 12,'type': 'С отделкой','cost': '2500000', 'room': 2, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[23] = {'id':23,'square': 33,'floor': 8,'totalFloor': 12,'type': 'С отделкой','cost': '5700000', 'room': 2, 'imgPlan': 'img/layout.png', 'images': arrImg,
+    };
+    flats[24] = {'id':24,'square': 33,'floor': 6,'totalFloor': 20,'type': 'С отделкой','cost': '5700000', 'room': 3, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[25] = {'id':25,'square': 40,'floor': 8,'totalFloor': 12,'type': 'С отделкой','cost': '5700000', 'room': 3, 'imgPlan': 'img/layout.png', 'images': arrImg,
+    };
+    flats[26] = {'id':26,'square': 18,'floor': 3,'totalFloor': 3,'type': 'Без отделки','cost': '2400000', 'room': 4, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[27] = {'id':27,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 4, 'imgPlan': 'img/layout.png', 'images': arrImg,
+    };
+    flats[28] = {'id':28,'square': 28,'floor': 3,'totalFloor': 12,'type': 'С отделкой','cost': '2500000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[29] = {'id':29,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 4, 'imgPlan': 'img/layout.png', 'images': arrImg,
+    };
+    flats[30] = {'id':30,'square': 28,'floor': 3,'totalFloor': 12,'type': 'С отделкой','cost': '2500000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[31] = {'id':31,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[32] = {'id':32,'square': 28,'floor': 3,'totalFloor': 12,'type': 'С отделкой','cost': '2500000', 'room': 2, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[33] = {'id':33,'square': 33,'floor': 8,'totalFloor': 12,'type': 'С отделкой','cost': '5700000', 'room': 2, 'imgPlan': 'img/layout.png', 'images': arrImg,
+    };
+    flats[34] = {'id':34,'square': 33,'floor': 6,'totalFloor': 20,'type': 'С отделкой','cost': '5700000', 'room': 3, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[35] = {'id':35,'square': 40,'floor': 8,'totalFloor': 12,'type': 'С отделкой','cost': '5700000', 'room': 3, 'imgPlan': 'img/layout.png', 'images': arrImg,
+    };
+    flats[36] = {'id':36,'square': 18,'floor': 3,'totalFloor': 3,'type': 'Без отделки','cost': '2400000', 'room': 4, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[37] = {'id':37,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 4, 'imgPlan': 'img/layout.png', 'images': arrImg,
+    };
+    flats[38] = {'id':38,'square': 28,'floor': 3,'totalFloor': 12,'type': 'С отделкой','cost': '2500000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[39] = {'id':39,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 4, 'imgPlan': 'img/layout.png', 'images': arrImg,
+    };
+    flats[40] = {'id':40,'square': 28,'floor': 3,'totalFloor': 12,'type': 'С отделкой','cost': '2500000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[41] = {'id':41,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[42] = {'id':42,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[43] = {'id':43,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[44] = {'id':44,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[45] = {'id':45,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[46] = {'id':46,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[47] = {'id':47,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[48] = {'id':48,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[49] = {'id':49,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[50] = {'id':50,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[51] = {'id':51,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[52] = {'id':52,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[53] = {'id':53,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[54] = {'id':54,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[55] = {'id':55,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[56] = {'id':56,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[57] = {'id':57,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[58] = {'id':58,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[59] = {'id':59,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[60] = {'id':60,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[61] = {'id':61,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[62] = {'id':62,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
+    flats[63] = {'id':63,'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '2700000', 'room': 1, 'imgPlan': 'img/analog_1.jpg', 'images': arrImg,
+    };
 
-  flats3[0] = {'square': 18,'floor': 3,'totalFloor': 3,'type': 'Без отделки','cost': '3700000'
-  };
-  flats3[1] = {'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '1000000'
-  };
-  flats3[2] = {'square': 29,'floor': 5,'totalFloor': 12,'type': 'Без отделки','cost': '100000'
-  };
-  flats3[3] = {'square': 48,'floor': 5,'totalFloor': 15,'type': 'С отделкой','cost': '1500000'
-  };
-  flats3[4] = {'square': 48,'floor': 5,'totalFloor': 15,'type': 'С отделкой','cost': '1500000'
-  };
 
-  let flats4 = [];
+    let countRoomOne = getCountFlatsByRoom(flats, 1);
+    let countRoomTwo = getCountFlatsByRoom(flats, 2);
+    let countRoomThree = getCountFlatsByRoom(flats, 3);
+    let countRoomStudio = getCountFlatsByRoom(flats, 4);
+    $('.flats__modalBtn[data-flats="1"]').find('.flat-count').text(countRoomOne);
+    $('.flats__modalBtn[data-flats="2"]').find('.flat-count').text(countRoomTwo);
+    $('.flats__modalBtn[data-flats="3"]').find('.flat-count').text(countRoomThree);
+    $('.flats__modalBtn[data-flats="4"]').find('.flat-count').text(countRoomStudio);
 
-  flats4[0] = {'square': 18,'floor': 3,'totalFloor': 3,'type': 'Без отделки','cost': '3700000'
-  };
-  flats4[1] = {'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '1000000'
-  };
-  flats4[2] = {'square': 18,'floor': 3,'totalFloor': 3,'type': 'Без отделки','cost': '3700000'
-  };
-  flats4[3] = {'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '1000000'
-  };
-  flats4[4] = {'square': 18,'floor': 3,'totalFloor': 3,'type': 'Без отделки','cost': '3700000'
-  };
-  flats4[5] = {'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '1000000'
-  };
-  flats4[6] = {'square': 29,'floor': 4,'totalFloor': 12,'type': 'Без отделки','cost': '1000000'
-  };
+    let currentPage = 1;
+    let entryOnPage = 10;
+    totalPage = Math.ceil(flats.length / entryOnPage);
 
-//Группы квартир
-  let flatOneRoom = [ flats1, flats2 ]; //1-конматные
-  let flatTwoRoom = [ flats2, flats1 ];//2-конматные
-  let flatThreeRoom = [ flats3 ];//3-конматные
-  let flatStudio = [ flats4 ];//студии
-
-
-  let countFlatOneRoom = countFlat(flatOneRoom);
-  let countFlatTwoRoom= countFlat(flatTwoRoom);
-  let countFlatThreeRoom= countFlat(flatThreeRoom);
-  let countFlatStudio = countFlat(flatStudio);
-
-  $('.flats__modalBtn[data-flats="1"]').find('.flat-count').text(countFlatOneRoom);
-  $('.flats__modalBtn[data-flats="2"]').find('.flat-count').text(countFlatTwoRoom);
-  $('.flats__modalBtn[data-flats="3"]').find('.flat-count').text(countFlatThreeRoom);
-  $('.flats__modalBtn[data-flats="4"]').find('.flat-count').text(countFlatStudio);
-
-  let $tableList = $('#catalog-list-table');
-  let img = 'img/layout.png'; //изображение планировки для одной группы квартир
-
-  $('.flats__modalBtn').on('click', function (e) {
-    e.preventDefault();
-    let countRoomFlats = $(this).attr('data-flats');
-    let $modalWindow = $('.catalog__modal');
-    let currentRoomFlats = $modalWindow.attr('data-flats'); //Текущий контент модального окна
-    clearListTable();
-    if (!$modalWindow.has('modal--closed')) { //Если окно открыто
-      $modalWindow.addClass('modal--closed');
-    }
-    if (countRoomFlats == currentRoomFlats) { //если текущий контент мод. окна соответсвует тому контенту, который появляется при нажатии на текущюю кнопку
-      $modalWindow.addClass('modal--closed');
-      $modalWindow.attr('data-flats', '0');
+    let $tableList = $('#catalog-list-table');
+    let countRoomFlats, arrayFlats;
+    $('.flats__modalBtn').on('click', function (e) {
+      e.preventDefault();
+      
+      currentPage = 1;
+      countRoomFlats = $(this).attr('data-flats');
+      let $modalWindow = $('.catalog__modal');
+      let currentRoomFlats = $modalWindow.attr('data-flats'); //Текущий контент модального окна
       clearListTable();
-      return;
-    }
-
-    let flatsCount;
-    if (countRoomFlats == '1') { //если 1-к квартиры
-      $modalWindow.removeClass('modal--closed');
-      $modalWindow.attr('data-flats', '1');
-      flatsOut(flats1, img, countRoomFlats, countFlatOneRoom);
-    } else if (countRoomFlats == '2') { //если 2-к квартиры
-      $modalWindow.removeClass('modal--closed');
-      $modalWindow.attr('data-flats', '2');
-      flatsOut(flats2, img, countRoomFlats, countFlatTwoRoom);
-      flatsOut(flats2, img, countRoomFlats, countFlatTwoRoom);
-    } else if (countRoomFlats == '3') { //если 3-к квартиры
-      $modalWindow.removeClass('modal--closed');
-      $modalWindow.attr('data-flats', '3');
-      flatsOut(flats3, img, countRoomFlats, countFlatThreeRoom);
-      flatsOut(flats3, img, countRoomFlats, countFlatThreeRoom);
-    } else if (countRoomFlats == '4') { //если 4-к квартиры
-      $modalWindow.removeClass('modal--closed');
-      $modalWindow.attr('data-flats', '4');
-      flatsOut(flats4, img, countRoomFlats, countFlatStudio);
-    }
-
-  });
-  $('body').on('click', function (e) { //Закрытие модального окна по клику на фон
-    if ($('.catalog__modal').has(e.target).length === 0 && $('.flats__link').has(e.target).length === 0) { //Если не содержит этот target
-      if (!$('.catalog__modal').hasClass('modal--closed')&&!$(e.target).hasClass('flats__link')) {
-        $('.catalog__modal').addClass('modal--closed');
-        $('.catalog__modal').attr('data-flats', '0');
-        clearListTable();
+      if (!$modalWindow.has('modal--closed')) { //Если окно открыто
+        $modalWindow.addClass('modal--closed');
       }
-    }
-  });
-  function clearListTable() { //Очищает список таблиц
-    catalogSliderDestroy();
-    $tableList.empty();
-  };
+      if (countRoomFlats == currentRoomFlats) { //если текущий контент мод. окна соответсвует тому контенту, который появляется при нажатии на текущюю кнопку
+        $modalWindow.addClass('modal--closed');
+        $modalWindow.attr('data-flats', '0');
+        clearListTable();
+        return;
+      }
 
-  function flatsOut(flats, img, countRoom, countFlats) { //Выводит квартиры в модальное окно. Создает одну таблицу, с одной планировкой
-    catalogSliderDestroy(); //Отключить слайдеры
-    if (countRoom == '4') {
-      $('.catalog-title-box').html('<span class="name-flats">Студии</span><span class="count-flats">'+countFlats+' квартир</span>');
-    } else {
-      $('.catalog-title-box').html('<span class="name-flats">'+countRoom+'-к квартиры</span><span class="count-flats">'+countFlats+' квартир</span>');
-    }
 
-    let str = '<table class="catalog-table "><thead><th class="icon-flats"></th><th class="square">Площадь, м2</th><th class="floor">Этаж</th><th class="type">Тип отделки</th><th class="cost">Стоимость кв, руб</th><th class="plan">Планировка</th></thead><tbody><tr class="tr-empty"><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td rowspan="0" class="catalog-img-flat"><img src="' + img + '" alt=""></td></tr>';
-    for (let i = 0; i < flats.length; i++) {
-      str += '<tr class="tr-catalog-item">';
-      str += '<td class="icon-flats"><img src="img/icon-flats.png" alt=""></td>';
-      str += '<td><div>' + flats[i].square + ' м2</div></td>';
-      str += '<td><div>' + flats[i].floor + '</div></td>';
-      str += '<td><div>' + flats[i].type + '</div></td>';
-      str += '<td><div>' + toNumber(flats[i].cost) + '</div></td>';
-      str += '</tr>';
-      str += '<div class="catalog-item"><div class="catalog-item__num">' + countRoom + '-к квартира № 115</div><div class="catalog__slide-wrap"><div class="catalog__slider"><div class="catalog__slider-item"><img src="img/layout.png" alt=""></div><div class="catalog__slider-item"><img src="img/layout.png" alt=""></div></div></div><div class="catalog-item__cost">' + toNumber(flats[i].cost) + '</div><div class="catalog-item__inner-flats"><div class="left-block"><span class="catalog-item__square">' + flats[i].square + ' м2</span><span class="catalog-item__floor">' + flats[i].floor + '/' + flats[i].totalFloor + ' этаж</span></div><span class="more">Подробнее</span></div><button type="button" class="catalog-item__btn pink__btn">Записаться на просмотр</button></div>';
-    }
-    str += '</tbody></table>';
-    $tableList.append(str);
+      if (countRoomFlats == '1') { //если 1-к квартиры
+        $modalWindow.removeClass('modal--closed');
+        $modalWindow.attr('data-flats', '1');
+      } else if (countRoomFlats == '2') { //если 2-к квартиры
+        $modalWindow.removeClass('modal--closed');
+        $modalWindow.attr('data-flats', '2');
+      } else if (countRoomFlats == '3') { //если 3-к квартиры
+        $modalWindow.removeClass('modal--closed');
+        $modalWindow.attr('data-flats', '3');
+      } else if (countRoomFlats == '4') { //если 4-к квартиры
+        $modalWindow.removeClass('modal--closed');
+        $modalWindow.attr('data-flats', '4');
+      }
+      arrayFlats = getFlatsByRoom(flats, parseInt(countRoomFlats));
+      flatsOut(arrayFlats, countRoomFlats, true);
+      $('catalog__modal').scrollTop(0);
 
-    catalogSliderInit(); //Включить слайдеры
-  }
-
-  function catalogSliderInit() {
-    $('.catalog__slider').slick({
-      arrows: false,
-      // arrows: true,
-      // prevArrow: '<button id="prev" type="button" class="catalog__slider-prevBtn"></button>',
-      // nextArrow: '<button id="next" type="button" class="catalog__slider-nextBtn"></button>',
-      slidesToShow: 1,
-      mobileFirst: true,
     });
-  }
 
-  function catalogSliderDestroy() {
-    $('.catalog__slider').slick('unslick');
-  }
 
-  function countFlat(flats) {
-    let count = 0;
-    for (let i = 0; i < flats.length; i++) {
-      count += flats[i].length;
+
+
+
+    function flatsOut(flats, countRoom, pagination) { //Выводит квартиры в модальное окно. Создает одну таблицу
+      catalogSliderDestroy(); //Отключить слайдеры
+      totalPage = Math.ceil(flats.length / entryOnPage);
+
+      if (countRoom == '4') {
+        $('.catalog-title-box').html('<span class="name-flats">Студии</span><span class="count-flats">' + flats.length + ' квартир</span>');
+      } else {
+        $('.catalog-title-box').html('<span class="name-flats">' + countRoom + '-к квартиры</span><span class="count-flats">' + flats.length + ' квартир</span>');
+      }
+
+      let str = '<table class="catalog-table "><thead><th class="icon-flats"></th><th class="square">Площадь, м2</th><th class="floor">Этаж</th><th class="type">Тип отделки</th><th class="cost">Стоимость кв, руб</th><th class="plan">Планировка</th></thead><tbody><tr class="tr-empty"><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td rowspan="0" class="catalog-img-flat"><span class="wrap-heart"><svg class="heart" viewBox="0 0 512 512"><path d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"></path></svg><svg  class="heart-fill hidden" viewBox="0 0 512 512"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg></span><img src="' + flats[0].imgPlan + '" alt=""><button type="button" class="btnToBook pink__btn" data-id="' + flats[0].id + '">Забронировать</button></td></tr>';
+      j = 0;
+      for (let i = (currentPage - 1) * entryOnPage; i < flats.length && i < currentPage * entryOnPage; i++) {
+        j++;
+        if (j == 1) {
+          str += '<tr class="tr-catalog-item tr-catalog-item--active" data-id="' + flats[i].id + '" data-img-plan="' + flats[i].imgPlan + '">';
+        } else {
+          str += '<tr class="tr-catalog-item" data-id="' + flats[i].id + '" data-img-plan="' + flats[i].imgPlan + '">';
+        }
+        str += '<td class="icon-flats"><img src="img/icon-flats.png" alt=""></td>';
+        str += '<td><div>' + flats[i].square + ' м2</div></td>';
+        str += '<td><div>' + flats[i].floor + '</div></td>';
+        str += '<td><div>' + flats[i].type + '</div></td>';
+        str += '<td><div>' + toNumber(flats[i].cost) + '</div></td>';
+        str += '</tr>';
+        str += '<div class="catalog-item"><div class="catalog-item__num">' + countRoom + '-к квартира № 115</div><div class="catalog__slide-wrap"><div class="catalog__slider">';
+        
+        for (let j = 0; j < flats[i].images.length; j++) {
+          const img = flats[i].images[j];
+          str += '<div class="catalog__slider-item"><img src="'+img+'" alt="image"></div>';
+        }
+        '</div></div><div class="catalog-item__cost">' + toNumber(flats[i].cost) + '</div><div class="catalog-item__inner-flats"><div class="left-block"><span class="catalog-item__square">' + flats[i].square + ' м2</span><span class="catalog-item__floor">' + flats[i].floor + '/' + flats[i].totalFloor + ' этаж</span></div><span class="more">Подробнее</span></div><button type="button" class="catalog-item__btn pink__btn">Записаться на просмотр</button></div>';
+      }
+      str += '</tbody></table>';
+      $tableList.append(str);
+      if (totalPage > 1) {
+
+      }
+      catalogSliderInit(); //Включить слайдеры
+      
+      if (pagination) {
+        
+        updatePagination(totalPage); //Обновляем пагинацию
+      }
+     
+      initObr(); //Обновляем обработчики
     }
-    return count;
-  }
-});
 
+    function initObr() {
+      $('.tr-catalog-item').off('click');
+      $('.tr-catalog-item').on('click', function () {
+        $(this).addClass('tr-catalog-item--active').siblings('.tr-catalog-item').removeClass('tr-catalog-item--active');
+        let img = $(this).attr('data-img-plan'); //берем картинку планировки 
+        let id = $(this).attr('data-id'); //берем id
+        updateImage(img, id); //Обновляем картинку планировки
+      });
+      $('.catalog-pagination__item').off('click');
+      $('.catalog-pagination__item').on('click', function () {
+        $(this).addClass('catalog-pagination__item--active').siblings().removeClass('catalog-pagination__item--active');
+        currentPage = parseInt($(this).text());
+        clearListTable();
+        flatsOut(arrayFlats, countRoomFlats);
+      });
+      $('catalog__modal').scrollTop(0);
+
+      $('.btn-show-more').off('click');
+      $('.btn-show-more').on('click', function () {
+        $(this).addClass('hidden');
+        $('.catalog-pagination__list').removeClass('hidden');
+        currentPage = 2;
+        clearListTable();
+        flatsOut(arrayFlats, countRoomFlats);
+      });
+
+      $('.btnToBook').off('click');
+      $('.btnToBook').on('click', function () {
+        let id = $(this).attr('data-id');
+        alert('Квартира с id = '+ id + ' забронирована');
+        
+      });
+      $('.wrap-heart').off('click');
+      $('.wrap-heart').on('click', function () {
+        $(this).children('.heart-fill').toggleClass('hidden');
+        
+      });
+
+
+    }
+
+    function updatePagination(total) {
+      let $parent = $('.catalog-pagination__list');
+      $parent.html('');
+      
+        
+      let str = '';
+      for (let i = 0; i < total; i++) {
+        if (i == currentPage) {
+          str += '<div class="catalog-pagination__item catalog-pagination__item--active">' + (i + 1) + '</div>';
+        } else {
+          str += '<div class="catalog-pagination__item">' + (i + 1) + '</div>';
+        }
+        }
+        
+      if (totalPage > 1 && currentPage == 1) {
+        $('.btn-show-more').removeClass('hidden');
+        $parent.addClass('hidden');
+      } else {
+        $parent.removeClass('hidden');
+        $('.btn-show-more').addClass('hidden');
+      }
+      if (total == 1) {
+        $parent.addClass('hidden');
+      }
+      $parent.append(str);
+
+    }
+
+    function catalogSliderInit() {
+      $('.catalog__slider').slick({
+        arrows: false,
+        // arrows: true,
+        // prevArrow: '<button id="prev" type="button" class="catalog__slider-prevBtn"></button>',
+        // nextArrow: '<button id="next" type="button" class="catalog__slider-nextBtn"></button>',
+        slidesToShow: 1,
+        // mobileFirst: true,
+      });
+      $('.catalog__slider-item img').off('click');
+      $('.catalog__slider-item img').on('click', function () {
+        $(this).closest('.catalog__slider').slick('slickNext');
+      });
+      
+    }
+
+    function catalogSliderDestroy() {
+      if ($('.catalog__slider').length) {
+        $('.catalog__slider').slick('unslick');
+      }
+     
+    }
+
+    function getCountFlatsByRoom(arrObj, num) { //Считает кол-во квартир определенного типа (1ком., 2ком., студия и т.д.)
+      let sum = 0;
+      for (let i = 0; i < arrObj.length; i++) {
+        const room = arrObj[i].room;
+        if (room == num) {
+          sum++;
+        }
+      }
+      return sum;
+    }
+
+    function getFlatsByRoom(arrObj, num) { //Возвращает квартиры определенного типа
+      let tempArray = [];
+      for (let i = 0; i < arrObj.length; i++) {
+        const room = arrObj[i].room;
+        if (room == num) {
+          tempArray.push(arrObj[i]);
+        }
+      }
+      return tempArray;
+    }
+
+    function clearListTable() { //Очищает список таблиц
+      catalogSliderDestroy();
+      $tableList.empty();
+    };
+
+    function updateImage(pathImg, id) {
+      $('.catalog-img-flat img').attr('src', pathImg);
+      $('.btnToBook').attr('data-id', id);
+    }
+    $('body').on('click', function (e) { //Закрытие модального окна по клику на фон
+      if ($('.catalog__modal').has(e.target).length === 0 && $('.flats__link').has(e.target).length === 0 && !$(e.target).closest('.catalog__modal').length) { //Если не содержит этот target
+        if (!$('.catalog__modal').hasClass('modal--closed') && !$(e.target).hasClass('flats__link')) {
+          $('.catalog__modal').addClass('modal--closed');
+          $('.catalog__modal').attr('data-flats', '0');
+          clearListTable();
+        }
+      }
+      // if (!$(e.target).closest('.catalog__modal')&& !$(e.target).hasClass('.flats__link')) {
+      //   $('.catalog__modal').addClass('modal--closed');
+      //     $('.catalog__modal').attr('data-flats', '0');
+      //     clearListTable();
+      // }
+    });
+  });
+})();
 ;(function () {
   $(document).ready(function () {
 
@@ -557,6 +759,94 @@ $(document).ready(function () {
     return text_forms[2];
   }
 })();
+;
+(function () {
+  $(document).ready(function () {
+    //Модальное окно modal-image
+    $('.modal-image__item').on('click', modalPhoto);
+
+    // $('.modal-image__close').on('click', function () {
+    //   $('.modal-image').removeClass('modal-image--active');
+    // });
+
+    
+
+    //--------------------------expectation---------------------------
+    let arrayPhotos = []; //Массив фотографий
+
+    arrayPhotos[0] = { corpus: 2, date: '28.05.2019', photo: 'img/devSlider-img1.jpg' , photoLarge: 'img/devSlider-img1.jpg'};
+    arrayPhotos[1] = { corpus: 2, date: '28.05.2019', photo: 'img/devSlider-img1.jpg' , photoLarge: 'img/devSlider-img1.jpg'};
+    arrayPhotos[2] = { corpus: 2, date: '28.05.2019', photo: 'img/devSlider-img1.jpg' , photoLarge: 'img/devSlider-img1.jpg'};
+    arrayPhotos[3] = { corpus: 2, date: '28.05.2019', photo: 'img/devSlider-img1.jpg' , photoLarge: 'img/devSlider-img1.jpg'};
+
+    let $parent = $('.expectation__photo-box');
+    
+    updateData(arrayPhotos, $parent);
+    $('.expectation__image').off('click');
+    $('.expectation__image').on('click', function () {
+      let begin = $(this).attr('data-index');
+      updateGalery(arrayPhotos, $('.galery__slider'), begin);
+      $('.modal-photo-galery').addClass('modal-photo-galery--active');
+    });
+    function updateData(listObjects, parent, begin) {
+      let strHTML = '';
+      if ($(parent).hasClass('galery__slider')) {
+        $('.galery__slider').html('');
+        for (let i = 0; i < listObjects.length; i++) {
+          strHTML += '<div class="galery__item"><div class="galery__item-img"><span class="close">&#10006;</span><img src="' + listObjects[i].photo + '" alt="image"></div></div>';
+        }
+        $('.galery__slider').html(strHTML);
+
+      } else {
+        $('.expectation__photo-box').html('');
+        for (let i = 0; i < listObjects.length ; i++) {
+          strHTML += '<div class="expectation__item modal-image__item"><picture><source type="image/webp" srcset="img/devSlider-img1.webp"><img src="' + listObjects[i].photo + '" class="expectation__image" data-big-src="' + listObjects[i].photoLarge + '" data-index="' + i + ' alt="image" width="320" height="220"></picture><div class="expectation__description-box"><span class="expectation__photo-text">Корпус ' + listObjects[i].corpus + '</span><span class="expectation__photo-text expectation__photo-text--date">' + listObjects[i].date + '</span></div></div>';
+        }
+
+        $(parent).append(strHTML);
+      }
+
+      if ($(parent).hasClass('galery__slider')) {
+        let $slider = $('.galery__slider');
+        initSlidersModalPhoto($slider, begin);//функция из modal-photo-galery.js
+        // setTimeout(initSlidersModalPhoto, 10, $slider);
+      }
+    };
+    if ($(window).width() < 1360) {
+      $('.expectation .expectation__image').off('click');
+    } else {
+      $('.expectation__image').off('click');
+      $('.expectation__image').on('click', modalPhoto);
+    }
+    
+    $(window).on('resize', function () {
+      if ($(window).width() < 1360) {
+        $('.expectation .expectation__image').off('click');
+        $('.expectation .expectation__image').removeClass('modal-image__item');
+      } else {
+        if (!$('.expectation__image').hasClass('modal-image__item')) {
+          $('.expectation__image').addClass('modal-image__item');
+          $('.expectation__image').off('click');
+          $('.expectation__image').on('click', modalPhoto);
+        }
+      }
+    });
+
+    
+    function modalPhoto() {
+      let begin = $(this).attr('data-index');
+      updateData(arrayPhotos, $('.galery__slider'), begin);
+      $('.modal-photo-galery').addClass('modal-photo-galery--active');
+    }
+    
+    $('.expectation__show-btn').on('click', function () {
+      updateData(arrayPhotos, $('.galery__slider'));
+      $('.modal-photo-galery').addClass('modal-photo-galery--active');
+    });
+
+  });
+
+})();
 // 'use strict';
 
 
@@ -567,29 +857,29 @@ $(document).ready(function () {
     let countVisible = 3;
     let lengthChars = 180;//Максимальная длина символов сообщения, которая будет видна
     let nameComplex = 'ЖК "Новое Мурино"';
-    arrFeedbacks[0] = {avatar: 'img/user.svg',name: 'Самойлова Виктория',feedback: 'хороший комплекс', date: 'Вчера в 12:34'}
-    arrFeedbacks[1] = {avatar: 'img/user.svg',name: 'Самойлова Виктория1',feedback: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae qui perferendis, quibusdam accusantium dolorum in quis quaerat nam dolores excepturi illo delectus ipsam hic aperiam, eligendi sunt! Recusandae, explicabo? Aut. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis soluta quia doloribus delectus praesentium. Delectus, repellat maxime architecto, aut quaerat ipsa quisquam illum possimus, iusto ducimus numquam adipisci quod. Tempore, voluptatibus magni. Quos quae, maxime ipsum facilis excepturi dicta necessitatibus corrupti a architecto possimus deleniti esse tempora reprehenderit ea nulla rerum qui obcaecati rem soluta? Nostrum ullam voluptate rerum voluptas?', date: '27.10.2019 в 18:00'}
-    arrFeedbacks[2] = {avatar: 'img/user.svg',name: 'Самойлова Виктория2',feedback: 'хороший комплекс', date: '27.10.2019 в 18:00'}
-    arrFeedbacks[3] = {avatar: 'img/user.svg',name: 'Самойлова Виктория3',feedback: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae qui perferendis, quibusdam accusantium dolorum in quis quaerat nam dolores excepturi illo delectus ipsam hic aperiam, eligendi sunt! Recusandae, explicabo? Aut. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis soluta quia doloribus delectus praesentium. Delectus, repellat maxime architecto, aut quaerat ipsa quisquam illum possimus, iusto ducimus numquam adipisci quod. Tempore, voluptatibus magni. Quos quae, maxime ipsum facilis excepturi dicta necessitatibus corrupti a architecto possimus deleniti esse tempora reprehenderit ea nulla rerum qui obcaecati rem soluta? Nostrum ullam voluptate rerum voluptas?', date: '27.10.2019 в 18:00'}
-    arrFeedbacks[4] = {avatar: 'img/user.svg',name: 'Самойлова Виктория4',feedback: 'хороший комплекс', date: '27.10.2019 в 18:00'}
-    arrFeedbacks[5] = {avatar: 'img/user.svg',name: 'Самойлова Виктория5',feedback: 'хороший комплекс', date: '27.10.2019 в 18:00'}
-    arrFeedbacks[6] = {avatar: 'img/user.svg',name: 'Самойлова Виктория5',feedback: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae qui perferendis, quibusdam accusantium dolorum in quis quaerat nam dolores excepturi illo delectus ipsam hic aperiam, eligendi sunt! Recusandae, explicabo? Aut. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis soluta quia doloribus delectus praesentium. Delectus, repellat maxime architecto, aut quaerat ipsa quisquam illum possimus, iusto ducimus numquam adipisci quod. Tempore, voluptatibus magni. Quos quae, maxime ipsum facilis excepturi dicta necessitatibus corrupti a architecto possimus deleniti esse tempora reprehenderit ea nulla rerum qui obcaecati rem soluta? Nostrum ullam voluptate rerum voluptas?', date: '27.10.2019 в 18:00'}
-    arrFeedbacks[7] = {avatar: 'img/user.svg',name: 'Самойлова Виктория5',feedback: 'хороший комплекс', date: '27.10.2019 в 18:00'}
-    arrFeedbacks[8] = {avatar: 'img/user.svg',name: 'Самойлова Виктория5',feedback: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae qui perferendis, quibusdam accusantium dolorum in quis quaerat nam dolores excepturi illo delectus ipsam hic aperiam, eligendi sunt! Recusandae, explicabo? Aut. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis soluta quia doloribus delectus praesentium. Delectus, repellat maxime architecto, aut quaerat ipsa quisquam illum possimus, iusto ducimus numquam adipisci quod. Tempore, voluptatibus magni. Quos quae, maxime ipsum facilis excepturi dicta necessitatibus corrupti a architecto possimus deleniti esse tempora reprehenderit ea nulla rerum qui obcaecati rem soluta? Nostrum ullam voluptate rerum voluptas?', date: '27.10.2019 в 18:00'}
-    arrFeedbacks[9] = { avatar: 'img/user.svg', name: 'Самойлова Виктория5', feedback: 'хороший комплекс', date: '27.10.2019 в 18:00' }
+    arrFeedbacks[0] = {avatar: 'img/avatar.svg',name: 'Самойлова Виктория',feedback: 'хороший комплекс', date: 'Вчера в 12:34'}
+    arrFeedbacks[1] = {avatar: 'img/avatar.svg',name: 'Самойлова Виктория1',feedback: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae qui perferendis, quibusdam accusantium dolorum in quis quaerat nam dolores excepturi illo delectus ipsam hic aperiam, eligendi sunt! Recusandae, explicabo? Aut. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis soluta quia doloribus delectus praesentium. Delectus, repellat maxime architecto, aut quaerat ipsa quisquam illum possimus, iusto ducimus numquam adipisci quod. Tempore, voluptatibus magni. Quos quae, maxime ipsum facilis excepturi dicta necessitatibus corrupti a architecto possimus deleniti esse tempora reprehenderit ea nulla rerum qui obcaecati rem soluta? Nostrum ullam voluptate rerum voluptas?', date: '27.10.2019 в 18:00'}
+    arrFeedbacks[2] = {avatar: 'img/avatar.svg',name: 'Самойлова Виктория2',feedback: 'хороший комплекс', date: '27.10.2019 в 18:00'}
+    arrFeedbacks[3] = {avatar: 'img/avatar.svg',name: 'Самойлова Виктория3',feedback: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae qui perferendis, quibusdam accusantium dolorum in quis quaerat nam dolores excepturi illo delectus ipsam hic aperiam, eligendi sunt! Recusandae, explicabo? Aut. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis soluta quia doloribus delectus praesentium. Delectus, repellat maxime architecto, aut quaerat ipsa quisquam illum possimus, iusto ducimus numquam adipisci quod. Tempore, voluptatibus magni. Quos quae, maxime ipsum facilis excepturi dicta necessitatibus corrupti a architecto possimus deleniti esse tempora reprehenderit ea nulla rerum qui obcaecati rem soluta? Nostrum ullam voluptate rerum voluptas?', date: '27.10.2019 в 18:00'}
+    arrFeedbacks[4] = {avatar: 'img/avatar.svg',name: 'Самойлова Виктория4',feedback: 'хороший комплекс', date: '27.10.2019 в 18:00'}
+    arrFeedbacks[5] = {avatar: 'img/avatar.svg',name: 'Самойлова Виктория5',feedback: 'хороший комплекс', date: '27.10.2019 в 18:00'}
+    arrFeedbacks[6] = {avatar: 'img/avatar.svg',name: 'Самойлова Виктория5',feedback: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae qui perferendis, quibusdam accusantium dolorum in quis quaerat nam dolores excepturi illo delectus ipsam hic aperiam, eligendi sunt! Recusandae, explicabo? Aut. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis soluta quia doloribus delectus praesentium. Delectus, repellat maxime architecto, aut quaerat ipsa quisquam illum possimus, iusto ducimus numquam adipisci quod. Tempore, voluptatibus magni. Quos quae, maxime ipsum facilis excepturi dicta necessitatibus corrupti a architecto possimus deleniti esse tempora reprehenderit ea nulla rerum qui obcaecati rem soluta? Nostrum ullam voluptate rerum voluptas?', date: '27.10.2019 в 18:00'}
+    arrFeedbacks[7] = {avatar: 'img/avatar.svg',name: 'Самойлова Виктория5',feedback: 'хороший комплекс', date: '27.10.2019 в 18:00'}
+    arrFeedbacks[8] = {avatar: 'img/avatar.svg',name: 'Самойлова Виктория5',feedback: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae qui perferendis, quibusdam accusantium dolorum in quis quaerat nam dolores excepturi illo delectus ipsam hic aperiam, eligendi sunt! Recusandae, explicabo? Aut. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis soluta quia doloribus delectus praesentium. Delectus, repellat maxime architecto, aut quaerat ipsa quisquam illum possimus, iusto ducimus numquam adipisci quod. Tempore, voluptatibus magni. Quos quae, maxime ipsum facilis excepturi dicta necessitatibus corrupti a architecto possimus deleniti esse tempora reprehenderit ea nulla rerum qui obcaecati rem soluta? Nostrum ullam voluptate rerum voluptas?', date: '27.10.2019 в 18:00'}
+    arrFeedbacks[9] = { avatar: 'img/avatar.svg', name: 'Самойлова Виктория5', feedback: 'хороший комплекс', date: '27.10.2019 в 18:00' }
 
     let arrFeedbacksDeveloper = []; //Массив отзывво
     // feedback__toogle-link feedback__toogle-link--developer
-    arrFeedbacksDeveloper[0] = {avatar: 'img/user.svg',name: 'Застройщик',feedback: 'хороший комплекс', date: 'Вчера в 12:34'}
-    arrFeedbacksDeveloper[1] = {avatar: 'img/user.svg',name: 'Застройщик1',feedback: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae qui perferendis, quibusdam accusantium dolorum in quis quaerat nam dolores excepturi illo delectus ipsam hic aperiam, eligendi sunt! Recusandae, explicabo? Aut. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis soluta quia doloribus delectus praesentium. Delectus, repellat maxime architecto, aut quaerat ipsa quisquam illum possimus, iusto ducimus numquam adipisci quod. Tempore, voluptatibus magni. Quos quae, maxime ipsum facilis excepturi dicta necessitatibus corrupti a architecto possimus deleniti esse tempora reprehenderit ea nulla rerum qui obcaecati rem soluta? Nostrum ullam voluptate rerum voluptas?', date: '27.10.2019 в 18:00'}
-    arrFeedbacksDeveloper[2] = {avatar: 'img/user.svg',name: 'Застройщик2',feedback: 'хороший комплекс', date: '27.10.2019 в 18:00'}
-    arrFeedbacksDeveloper[3] = {avatar: 'img/user.svg',name: 'Застройщик3',feedback: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae qui perferendis, quibusdam accusantium dolorum in quis quaerat nam dolores excepturi illo delectus ipsam hic aperiam, eligendi sunt! Recusandae, explicabo? Aut. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis soluta quia doloribus delectus praesentium. Delectus, repellat maxime architecto, aut quaerat ipsa quisquam illum possimus, iusto ducimus numquam adipisci quod. Tempore, voluptatibus magni. Quos quae, maxime ipsum facilis excepturi dicta necessitatibus corrupti a architecto possimus deleniti esse tempora reprehenderit ea nulla rerum qui obcaecati rem soluta? Nostrum ullam voluptate rerum voluptas?', date: '27.10.2019 в 18:00'}
-    arrFeedbacksDeveloper[4] = {avatar: 'img/user.svg',name: 'Застройщик4',feedback: 'хороший комплекс', date: '27.10.2019 в 18:00'}
-    arrFeedbacksDeveloper[5] = {avatar: 'img/user.svg',name: 'Застройщик5',feedback: 'хороший комплекс', date: '27.10.2019 в 18:00'}
-    arrFeedbacksDeveloper[6] = {avatar: 'img/user.svg',name: 'Застройщик5',feedback: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae qui perferendis, quibusdam accusantium dolorum in quis quaerat nam dolores excepturi illo delectus ipsam hic aperiam, eligendi sunt! Recusandae, explicabo? Aut. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis soluta quia doloribus delectus praesentium. Delectus, repellat maxime architecto, aut quaerat ipsa quisquam illum possimus, iusto ducimus numquam adipisci quod. Tempore, voluptatibus magni. Quos quae, maxime ipsum facilis excepturi dicta necessitatibus corrupti a architecto possimus deleniti esse tempora reprehenderit ea nulla rerum qui obcaecati rem soluta? Nostrum ullam voluptate rerum voluptas?', date: '27.10.2019 в 18:00'}
-    arrFeedbacksDeveloper[7] = {avatar: 'img/user.svg',name: 'Застройщик5',feedback: 'хороший комплекс', date: '27.10.2019 в 18:00'}
-    arrFeedbacksDeveloper[8] = {avatar: 'img/user.svg',name: 'Застройщик5',feedback: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae qui perferendis, quibusdam accusantium dolorum in quis quaerat nam dolores excepturi illo delectus ipsam hic aperiam, eligendi sunt! Recusandae, explicabo? Aut. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis soluta quia doloribus delectus praesentium. Delectus, repellat maxime architecto, aut quaerat ipsa quisquam illum possimus, iusto ducimus numquam adipisci quod. Tempore, voluptatibus magni. Quos quae, maxime ipsum facilis excepturi dicta necessitatibus corrupti a architecto possimus deleniti esse tempora reprehenderit ea nulla rerum qui obcaecati rem soluta? Nostrum ullam voluptate rerum voluptas?', date: '27.10.2019 в 18:00'}
-    arrFeedbacksDeveloper[9] = { avatar: 'img/user.svg', name: 'Застройщик5', feedback: 'хороший комплекс', date: '27.10.2019 в 18:00' }
+    arrFeedbacksDeveloper[0] = {avatar: 'img/avatar.svg',name: 'Застройщик',feedback: 'хороший комплекс', date: 'Вчера в 12:34'}
+    arrFeedbacksDeveloper[1] = {avatar: 'img/avatar.svg',name: 'Застройщик1',feedback: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae qui perferendis, quibusdam accusantium dolorum in quis quaerat nam dolores excepturi illo delectus ipsam hic aperiam, eligendi sunt! Recusandae, explicabo? Aut. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis soluta quia doloribus delectus praesentium. Delectus, repellat maxime architecto, aut quaerat ipsa quisquam illum possimus, iusto ducimus numquam adipisci quod. Tempore, voluptatibus magni. Quos quae, maxime ipsum facilis excepturi dicta necessitatibus corrupti a architecto possimus deleniti esse tempora reprehenderit ea nulla rerum qui obcaecati rem soluta? Nostrum ullam voluptate rerum voluptas?', date: '27.10.2019 в 18:00'}
+    arrFeedbacksDeveloper[2] = {avatar: 'img/avatar.svg',name: 'Застройщик2',feedback: 'хороший комплекс', date: '27.10.2019 в 18:00'}
+    arrFeedbacksDeveloper[3] = {avatar: 'img/avatar.svg',name: 'Застройщик3',feedback: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae qui perferendis, quibusdam accusantium dolorum in quis quaerat nam dolores excepturi illo delectus ipsam hic aperiam, eligendi sunt! Recusandae, explicabo? Aut. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis soluta quia doloribus delectus praesentium. Delectus, repellat maxime architecto, aut quaerat ipsa quisquam illum possimus, iusto ducimus numquam adipisci quod. Tempore, voluptatibus magni. Quos quae, maxime ipsum facilis excepturi dicta necessitatibus corrupti a architecto possimus deleniti esse tempora reprehenderit ea nulla rerum qui obcaecati rem soluta? Nostrum ullam voluptate rerum voluptas?', date: '27.10.2019 в 18:00'}
+    arrFeedbacksDeveloper[4] = {avatar: 'img/avatar.svg',name: 'Застройщик4',feedback: 'хороший комплекс', date: '27.10.2019 в 18:00'}
+    arrFeedbacksDeveloper[5] = {avatar: 'img/avatar.svg',name: 'Застройщик5',feedback: 'хороший комплекс', date: '27.10.2019 в 18:00'}
+    arrFeedbacksDeveloper[6] = {avatar: 'img/avatar.svg',name: 'Застройщик5',feedback: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae qui perferendis, quibusdam accusantium dolorum in quis quaerat nam dolores excepturi illo delectus ipsam hic aperiam, eligendi sunt! Recusandae, explicabo? Aut. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis soluta quia doloribus delectus praesentium. Delectus, repellat maxime architecto, aut quaerat ipsa quisquam illum possimus, iusto ducimus numquam adipisci quod. Tempore, voluptatibus magni. Quos quae, maxime ipsum facilis excepturi dicta necessitatibus corrupti a architecto possimus deleniti esse tempora reprehenderit ea nulla rerum qui obcaecati rem soluta? Nostrum ullam voluptate rerum voluptas?', date: '27.10.2019 в 18:00'}
+    arrFeedbacksDeveloper[7] = {avatar: 'img/avatar.svg',name: 'Застройщик5',feedback: 'хороший комплекс', date: '27.10.2019 в 18:00'}
+    arrFeedbacksDeveloper[8] = {avatar: 'img/avatar.svg',name: 'Застройщик5',feedback: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae qui perferendis, quibusdam accusantium dolorum in quis quaerat nam dolores excepturi illo delectus ipsam hic aperiam, eligendi sunt! Recusandae, explicabo? Aut. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis soluta quia doloribus delectus praesentium. Delectus, repellat maxime architecto, aut quaerat ipsa quisquam illum possimus, iusto ducimus numquam adipisci quod. Tempore, voluptatibus magni. Quos quae, maxime ipsum facilis excepturi dicta necessitatibus corrupti a architecto possimus deleniti esse tempora reprehenderit ea nulla rerum qui obcaecati rem soluta? Nostrum ullam voluptate rerum voluptas?', date: '27.10.2019 в 18:00'}
+    arrFeedbacksDeveloper[9] = { avatar: 'img/avatar.svg', name: 'Застройщик5', feedback: 'хороший комплекс', date: '27.10.2019 в 18:00' }
 
     $('.feedback__title').text("Отзывы о " + nameComplex);
     updateFeedback(arrFeedbacks);
@@ -600,36 +890,72 @@ $(document).ready(function () {
       let j = 0;
       for (let i = 0; i < listObjects.length && i < countVisible; i++) {
         j++;
-        strHTML += '<div class="feedback__box"><div class="feedback__avatar-box"><img src="img/user.svg" alt="аватарка" class="feedback__avatar" width="16" height="20"></div><div class="feedback-content"><div class="feedback__author-container"><b class="feedback__author">' + listObjects[i].name + '</b><small class="feedback__time">' + listObjects[i].date + '</small></div>';
+        strHTML += '<div class="feedback__box"><div class="feedback__avatar-box"><img src="'+listObjects[i].avatar+'" alt="аватарка" class="feedback__avatar" width="16" height="20"></div><div class="feedback-content"><div class="feedback__author-container"><b class="feedback__author">' + listObjects[i].name + '</b><small class="feedback__time">' + listObjects[i].date + '</small></div>';
         let classBtnUnfurl = 'hidden';
-        console.log(listObjects[i].feedback.length);
         
         if (listObjects[i].feedback.length > lengthChars) {
           classBtnUnfurl = '';
         }
-        strHTML +='<p class="feedback__text">' + truncate(listObjects[i].feedback) + '</p><p class=" feedback__text--full hidden">' + listObjects[i].feedback + '</p><div class="feedback__buttons"><button type="button" class="feedback__answer-btn">Ответить</button><button type="button" class="feedback__btn feedback__btn--unfurl '+classBtnUnfurl+'"><span class="text">Читать весь отзыв</span><img src="img/arrow__down-input-grey.svg" alt="image"></button><div class="feedback__answer-box hidden"><div class="feedback__answer"><div class="feedback__author-avatarBox"><img src="img/user.svg" alt="аватарка" class="feedback__author-avatar" width="16" height="20"></div><div class="feedback__answer-wrapper"><div class="desc-wrap"><p class="feedback__answer-description">ответ на отзыв @<span class="feedback__answer-author">' + listObjects[i].name + '</span></p><div class="btn-collapse"><img src="img/arrow-down.png" alt="image"></div></div><textarea class="feedback__answer-textarea" type="textarea" rows="8" cols="45" placeholder="Текст сообщения..." required></textarea><div class="feedback__answer-checkbox"><label >Согласен с правилами публикации на сайте <input  name="cb" type="checkbox" required><span class="check"></span></label></div><input class="feedback__answer-sellBtn pink__btn" type="submit" value="Отправить комментарий"></div></div></div></div></div></div>';
+        strHTML +='<p class="feedback__text">' + truncate(listObjects[i].feedback) + '</p><p class=" feedback__text--full hidden">' + listObjects[i].feedback + '</p><div class="feedback__buttons"><button type="button" class="feedback__answer-btn">Ответить</button><button type="button" class="feedback__btn feedback__btn--unfurl '+classBtnUnfurl+'"><span class="text">Читать весь отзыв</span><img src="img/arrow__down-input-grey.svg" alt="image"></button><div class="feedback__answer-box hidden"><div class="feedback__answer"><div class="feedback__author-avatarBox"><img src="'+listObjects[i].avatar+'" alt="аватарка" class="feedback__author-avatar" width="16" height="20"></div><div class="feedback__answer-wrapper"><div class="desc-wrap"><p class="feedback__answer-description">ответ на отзыв @<span class="feedback__answer-author">' + listObjects[i].name + '</span></p><div class="btn-collapse"><img src="img/arrow-down.png" alt="image"></div></div><textarea class="feedback__answer-textarea" type="textarea" rows="8" cols="45" placeholder="Текст сообщения..." required></textarea><div class="feedback__answer-checkbox"><label >Согласен с правилами публикации на сайте <input  name="cb" type="checkbox" required><span class="check"></span></label></div><input class="feedback__answer-sellBtn pink__btn" type="submit" value="Отправить комментарий"></div></div></div></div></div></div>';
       }
       if (j == 0) {
-        $('.feedback__show-btn').addClass('hidden');
+        // $('.feedback__show-btn').addClass('hidden');
       }
       $('.feedback__inner').append(strHTML);
 
-
+      $('.feedback__show-btn').off('click');
       $('.feedback__show-btn').on('click', function () {
-        countVisible = listObjects.length;
-        console.log(countVisible);
+        
+        if ($(this).hasClass('feedback__show-btn--active')) {
+          $(this).children('.text').text('Показать все отзывы');
+          $(this).removeClass('feedback__show-btn--active');
+          countVisible = 3;
+          $('.feedback__wrap-inner').scrollTop(0);
+          $('.feedback__wrap-inner').removeClass('feedback__wrap-inner--active');
+          
+        } else {
+          $(this).children('.text').text('Скрыть отзывы');
+          $(this).addClass('feedback__show-btn--active');
+          countVisible = listObjects.length;
+          $('.feedback__wrap-inner').addClass('feedback__wrap-inner--active');
+        }
         
         updateFeedback(listObjects);
-        $(this).addClass('hidden');
+        // $(this).addClass('hidden');
       });
+      $('.feedback__answer-btn').off('click');
+      $('.feedback__answer-btn').on('click', function () {
+        if (!$(this).siblings('.feedback__answer-box').hasClass('hidden')) {
+          $(this).siblings('.feedback__answer-box').addClass('hidden');
+        } else {
+          $(this).siblings('.feedback__answer-box').removeClass('hidden');
+        }
+        $(this).closest('.feedback__box').siblings('.feedback__box').find('.feedback__answer-box').addClass('hidden');
+        // $(this).closest('.feedback__box').find('.feedback__answer-box').toggleClass('hidden');
+        
+        // console.log(parseInt($(this).position().top) + '- ' + parseInt($(this).parent().position().top) + '=' + parseInt($(this).position().top) - parseInt($(this).parent().position().top));
+        let x1 = parseInt($(this).position().top);
+        let x2 = parseInt($('.feedback__inner').position().top);
+        // let x3 = parseInt($('.feedback__wrap-inner').position().top);
+        let currentPosition = x1 - x2;
+        // console.log('x1 ' + x1);
+        // console.log('x2 ' + x2);
+        // console.log('x3 ' + x3);
+        
+        
+        
+        if ($(window).width() > 768) {
+          currentPosition = x1 - x2 -100;
+          $('.feedback__wrap-inner').scrollTop(currentPosition);
+        } 
 
-      $('.feedback__answer-btn').click(function () {
-        $(this).closest('.feedback__box').find('.feedback__answer-box').toggleClass('hidden');
       });
-      $('.desc-wrap .btn-collapse').click(function () {
+      $('.desc-wrap .btn-collapse').off('click');
+      $('.desc-wrap .btn-collapse').on('click', function () {
         $(this).closest('.feedback__box').find('.feedback__answer-box').addClass('hidden');
       });
-      $('.feedback__btn--unfurl').click(function () {
+      $('.feedback__btn--unfurl').off('click');
+      $('.feedback__btn--unfurl').on('click', function () {
         // $(this).addClass('hidden');
         if ($(this).children('.text').text() == 'Скрыть отзыв') {
           $(this).children('.text').text('Читать весь отзыв');
@@ -658,12 +984,16 @@ $(document).ready(function () {
     };
     $('.feedback__toogle-link').on('click', function () {
       $(this).addClass('feedback__toogle-link--active').siblings().removeClass('feedback__toogle-link--active');
+      countVisible = 3;
+      $('.feedback__show-btn').children('.text').text('Показать все отзывы');
+      $('.feedback__show-btn').removeClass('feedback__show-btn--active');
+      
+      $('.feedback__wrap-inner').scrollTop(0);
+      $('.feedback__wrap-inner').removeClass('feedback__wrap-inner--active');
+      
       if ($(this).hasClass('feedback__toogle-link--estate')) { 
-        console.log('estate');
-        
         updateFeedback(arrFeedbacks);
       } else if ($(this).hasClass('feedback__toogle-link--developer')) {
-        console.log('developer');
         
         updateFeedback(arrFeedbacksDeveloper);
       }
@@ -1559,90 +1889,53 @@ $(document).ready(function () {
 //     createComment();
 //   }());
 
-;
-(function () {
-  $(document).ready(function () {
-    //Модальное окно modal-image
-    $('.modal-image__item').on('click', modalPhoto);
+$('body').on('click', function (e) {
 
-    $('.modal-image__close').on('click', function () {
-      $('.modal-image').removeClass('modal-image--active');
-    });
+  // if (!$(e.target).parents('.galery__item-img').length && !$(e.target).hasClass('progress__btn') && !$(e.target).closest('.progress__gallery-list').length && !$(e.target).hasClass('show__btn-slider')) {
+  if (!$(e.target).parents('.galery__item-img').length && !$(e.target).closest('.progress__gallery-list').length && !$(e.target).hasClass('show__btn-slider')&&!$(e.target).closest('.expectation__photo-box').length) {
+    $('.modal-photo-galery').removeClass('modal-photo-galery--active');
+    galeryDestroy();
+  }
+});
 
-    function modalPhoto() {
-      let src = $(this).find('img').attr('src');
-      let srcBig = $(this).find('img').attr('data-big-src');
-      $('.modal-image').addClass('modal-image--active');
-      if (srcBig != '') {
-        $('.modal-image img').attr('src', srcBig);
-      } else {
-        $('.modal-image img').attr('src', src);
-      }
+function galeryDestroy() {
+  if ($('.galery__slider').hasClass('slick-initialized')) {
+    setTimeout(unslick, 250);
+
+    function unslick() {
+      $('.galery__slider').slick('unslick');
     }
+  }
+}
 
-    //--------------------------expections---------------------------
-    let arrayPhotos = []; //Массив фотографий
+function initSlidersModalPhoto(slider, begin) {
+  // $(slider).on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) { //Счетчик на слайдах
+  //   $status = $(slick.$slider[0]).siblings('.catalog-complex__slider-counter');
+  //   var i = (currentSlide ? currentSlide : 0) + 1;
+  //   $status.text(i + ' / ' + slick.slideCount);
+  // });
+  if (slider.hasClass('slick-initialized')) {
+    $(slider).slick('unslick');
+  }
+  if (begin == undefined) {
+    begin = 0;
+  }
 
-    arrayPhotos[0] = { photo: 'img/devSlider-img1.jpg' , photoLarge: 'img/devSlider-img1.jpg'};
-    arrayPhotos[1] = { photo: 'img/devSlider-img1.jpg' , photoLarge: 'img/devSlider-img1.jpg'};
-    arrayPhotos[2] = { photo: 'img/devSlider-img1.jpg' , photoLarge: 'img/devSlider-img1.jpg'};
-    arrayPhotos[3] = { photo: 'img/devSlider-img1.jpg' , photoLarge: 'img/devSlider-img1.jpg'};
-    $parent = $('.galery__wrapper .galery__slider');
-    if ($(window).width() < 1360) {
-      $('.expectation .modal-image__item').off('click', modalPhoto);
-      $('.expectation .modal-image__item').removeClass('modal-image__item');
-    } else {
-      $('.expectation__item').addClass('modal-image__item');
-      $('.expectation__item').on('click', modalPhoto);
-    }
-    $(window).on('resize', function () {
-      if ($(window).width() < 1360) {
-        $('.expectation .modal-image__item').off('click', modalPhoto);
-        $('.expectation .modal-image__item').removeClass('modal-image__item');
-      } else {
-        console.log("удаляем");
-        
-        $('.expectation__item').addClass('modal-image__item');
-        $('.expectation__item').on('click', modalPhoto);
-      }
-    });
-
-    function showModalSlider(listObjects, parent) {
-      $(parent).html('');
-      let strHTML = '';
-      for (let i = 0; i < listObjects.length; i++) {
-        strHTML += '<div class="galery__item"><img src="'+listObjects[i].photoLarge+'" alt="image"></div>';
-      }
-      console.log(parent);
-      
-      $(parent).append(strHTML);
-      let $slider = $(parent);
-        if ($slider.length && $slider.hasClass('slick-initialized')) {
-          $($slider).slick('unslick');
-        }
-        setTimeout(initSlidersModalPhoto, 200 , $slider) ;
-    };
-    $('.expectation__show-btn').on('click', function () {
-      showModalSlider(arrayPhotos, $('.galery__slider'));
-      $('.modal-photo-galery').addClass('modal-photo-galery--active');
-      $('.galery__wrapper .modal__title').text('Ожидание/реальность')
-    });
-
-    function initSlidersModalPhoto(slider) {
-      $(slider).slick({
-        arrows: false,
-        //   speed: 500,
-        //  fade: true,
-      });
-
-      $(slider).on('click', function () {
-        $(slider).slick('slickNext');
-      });
-    }
-
+  $(slider).slick({
+    arrows: false,
+    initialSlide: parseInt(begin)
+  });
+  $('.galery__item-img img').off('click');
+  $('.galery__item-img img').on('click', function () {
+    $(slider).slick('slickNext');
   });
 
-})();
+  $('.galery__item-img .close').off('click');
+  $('.galery__item-img .close').on('click', function () {
+    galeryDestroy();
+    $('.modal-photo-galery').removeClass('modal-photo-galery--active');
+  });
+}
 $(document).ready(function (currentData) {
 
 var chartData = [];
@@ -1782,7 +2075,7 @@ fillChart(currentData);
     filter.year = $year;
     filter.month = $month;
     let filterList = getFilterList(arrayPhotos, filter); //Получаем отфильтрованный список
-    
+
     let $parent = $('.progress__gallery-list');
     updateGalery(filterList, $parent);
 
@@ -1790,33 +2083,30 @@ fillChart(currentData);
     $('.progress__form-select--year, .progress__form-select--month').on('change', function () {
       $year = $('.progress__form-select--year').val();
       $month = $('.progress__form-select--month').val();
-      
+
       filter.year = $year;
       filter.month = $month;
       filterList = getFilterList(arrayPhotos, filter); //Получаем отфильтрованный список
-      console.log(filterList);
       updateGalery(filterList, $parent);
     });
 
-    function updateGalery(listObjects, parent) {
+    function updateGalery(listObjects, parent, begin) {
       $('.progress__btn.show__btn').removeClass('hidden');
       $('.progress__wrapper .nothing').addClass('hidden');
       let strHTML = '';
       if ($(parent).hasClass('galery__slider')) {
         $('.galery__slider').html('');
         for (let i = 0; i < listObjects.length; i++) {
-          strHTML += '<div class="galery__item"><img src="' + listObjects[i].photoLarge + '" alt="image"></div>';
+          strHTML += '<div class="galery__item"><div class="galery__item-img"><span class="close">&#10006;</span><img src="' + listObjects[i].photo + '" alt="image"></div></div>';
         }
         $('.galery__slider').html(strHTML);
-        console.log( $('.galery__slider').html());
-        
+
       } else {
         $('.progress__gallery-list').html('');
         let j = 0;
         for (let i = 0; i < listObjects.length && i < countVisible; i++) {
-          console.log(i);
           j++;
-          strHTML += '<li class="progress__gallery-item modal-image__item"><picture><source type="image/webp" srcset=""><img class="progress__image" src="' + listObjects[i].photo + '" data-big-src="' + listObjects[i].photoLarge + '" alt="фото ЖК" width="310" height="180"></picture></li>';
+          strHTML += '<li class="progress__gallery-item modal-image__item"><picture><source type="image/webp" srcset=""><img class="progress__image" src="' + listObjects[i].photo + '" data-big-src="' + listObjects[i].photoLarge + '" data-index="'+i+'"alt="фото ЖК" width="310" height="180"></picture></li>';
         }
         if (j == 0) {
           $('.progress__btn.show__btn').addClass('hidden');
@@ -1825,54 +2115,36 @@ fillChart(currentData);
         $(parent).append(strHTML);
       }
       
-
-      
+      $('.progress__image').off('click');
+      $('.progress__image').on('click', clickImg);
       if ($(parent).hasClass('galery__slider')) {
         let $slider = $('.galery__slider');
-        if ($slider.length && $slider.hasClass('slick-initialized')) {
-          $($slider).slick('unslick');
-          
-        }
-        setTimeout(initSlidersModalPhoto, 200, $slider);
+        initSlidersModalPhoto($slider, begin);//функция из modal-photo-galery.js
+        // setTimeout(initSlidersModalPhoto, 10, $slider);
       }
-      $('.modal-image__item').on('click', function () {
-        let src = $(this).find('img').attr('src');
-        let srcBig = $(this).find('img').attr('data-big-src');
-        $('.modal-image').addClass('modal-image--active');
-        if (srcBig != '') {
-          $('.modal-image img').attr('src', srcBig);
-        } else {
-          $('.modal-image img').attr('src', src);
-        }
-
-      });
-
-      $('.modal-image__close').on('click', function () {
-        $('.modal-image').removeClass('modal-image--active');
-      });
-
-      
-      
-    }
-    function initSlidersModalPhoto(slider) {
-      console.log('init slider');
-      console.log(slider);
-      
-      // $(slider).on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) { //Счетчик на слайдах
-      //   $status = $(slick.$slider[0]).siblings('.catalog-complex__slider-counter');
-      //   var i = (currentSlide ? currentSlide : 0) + 1;
-      //   $status.text(i + ' / ' + slick.slideCount);
+     
+      function clickImg() {
+        let begin = $(this).attr('data-index');
+        updateGalery(filterList, $('.galery__slider'), begin);
+        $('.modal-photo-galery').addClass('modal-photo-galery--active');
+      }
+      // $('.modal-image__item').on('click', function () {
+      //   // let src = $(this).find('img').attr('src');
+      //   // let srcBig = $(this).find('img').attr('data-big-src');
+      //   // $('.modal-image').addClass('modal-image--active');
+      //   // if (srcBig != '') {
+      //   //   $('.modal-image img').attr('src', srcBig);
+      //   // } else {
+      //   //   $('.modal-image img').attr('src', src);
+      //   // }
+      //   updateGalery(filterList, $('.galery__slider'));
+      //   $('.modal-photo-galery').addClass('modal-photo-galery--active');
       // });
-      $(slider).slick({
-        arrows: false,
-      //   speed: 500,
-      //  fade: true,
-      });
 
-      $(slider).on('click', function () {
-        $(slider).slick('slickNext');
-      });
     }
+
+    
+
     function getFilterList(arrayPhotos, filter) { //Получить отфильтрованный список
       let tempList = [];
       for (let i = 0; i < arrayPhotos.length; i++) {
@@ -1884,11 +2156,12 @@ fillChart(currentData);
     }
 
     $('.progress__btn').click(function () {
-      
       updateGalery(filterList, $('.galery__slider'));
       $('.modal-photo-galery').addClass('modal-photo-galery--active');
     });
-
+    
+   
+    
   });
 })();
 
@@ -3196,6 +3469,10 @@ $(document).ready(function () {
       }
     }]
   });
+
+  $('.estate__slider-item').on('click', function () {
+    $('.estate__slider-box').slick('slickNext');
+  });
 });
 
 
@@ -3204,7 +3481,12 @@ $(document).ready(function () {
 
 
   var WIDTH = 1360;
-
+$(document).ready(function () {
+  if ($(window).width() >= 1360) {
+  } else {
+    sliderOptions();
+  }
+});
   var sliderOptions = function () {
     if ($('.expectation__photo-box').hasClass('slick-initialized')) {
       $('.expectation__photo-box').slick('unslick');
@@ -3385,6 +3667,22 @@ $(document).ready(function () {
     checkExpectancy();
   });
   //Открытие закрытие модальных окон
+  $('body').on('click', function (e) {
+    if(!$(e.target).hasClass('light__btn')){
+    if (!$('.modal').hasClass('modal--closed')) {
+      if (!$(e.target).closest('.modal__wrapper').length) {
+        $('.modal').addClass('modal--closed');
+      }
+    }
+    
+    if (!$(e.target).closest('.consultation__wrapper').length) {
+      $('.consultation__modal').addClass('modal--closed');
+      }
+    if (!$(e.target).closest('.modal-feedback__wrapper').length) {
+      $('.modal-feedback').removeClass('modal-feedback--active');
+      }
+    }
+  });
   $('#btnOpenMortgage').on('click', function () {
     $('.mortgage.mortgage__modal').removeClass('modal--closed');
   });
@@ -3403,7 +3701,6 @@ $(document).ready(function () {
   });
   $('.modal__header-btn-close').on('click', function () {
     $(this).closest('.modal').addClass('modal--closed');
-    console.log($(this).closest('.modal').addClass('modal--closed'));
 
   });
 

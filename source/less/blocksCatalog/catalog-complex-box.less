@@ -2,8 +2,18 @@
   margin-top: 30px;
 }
 
-.catalog-complex {
+.catalog-container-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
+  .btn-phone {
+    width: 200px;
+    margin: 0;
+  }
+}
+
+.catalog-complex {
   &__list {
     display: flex;
     justify-content: space-between;
@@ -11,6 +21,17 @@
     // margin: 0 -15px;
 
 
+  }
+
+  &__item-map {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+
+    &--events-none {
+      pointer-events: none;
+    }
   }
 
   &__description,
@@ -93,7 +114,7 @@
     left: 0;
 
     img {
-      margin-right: 10px;
+      margin-left: 29px;
     }
   }
 
@@ -192,11 +213,45 @@
     margin: 20px auto 30px;
     display: block;
   }
+
+  .wrap-heart {
+    top: -1px;
+    left: 20px;
+    position: absolute;
+    width: 20px;
+    height: 19px;
+    cursor: pointer;
+    svg {
+      width: 20px;
+      height: 19px;
+    }
+    .hidden{
+      display: none;
+    }
+  }
+  .heart {
+    fill: @primary-pink;
+  }
+
+  .heart-fill {
+    fill: @primary-pink;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
 
 
 .catalog-complex__list--display-list {
   flex-direction: column;
+
+  .catalog-container-wrap .btn-phone {
+    margin-top: -26px;
+  }
+
+  .item-map {
+    height: 333px;
+  }
 
   .catalog-complex {
     &__item {
@@ -328,9 +383,11 @@
     margin-right: 6px;
     width: auto;
   }
-  .filter__input--active-select{
+
+  .filter__input--active-select {
     border-color: @primary-grey;
   }
+
   .checkboxes {
     padding: 0;
     border-top: none;
@@ -909,6 +966,20 @@
 
 @media (max-width:@mobile-large-width) {
 
+  .catalog-container-wrap {
+
+    .btn-phone {
+      height: 25px;
+      font-size: 11px;
+      margin-top: 4px;
+      width: 170px;
+    }
+
+    .img-phone {
+      margin-right: 4px;
+    }
+  }
+
   .pagination {
     &__item {
       font-size: 14px;
@@ -928,6 +999,8 @@
     // }
 
     &__item-content {
+      height: 344px;
+
       .developer {
         flex-direction: column;
         align-items: flex-end;
@@ -970,6 +1043,7 @@
 
       .address {
         font-size: 11px;
+        margin-top: 10px;
       }
 
       .metro {
@@ -1019,4 +1093,17 @@
     }
   }
 
+}
+
+@media (max-width: @mobile-middle-width) {
+  .catalog-container-wrap {
+    display: block;
+
+    .btn-phone {
+      font-size: 10px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+  }
 }

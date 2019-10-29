@@ -362,6 +362,11 @@
 }
 
 @media (min-width: @tablet-width) {
+  .mortgage__title-img{
+    .modal__img{
+      height: 320px;
+    }
+  }
   .mortgage__capital label {
     margin: auto;
   }
@@ -662,6 +667,10 @@
 @media (max-height: 800px){
   .mortgage__wrapper.modal__wrapper{
     height: auto;
+  }
+}
+@media (max-height: 714px){
+  .mortgage__wrapper.modal__wrapper{
     transform: translate(-50%, 0);
     top: 0;
   }

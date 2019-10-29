@@ -55,28 +55,19 @@
       height: max-content;
     }
 
-    .btn-phone {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      border-radius: 2px;
-      background-color: @list-type-btn--hover;
-      width: 294px;
-      height: 30px;
-      cursor: pointer;
-      opacity: 1;
-      border: none;
-      outline: none;
+
+
+    .btn-details.pink__btn {
+      min-height: 30px;
+      display: block;
+      margin: 10px auto 0;
+      background-color: @primary-pink;
       transition: all 0.3s;
-      margin-top: 18px;
+      width: 100%;
 
-      &:hover {
-        opacity: 0.9;
-      }
-
-      .img-phone {
-        margin-right: 10px;
+      a {
+        color: #fff;
+        text-decoration: none;
       }
     }
   }
@@ -112,7 +103,7 @@
 .map-modal--active-complex-info {
   .map__complex-info {
     display: block;
-
+    margin-top: 22px;
 
   }
 
@@ -243,7 +234,7 @@
 .map-filter {
   width: 392px;
   flex-shrink: 0;
-  padding: 0 18px 58px 38px;
+  padding: 24px 18px 58px 38px;
   box-shadow: 15px 0px 8px -15px rgba(0, 0, 0, .25);
 
   &__form-inner {
@@ -565,6 +556,14 @@
 }
 
 @media (max-width: @tablet-width) {
+
+  .map-modal--active-complex-info {
+    .map__complex-info {
+      margin-top: 0;
+      overflow-y: auto;
+    }
+  }
+
   .map-filter-field-cost__wrap {
     width: 100%;
   }
@@ -583,7 +582,8 @@
     #map {
 
       // padding-top: 80px;
-      top: 0;
+      // top: 0;
+      top: 19px;
       position: absolute;
     }
 
@@ -642,14 +642,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
+    height: 53px;
     width: 100%;
     padding: 10px;
     // position: absolute;
     // bottom: 0;
     background-color: #fff;
     position: absolute;
-    bottom: 80px;
+    bottom: 78px;
 
     .map-footer__btn-open-filter,
     .map-footer__btn-open-list {
@@ -675,13 +675,33 @@
         margin-right: 8px;
       }
     }
+
+    .map-footer__btn-open-filter {
+      .close {
+        display: none;
+        margin-right: 8px;
+        font-size: 15px;
+      }
+
+      &--active {
+        img {
+          display: none;
+        }
+
+        .close {
+          display: block;
+        }
+      }
+
+    }
   }
 
   .complex-info {
     width: 100%;
     padding-left: 18px;
+
     &__close {
-      margin-top: 18px;
+      margin-top: 22px;
 
       .go-to-filter {
         display: none;
@@ -691,9 +711,6 @@
         display: inline-block;
       }
 
-      img {}
-
-      .close {}
     }
 
     .filter-field.complex-field-deadlines {
@@ -713,13 +730,10 @@
         }
       }
 
-      .checkboxes__inner {}
     }
 
     .catalog-complex__item {
       margin-top: 18px;
-
-      .complex-advantages__features-hint {}
 
       .btn-phone {
         margin-left: auto;
@@ -727,24 +741,23 @@
         max-width: 294px;
         width: 100%;
 
-        .img-phone {}
+      }
+
+      .btn-details.pink__btn {
+        max-width: 294px;
+
       }
     }
 
-    .catalog-complex__slide {}
-
     .catalog-complex__item-content {
-      .complex {}
 
       .inner {
         flex-direction: row;
         align-items: center;
       }
 
-      .developer {}
     }
 
-    .flat-type {}
   }
 
 
@@ -756,17 +769,6 @@
   }
 
   .complex-info {
-
-    &__close {
-
-      .go-to-filter {}
-
-      .go-to-map {}
-
-      img {}
-
-      .close {}
-    }
 
     .filter-field.complex-field-deadlines {
       .filter__input {
@@ -783,35 +785,18 @@
         }
       }
 
-      .checkboxes__inner {}
     }
 
-    .catalog-complex__item {
-
-      .complex-advantages__features-hint {}
-
-      .btn-phone {
-
-
-        .img-phone {}
-      }
-    }
-
-    .catalog-complex__slide {}
 
     .catalog-complex__item-content {
       .complex {
         font-size: 13px;
       }
 
-      .inner {}
-
       .developer {
         font-size: 10px;
       }
     }
-
-    .flat-type {}
   }
 }
 
@@ -823,11 +808,12 @@
   .complex-info {
     padding-left: 10px;
     padding-right: 10px;
+
     .catalog-complex-info-wrap .flat-type {
       font-size: 10px;
     }
 
-   
+
 
     .catalog-complex__item-content {
       padding-left: 12px;
@@ -849,34 +835,19 @@
         }
       }
 
-      .checkboxes__inner {}
     }
 
-    .catalog-complex__item {
 
-      .complex-advantages__features-hint {}
-
-      .btn-phone {
-
-
-        .img-phone {}
-      }
-    }
-
-    .catalog-complex__slide {}
 
     .catalog-complex__item-content {
       .complex {
         font-size: 13px;
       }
 
-      .inner {}
-
       .developer {
         font-size: 10px;
       }
     }
 
-    .flat-type {}
   }
 }

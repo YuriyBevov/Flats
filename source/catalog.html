@@ -14,6 +14,7 @@
   </div>
 
   <header class="header-catalog">
+      <img src="img/close__btn.png" alt="">
     <div class="header-catalog__wrap">
       <div class="header-catalog__logo">
         <img src="img/logo.svg" alt="logo">
@@ -48,9 +49,6 @@
               </div>
             </div>
           </div>
-          <!-- <div class="catalog-nav__item"><img class='catalog-nav__icon' src="img/heart.svg" alt="img"><a
-                href="">Избранное
-            </div> -->
           <div class="catalog-nav__item">
             <svg width="13" height="12">
               <use xlink:href="#heart"></use>
@@ -457,13 +455,13 @@
           </div>
         </div>
         <div class="list-type-flats">
-          <button type="button" class="list-type-flats__btn oneRoom pink__btn"><span class="text-large">1-комнатная
+          <button type="button" class="list-type-flats__btn oneRoom pink__btn" data-room='1 ккв'><span class="text-large">1-комнатная
               кв.</span><span class="text-small">1 ккв</span></button>
-          <button type="button" class="list-type-flats__btn twoRoom pink__btn"><span class="text-large">2-комнатная
+          <button type="button" class="list-type-flats__btn twoRoom pink__btn" data-room='2 ккв'><span class="text-large">2-комнатная
               кв.</span><span class="text-small">2 ккв</span></button>
-          <button type="button" class="list-type-flats__btn threeRoom pink__btn"><span class="text-large">3-комнатная
+          <button type="button" class="list-type-flats__btn threeRoom pink__btn" data-room='3 ккв'><span class="text-large">3-комнатная
               кв.</span><span class="text-small">3 ккв</span></button>
-          <button type="button" class="list-type-flats__btn studio pink__btn"><span
+          <button type="button" class="list-type-flats__btn studio pink__btn" data-room='Студия'><span
               class="text-large">Студия</span><span class="text-small">Студия</span></button>
         </div>
 
@@ -487,10 +485,6 @@
                   src="img/placeholder-red.svg" alt="">На карте</button>
             </div>
             <div class="sort-box__list-type list-type">
-              <!-- <button type='button' class="list-type__btn list-type__btn--active list-type__btn-tile">
-                <img src="img/blocks.svg" alt="">Плиткой</button> -->
-              <!-- <button type='button' class="list-type__btn list-type__btn-list"><img src="img/filter-list.svg" alt="">Списком</button>
-              <button type='button' class="list-type__btn list-type__btn-map"><img src="img/icon-maps.svg" alt="">На карте</button> -->
               <button type='button' class="list-type__btn list-type__btn--active list-type__btn-tile">
                 <svg width="12" height="12" viewBox="0 0 12 12">
                   <path
@@ -701,10 +695,6 @@
       <h3 class="advice-box__title">Смотрите полезные советы</h3>
       <div class="advice-slider">
         <!-- слайды добавляются в файле slickSliders.js -->
-        <!-- <div class="advice-slider__item"><div class="advice-slider__item-video"><iframe style="width:100%; height:216px" src="https://www.youtube.com/embed/LXb3EKWsInQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="advice-slider__item-desc">Перепланировка. С чего начать? Подводные камни</div></div>
-        <div class="advice-slider__item"><div class="advice-slider__item-video"><iframe style="width:100%; height:216px" src="https://www.youtube.com/embed/LXb3EKWsInQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="advice-slider__item-desc">Перепланировка. С чего начать? Подводные камни</div></div>
-        <div class="advice-slider__item"><div class="advice-slider__item-video"><iframe style="width:100%; height:216px" src="https://www.youtube.com/embed/LXb3EKWsInQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="advice-slider__item-desc">Перепланировка. С чего начать? Подводные камни</div></div>
-        <div class="advice-slider__item"><div class="advice-slider__item-video"><iframe style="width:100%; height:216px" src="https://www.youtube.com/embed/LXb3EKWsInQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="advice-slider__item-desc">Перепланировка. С чего начать? Подводные камни</div></div> -->
       </div>
     </div>
   </section>
@@ -1214,7 +1204,12 @@
               </div>
               <div class="catalog-complex__cost-block"><span class="cost-block__cost-from">2.4</span>-<span
                   class="cost-block__cost-to">7</span> млн. руб.</div>
-              <div class="square-metr">78,6 тыс. - 107,2 тыс. руб/м2</div>
+                  <div class="catalog-container-wrap">
+                      <div class="square-metr">78,6 тыс. - 107,2 тыс. руб/м2</div>
+                      <button type="button" class="btn-phone"><img class="img-phone" src="img/icon-phone.svg" alt=""><span
+                        class="text">+7 Показать телефон</span></button>
+                  </div>
+
               <div class="address">Всеволжский р-н, п. Мурино</div>
               <div class="metro"><img src="img/metro-el.svg" alt=""><span class="metro__name">Девяткино</span><span
                   class="metro__distance">15 мин пешком</span></div>
@@ -1289,7 +1284,7 @@
       </div>
       <div id="map"></div>
       <div class="map-footer">
-        <button type='button' class="map-footer__btn-open-filter"><img src="img/icon-filter.svg" alt="">Фильтр
+        <button type='button' class="map-footer__btn-open-filter"><img src="img/icon-filter.svg" alt=""><span class="close">&#10006;</span>Фильтр
           </dbuttoniv>
           <button type='button' class="map-footer__btn-open-list"><img src="img/filter-list.svg" alt="">Списком</button>
       </div>
