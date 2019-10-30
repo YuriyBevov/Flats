@@ -1,6 +1,15 @@
 
 
-
+function validate(evt) {
+  var theEvent = evt || window.event;
+  var key = theEvent.keyCode || theEvent.which;
+  key = String.fromCharCode( key );
+  var regex = /[0-9]|\./;
+  if( !regex.test(key) ) {
+    theEvent.returnValue = false;
+    if(theEvent.preventDefault) theEvent.preventDefault();
+  }
+}
 //--------------------------AOS--------------------------
 $(document).ready(function () {
   AOS.init({
@@ -310,13 +319,24 @@ $(document).ready(function () {
       $('.modal-feedback').removeClass('modal-feedback--active');
       }
     }
+    if (!$(e.target).closest('.modal-to-book__wrapper').length && !$(e.target).hasClass('btnToBook')) {
+      $('.modal-to-book').removeClass('modal-to-book--active');
+    }  
+    
   });
   $('#btnOpenMortgage').on('click', function () {
     $('.mortgage.mortgage__modal').removeClass('modal--closed');
   });
+
   $('.mortgage .modal__close-btn').on('click', function () {
     $('.mortgage.mortgage__modal').addClass('modal--closed ');
   });
+
+  $('.modal-to-book__wrapper .modal__close-btn').on('click', function () {
+    $('.modal-to-book').removeClass('modal-to-book--active');
+  });
+
+
   $('.modal-photo-galery .modal__close-btn').on('click', function () {
     $('.modal-photo-galery').removeClass('modal-photo-galery--active');
   });

@@ -11,6 +11,34 @@
   display: none;
 }
 
+.catalog-complex__item{
+  .wrap-heart {
+    top: -1px;
+    left: 20px;
+    position: absolute;
+    width: 20px;
+    height: 19px;
+    cursor: pointer;
+    svg {
+      width: 20px;
+      height: 19px;
+    }
+    .hidden{
+      display: none;
+    }
+  }
+  .heart {
+    fill: @primary-pink;
+  }
+  
+  .heart-fill {
+    fill: @primary-pink;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
 .complex-info {
   display: none;
   z-index: 1;
@@ -41,11 +69,11 @@
       }
     }
   }
-
+  
   .filter-field.complex-field-deadlines .checkboxes__inner {
     max-height: 86px;
   }
-
+  
   .catalog-complex__item {
     width: 100%;
     margin-top: 30px;
@@ -59,16 +87,22 @@
 
     .btn-details.pink__btn {
       min-height: 30px;
-      display: block;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
       margin: 10px auto 0;
       background-color: @primary-pink;
       transition: all 0.3s;
       width: 100%;
-
-      a {
-        color: #fff;
-        text-decoration: none;
+      color: #fff;
+      &:hover{
+        background-color: @primary-pink-opacity;
       }
+      // a {
+      //   color: #fff;
+      //   text-decoration: none;
+      // }
     }
   }
 

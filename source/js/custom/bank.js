@@ -148,7 +148,6 @@
   var showCard = function () {
     if (bankList.length > visibleItems) {
       for(var i = visibleItems; i < bankList.length; i++){
-        // console.log('ok')
         bankItem[i].classList.add('visually-hidden');
       }
     } else {
@@ -165,10 +164,8 @@
   }
 
   showMoreBtn.addEventListener('click', function() {
-    // console.log('btn')
     if ((bankList.length - visibleItems) > 4) {
       visibleItems += 4;
-      // console.log(visibleItems);
       showMoreCard();
     } else {
       visibleItems = bankList.length;

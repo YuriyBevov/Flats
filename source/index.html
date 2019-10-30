@@ -14,6 +14,7 @@
   </div>
 
   <header class="header-catalog">
+      <img src="img/close__btn.png" alt="">
     <div class="header-catalog__wrap">
       <div class="header-catalog__logo">
         <img src="img/logo.svg" alt="logo">
@@ -21,8 +22,10 @@
       <div class="header-catalog__right-box">
         <div class="header-catalog__cities">
           <button type="button" data-city='spb'
-            class="header-catalog__cities-btn pink__btn header-catalog__cities-btn--active">Санкт-Петербург и ЛО</button>
-          <button type="button" data-city='moscow' class="header-catalog__cities-btn pink__btn">Москва и МО</button>
+            class="header-catalog__cities-btn pink__btn header-catalog__cities-btn--active">Санкт-Петербург и
+            ЛО</button>
+          <button type="button" data-city='moscow' class="header-catalog__cities-btn pink__btn">Москва
+            и МО</button>
         </div>
         <nav class="header-catalog__nav catalog-nav ">
           <div class="catalog-nav__item catalog-nav__item--active"><a class='link' href="">Главная</a></div>
@@ -433,24 +436,9 @@
     </div>
   </section>
 
-  <section class="introduction">
-    <div class="introduction__tile-box">
-      <h1 class="introduction__title">Проверенные новостройки <br> Санкт-Петербурга и области</h1>
-    </div>
-
-    <div class="introduction__wrapper">
-      <p class="introduction__description">
-        Все скидки, акции и квартиры от застройщиков и подрядчиков в одном месте в один клик!
-      </p>
-
-      <p class="introduction__desription">Авторские видео-обзоры и сравнение цен и преимуществ каждого комплекса</p>
-    </div>
-  </section>
-
   <section class="catalog-complex-box catalog-complex">
     <div class="catalog-wrapper">
-      <h2 class="catalog-complex-title">Лучшие предложения</h2>
-      <div class="catalog-complex__list catalog-complex__list catalog__index-slider">
+      <div class="catalog-complex__list catalog-complex__list">
 
         <div class="catalog-complex__item" data-complex='4' data-cost-min='2.4' data-cost-square-min='78.6'
           data-developer='1'>
@@ -474,8 +462,7 @@
             <div class="catalog-complex__slider-counter">1/3</div>
             <div class="catalog-complex__buttons-wrap catalog-complex__item-header-buttons">
               <button type='button' class="catalog-complex__btn-more pink__btn">Подробнее</button>
-              <button type='button' class="catalog-complex__btn-show-map pink__btn"><img src="img/placeholder-red.svg"
-                  alt="">На карте</button>
+              <button type='button' class="catalog-complex__btn-show-map pink__btn"><img src="img/placeholder-red.svg" alt="">На карте</button>
             </div>
 
             <ul class="complex-advantages__features-list">
@@ -485,8 +472,7 @@
                     <use xlink:href="#icon-feature_sale"></use>
                   </svg>
                 </div>
-                <span class="complex-advantages__features-hint complex-advantages__features-hint--sale">Скидка
-                  партнерам</span>
+                <span class="complex-advantages__features-hint complex-advantages__features-hint--sale">Скидка партнерам</span>
               </li>
 
               <li class="complex-advantages__features-item complex-advantages__features-item--deal">
@@ -522,25 +508,24 @@
                     <use xlink:href="#icon-bus"></use>
                   </svg>
                 </div>
-                <span
-                  class="complex-advantages__features-hint complex-advantages__features-hint--gift">Специальные&nbsp;условия
-                  для&nbsp;иногородних</span>
+                <span class="complex-advantages__features-hint complex-advantages__features-hint--gift">Специальные&nbsp;условия для&nbsp;иногородних</span>
               </li>
             </ul>
           </div>
           <div class="catalog-complex__item-content">
             <div class="inner">
               <div class="complex">ЖК "Новое Мурино"</div>
-              <div class="developer"><span class="text">ООО «Инвест-Строй»</span><img src="img/developer_logo.svg"
-                  alt=""></div>
+              <div class="developer"><span class="text">ООО «Инвест-Строй»</span><img src="img/developer_logo.svg" alt=""></div>
             </div>
             <div class="catalog-complex__cost-block"><span class="cost-block__cost-from">2.4</span>-<span
                 class="cost-block__cost-to">7</span> млн. руб.</div>
             <div class="square-metr">78,6 тыс. - 107,2 тыс. руб/м2</div>
             <div class="address">Всеволжский р-н, п. Мурино</div>
-            <div class="metro"><img src="img/metro-el.svg" alt=""><span class="metro__name">Девяткино</span><span
-                class="metro__distance">15 мин пешком</span></div>
-
+            <div class="metro">
+              <img src="img/metro-el.svg" alt="">
+              <span class="metro__name">Девяткино</span>
+              <span class="metro__distance">15 мин пешком</span>
+            </div>
             <div class="catalog-complex-info-wrap">
               <div class="flat-type studio">
                 <div class="flat-type__left-box">
@@ -606,8 +591,7 @@
         </div>
 
       </div>
-      <div class="pink__btn catalog-complex__show-more">Показать еще <span class="count-flats">25 объектов</span><img
-          src="img/arrow__down-input-grey.svg" alt="img"></div>
+      <div class="pink__btn catalog-complex__show-more">Показать еще <span class="count-flats">25 объектов</span><img src="img/arrow__down-input-grey.svg" alt="img"></div>
 
       <div class="pagination">
         <div class="pagination__prev">«</div>
@@ -665,8 +649,6 @@
       </div>
     </div>
   </section>
-
-
 
   <footer class="footer">
     <div class="footer__wrapper">
@@ -862,7 +844,6 @@
               <small class="mortgage__form-invalid">Вы не заполнили поля «имя», «телефон»</small>
             </div>
           </div>
-
         </form>
       </div>
 
@@ -877,5 +858,7 @@
   <script src="js/slick.min.js"></script>
   <script src="js/totalScriptsCatalog.js"></script>
 
-  </body>
+
+</body>
+
 </html>

@@ -10,7 +10,7 @@
     var mapComplexItem = null;//Мини карта для объектов
     var countObjects = 4; //Колитчество комплексов на странице
     var pageNum = 1; //текущая страница
-    
+
     var filterComplex = {
       'area': '',
       'metro': '',
@@ -90,7 +90,7 @@
     filterComplex = getDataInputFilter();
 
     $('.count-complex').text(complexList.length);//Количество жилых комплексов
-    
+
     updateComplexes(complexList);
     ymaps.ready(initMap); //yandex maps
     function initMap() {
@@ -104,14 +104,7 @@
       });
       clusterer = new ymaps.Clusterer({
         preset: 'islands#invertedRedClusterIcons',
-        // clusterIcons: [{
-        //   // href: 'img/icons/bookmark-star.svg',
-        //   // size: [40, 40],
-        //   // offset: [-20, -20]
-        // }],
-        // clusterNumbers: [10],
         groupByCoordinates: false,
-        // clusterDisableClickZoom: true,
         clusterHideIconOnBalloonOpen: false,
         geoObjectHideIconOnBalloonOpen: false
       });
@@ -124,18 +117,14 @@
         });
       getPointData = function (index, complex) {
         return {
-          
+
           balloonContentBody: '<div class="map-flat"><div class="map-flat__img"><img src="' + complex[index]
           .img + '" alt="img"></div><div class="map-flat__info"><div class="map-flat__complex">'+complex[index].name+'</div><div class="map-flat__cost-square">' + complex[index].minCostSquare + ' тыс. - ' + complex[index].maxCostSquare + ' тыс. руб/м<sup>2</sup></div><div class="map-flat__cost">от ' +
           Math.round(parseInt(complex[index].minCost))/1000000 + ' - до ' + Math.round(parseInt(complex[index].maxCost))/1000000 + ' млн. руб.</div></div></div>',
-          // balloonContentBody: '<div class="map-flat"><div class="map-flat__img"><img src="' + complex[index]
-          //   .img + '" alt="img"></div><div class="map-flat__info"><div class="map-flat__cost">' +
-          //   Math.round(parseInt(complex[index].minCost))/1000000 + ' руб. - ' + Math.round(parseInt(complex[index].maxCost))/1000000 + ' руб.</div><div class="map-flat__type"></div><div class="map-flat__complex"></div></div></div>',
-          // balloonContentFooter: '<div class="map-flat__address">' + complex[index].address + '</div>',
           clusterCaption: complex[index].name
         };
       };
-      
+
       let geoObjects = getListPlacemarks(complexList);
 
       clusterer.add(geoObjects);
@@ -163,7 +152,7 @@
         let costTo = parseInt($('.map-filter__cost-to').val());
         let squareFrom = parseInt($('.map-filter__square-from').val());
         let squareTo = parseInt($('.map-filter__square-to').val());
-        
+
         let filter = {
           'area': area,
           'metro': metro,
@@ -192,14 +181,14 @@
       });
 
       let height = ($(window).height() - 50 - 80 +1);//нужная высота
-      
+
       if ($(window).width() <= 768) {
         $('#map').css('height', height + 'px');
         $('.map-filter').css('height', height + 'px');
         $('.map__complex-info').css('height', (height+50)+ 'px');
         mapComplex.container.fitToViewport();
       } else {
-        
+
         // $('#map').css('height', 700+'px');
         $('#map').css('height',$('.map-wrapper').height());
         $('.map-filter').css('height', 'auto');
@@ -221,7 +210,7 @@
         mapComplex.container.fitToViewport();
 
         updateSizeComplexItemMap();
-        
+
       });
 
     }
@@ -259,15 +248,20 @@
           })
           .add('click', function (e) {
             e.get('target').options.set('placemarkClick', true);
-            
+
             for (let i = 0; i < complexList.length; i++) {
               if (complexList[i].id == e.get('target').options.get('idComplex')) {
                 $('.map-modal').addClass('map-modal--active-complex-info');
                 $('.map__complex-info-inner').html('');
                 showComplex(complexList[i], $('.map__complex-info-inner'));
                 //Назначаем обработчики
+                $('.btn-phone').off('click');
                 $('.btn-phone').on('click', function () {
                   $(this).children('.text').text($(this).attr('data-phone'));
+                });
+                $('.wrap-heart').off('click');
+                $('.wrap-heart').on('click', function () {
+                  $(this).children('.heart-fill').toggleClass('hidden');
                 });
                 $('.map__complex-info-inner .filter__input').on('click', clickFilterInput);
                 let $slider = $('.map__complex-info-inner .catalog-complex__slider');
@@ -278,7 +272,7 @@
                 break;
              }
             }
-            
+
           });
       }
       return geoObjects;
@@ -297,13 +291,13 @@
       $('.map-modal').scrollTop(0);
       $('.map-modal').addClass('map-modal--open');
       $('body').addClass('body--fixed');
-      
-      
+
+
       let filter = getDataInputFilter();
       let filterList = getFilterListComplex(complexList, filter); //Возвращает отфильтрованный список комплексов (filter - объект, с которым будут сравниваться другие объекты)
 
       updateMapObjects(mapComplex, clusterer, filterList);
-      
+
     });
 
 
@@ -325,7 +319,7 @@
           let idComplex = $(this).attr('data-id-complex');
           let coordsComplex = complexList[idComplex].coords;
           let addressComplex = complexList[idComplex].address;
-          
+
           if (mapComplexItem != null) {
             mapComplexItem.destroy();
             mapComplexItem = null;
@@ -342,12 +336,12 @@
           }, {
             preset: 'islands#darkBlueDotIcon',
             iconCaptionMaxWidth: '250'
-            
+
         });
         mapComplexItem.geoObjects.add(placemark);
       }
       updateSizeComplexItemMap();
-     
+
     }
 
     function updateComplexes(filterList) { //Обновляет список комплексов на странице
@@ -362,10 +356,10 @@
       } else {
         $('.catalog-complex__list').html('');
         $('.catalog-complex__show-more').removeClass('catalog-complex__show-more--hidden');
-        
+
       }
       let j = 0; //Счетчик объектов, выводимых на страницу
-      
+
       for (let i = (pageNum - 1) * 4; i < filterList.length && j < countObjects; i++) {
         j++;
         showComplex(filterList[i], $('.catalog-complex__list'));//Вторым параметром передаем родителя, куда будут добавляться данные
@@ -410,13 +404,14 @@
         $(this).children('.text').text($(this).attr('data-phone'));
       });
       $('.wrap-heart').off('click');
-      console.log('sssswqdwq');
       $('.wrap-heart').on('click', function () {
         $(this).children('.heart-fill').toggleClass('hidden');
       });
       //Назначаем обработчик открытия Мини карты для объектов
       $('.catalog-complex__btn-show-map').off('click');
       $('.catalog-complex__btn-show-map').on('click', showMapComplex);
+      $('.filter__input').off('click');
+      $('.filter__input').on('click', clickFilterInput);
     }
 
     function getCloneList(complexList) { //Возвращает дубликат списка
@@ -427,7 +422,7 @@
       return cloneList;
     }
 
-    function getSortByCost(complexList) { //возвращает отсортированный по цене список 
+    function getSortByCost(complexList) { //возвращает отсортированный по цене список
       let cloneComplexList = getCloneList(complexList);
       for (let i = 0, endI = cloneComplexList.length - 1; i < endI; i++) {
         for (let j = 0, endJ = endI - i; j < endJ; j++) {
@@ -547,14 +542,14 @@
       let bank = $('.filter__bank').val().split(separator);
       let room = $('.filter__room').val().split(separator);
       console.log(room);
-      
+
       let costFrom = parseInt($('.filter__cost-from').val());
       let costTo = parseInt($('.filter__cost-to').val());
       let squareFrom = parseInt($('.filter__square-from').val());
       let squareTo = parseInt($('.filter__square-to').val());
-      
-      
-      
+
+
+
       let filter = {
         'area': area,
         'metro': metro,
@@ -571,7 +566,7 @@
         'payment': payment,
         'bank': bank
       } //Наш фильтр, с которым мы будем сравнивать объекты
-      
+
       return filter;
     }
     function initSlidersComplexes(slider) {
@@ -600,13 +595,13 @@
         str += '<div id="item-map" class="item-map" style="width:100%; height: 302px"></div>';
       }
 
-      
+
       str += '</div><div class="catalog-complex__slider">';
       for (let i = 0; i < infoList.images.length; i++) {
         const img = infoList.images[i];
         str += '<div class="catalog-complex__slide"><img src="'+img+'" alt="img"><div class="catalog-complex__slide-icons"><span class="wrap-heart"><svg class="heart" viewBox="0 0 512 512"><path d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"></path></svg><svg  class="heart-fill hidden" viewBox="0 0 512 512"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg></span><img src="img/slide-build.svg" alt="img"></div></div>';
       }
-      str += '</div><div class="catalog-complex__slider-counter"></div><div class="catalog-complex__buttons-wrap catalog-complex__item-header-buttons"><button type="button" class="catalog-complex__btn-more pink__btn">Подробнее</button><button type="button" class="catalog-complex__btn-show-map pink__btn" data-id-complex="' + infoList.id + '"><img src="img/placeholder-red.svg" alt="">На карте</button></div><ul class="complex-advantages__features-list"><li class="complex-advantages__features-item complex-advantages__features-item--sale"><div class="complex-advantages__features-item-box"><svg width="13" height="14"><use xlink:href="#icon-feature_sale"></use></svg></div><span class="complex-advantages__features-hint complex-advantages__features-hint--sale">Скидка партнерам</span></li><li class="complex-advantages__features-item complex-advantages__features-item--deal"><div class="complex-advantages__features-item-box"><svg width="14" height="14"><use xlink:href="#icon-feature_deal"></use></svg></div><span class="complex-advantages__features-hint complex-advantages__features-hint--deal">Безопасная&nbsp;сделка</span></li><li class="complex-advantages__features-item complex-advantages__features-item--gift"><div class="complex-advantages__features-item-box"><svg width="13" height="10"><use xlink:href="#icon-feature_gift"></use></svg></div><span class="complex-advantages__features-hint complex-advantages__features-hint--gift">Приемка&nbsp;в&nbsp;подарок</span></li><li class="complex-advantages__features-item complex-advantages__features-item--decor"><div class="complex-advantages__features-item-box"><svg width="12" height="17"><use xlink:href="#icon-feature_decor"></use></svg></div><span class="complex-advantages__features-hint complex-advantages__features-hint--decor">Сертификат&nbsp;на&nbsp;отделку</span></li><li class="complex-advantages__features-item complex-advantages__features-item--conditions"><div class="complex-advantages__features-item-box"><svg width="18" height="13"><use xlink:href="#icon-bus"></use></svg></div> <span class="complex-advantages__features-hint complex-advantages__features-hint--gift">Специальные&nbsp;условия для&nbsp;иногородних</span></li></ul></div><div class="catalog-complex__item-content" ><div class="inner">';
+      str += '</div><div class="catalog-complex__slider-counter"></div><div class="catalog-complex__buttons-wrap catalog-complex__item-header-buttons"><a href="detail.html" class="catalog-complex__btn-more pink__btn">Подробнее</a><button type="button" class="catalog-complex__btn-show-map pink__btn" data-id-complex="' + infoList.id + '"><img src="img/placeholder-red.svg" alt="">На карте</button></div><ul class="complex-advantages__features-list"><li class="complex-advantages__features-item complex-advantages__features-item--sale"><div class="complex-advantages__features-item-box"><svg width="13" height="14"><use xlink:href="#icon-feature_sale"></use></svg></div><span class="complex-advantages__features-hint complex-advantages__features-hint--sale">Скидка партнерам</span></li><li class="complex-advantages__features-item complex-advantages__features-item--deal"><div class="complex-advantages__features-item-box"><svg width="14" height="14"><use xlink:href="#icon-feature_deal"></use></svg></div><span class="complex-advantages__features-hint complex-advantages__features-hint--deal">Безопасная&nbsp;сделка</span></li><li class="complex-advantages__features-item complex-advantages__features-item--gift"><div class="complex-advantages__features-item-box"><svg width="13" height="10"><use xlink:href="#icon-feature_gift"></use></svg></div><span class="complex-advantages__features-hint complex-advantages__features-hint--gift">Приемка&nbsp;в&nbsp;подарок</span></li><li class="complex-advantages__features-item complex-advantages__features-item--decor"><div class="complex-advantages__features-item-box"><svg width="12" height="17"><use xlink:href="#icon-feature_decor"></use></svg></div><span class="complex-advantages__features-hint complex-advantages__features-hint--decor">Сертификат&nbsp;на&nbsp;отделку</span></li><li class="complex-advantages__features-item complex-advantages__features-item--conditions"><div class="complex-advantages__features-item-box"><svg width="18" height="13"><use xlink:href="#icon-bus"></use></svg></div> <span class="complex-advantages__features-hint complex-advantages__features-hint--gift">Специальные&nbsp;условия для&nbsp;иногородних</span></li></ul></div><div class="catalog-complex__item-content" ><div class="inner">';
       let costSquare = getCostSquare(infoList.flats);
       let minCost = Math.round(parseInt(infoList.minCost) / 1000000);
       let maxCost = Math.round(parseInt(infoList.maxCost) / 1000000);
@@ -666,10 +661,10 @@
         str += '<div class="flat-type studio"><div class="flat-type__left-box">3-комнатная кв. от <span class="flat-type__square"><span class="flat-type__square-value">' + infoThreeRoom.minCostSquare + '</span>м<sup>2</sup></span></div><div class="flat-type__right-box"><span class="flat-type__cost-from">' + infoThreeRoom.minCost + '</span> - <span class="flat-type__cost-to">' + infoThreeRoom.maxCost + '</span> млн. руб. </div></div>';
       }
       if ($(parent).hasClass('map__complex-info-inner')) {
-        
-        str += '</div><button type="button" data-phone="'+infoList.tel+'" class="btn-phone"><img class="img-phone" src="img/icon-phone.svg" alt=""><span class="text">+7 Показать телефон</span></button><button type="button" class="btn-details pink__btn"><a href="#">Подробнее</a></button></div></div>';
+
+        str += '</div><button type="button" data-phone="'+infoList.tel+'" class="btn-phone"><img class="img-phone" src="img/icon-phone.svg" alt=""><span class="text">+7 Показать телефон</span></button><a href="detail.html" class="btn-details pink__btn">Подробнее</a></div></div>';
       } else {
-        str += '</div><div class="catalog-complex__description"><p class="description">' + infoList.description + '</p></div><div class="catalog-complex__buttons-wrap"><button type="button" class="catalog-complex__btn-more pink__btn">Подробнее</button><button type="button" data-id-complex="'+infoList.id+'"class="catalog-complex__btn-show-map pink__btn"><img src="img/placeholder-red.svg"alt="">На карте</button></div></div></div>';
+        str += '</div><div class="catalog-complex__description"><p class="description">' + infoList.description + '</p></div><div class="catalog-complex__buttons-wrap"><a href="detail.html" class="catalog-complex__btn-more pink__btn">Подробнее</a><button type="button" data-id-complex="'+infoList.id+'"class="catalog-complex__btn-show-map pink__btn"><img src="img/placeholder-red.svg"alt="">На карте</button></div></div></div>';
       }
       // $('.catalog-complex__list').append(str);
       $(parent).append(str);
@@ -682,9 +677,9 @@
     function getFilterListComplex(listComplex, filter) { //Возвращает отфильтрованный список комплексов
       let tempListComplex = []; //список отфильтрованных комплексов
       for (let j = 0; j < listComplex.length; j++) {
-        
+
         let isFilter = true;
-        
+
         if (filter.area[0].length) {
         for (let i = 0; i < filter.area.length; i++) {
           if (filter.area[i] != '') {
@@ -700,7 +695,7 @@
         if (!isFilter) {
           continue;
         }
-        
+
         if (filter.metro[0].length) {
           for (let i = 0; i < filter.metro.length; i++) {
             if (filter.metro[i] != '') {
@@ -716,7 +711,7 @@
         if (!isFilter) {
           continue;
         }
-        
+
         if (filter.deadline[0].length) {
           for (let i = 0; i < filter.metro.length; i++) {
             let filterDeadline = filter.deadline[i];
@@ -737,7 +732,7 @@
         if (filter.complex[0].length) {
           for (let i = 0; i < filter.complex.length; i++) {
             if (filter.complex[i] != '') {
-              
+
               if (filter.complex[i].toLowerCase() == listComplex[j].name.toLowerCase()) {
                 isFilter = true;
                 break;
@@ -750,7 +745,7 @@
         if (!isFilter) {
           continue;
         }
-        
+
         if (filter.developer[0].length) {
           for (let i = 0; i < filter.developer.length; i++) {
             if (filter.developer[i] != '') {
@@ -767,7 +762,7 @@
             continue;
           }
         if (filter.room.length) {
-          
+
           for (let z = 0; z < filter.room.length; z++) {
             if (filter.room[z] != '') {
               isFilter = false;
@@ -805,7 +800,7 @@
         if (!isFilter) {
           continue;
         }
-        
+
         if (filter.type[0].length) {
           for (let z = 0; z < filter.type.length; z++) {
             if (filter.type[z] != '') {
@@ -1008,17 +1003,17 @@
       for (let i = 0; i < arrBtns.length; i++) {
         room[i] = $(arrBtns[i]).attr('data-room');
         }
-        
-     
+
+
       filterComplex.room= room;
-        
+
       let filterList = getFilterListComplex(complexList, filterComplex); //Возвращает отфильтрованный список квартир (filter - объект, с которым будут сравниваться другие объекты)
       // let geoObjectsFilter = getListPlacemarks(filterList);
       updateComplexes(filterList);
 
     });
 
-    //------------------------------------------------------------------------  
+    //------------------------------------------------------------------------
     $('.pagination__item').click(function (e) { //Пагинация
       $(this).siblings().removeClass('pagination__item--active');
       $(this).addClass('pagination__item--active');
@@ -1035,7 +1030,7 @@
     $('.catalog-complex__show-more').click(function (e) { //Показать еще
       $(this).addClass('catalog-complex__show-more--hidden');
       // $('.pagination').addClass('pagination--hidden');
-      
+
 
       let filterList = getFilterListComplex(complexList, filterComplex);
       countObjects = filterList.length;
@@ -1102,7 +1097,7 @@
       filterComplex = getDataInputFilter();
       // $('.pagination').removeClass('pagination--hidden');
       $('.first-page').addClass('pagination__item--active').siblings().removeClass('pagination__item--active');
-      
+
       pageNum = 1;
       countObjects = 4;
       let filterList = getFilterListComplex(complexList, filterComplex); //Возвращает отфильтрованный список комплексов (filter - объект, с которым будут сравниваться другие объекты)
@@ -1120,7 +1115,8 @@
     //   }
     // });
     function clickFilterInput() {
-      
+      console.log('click');
+
       $('.filter__form-inner').find('.filter__input').removeClass('filter__input--active-select');
       $('.map-filter__form-inner').find('.map-filter__input').removeClass('filter__input--active-select');
       $(this).closest('.filter__form-inner').find('.filter-field').removeClass('filter-field--active-select');
@@ -1139,7 +1135,7 @@
         $(this).closest('.filter-field').addClass('filter-field--active-select');
         $(this).closest('.map-filter-field').addClass('filter-field--active-select');
       }
-      
+
       if ($(this).siblings('.checkboxes').hasClass('checkboxes--active')) {
         $(this).addClass('filter__input--active-select');
         $(this).closest('.filter-field').addClass('filter-field--active-select');
@@ -1154,6 +1150,7 @@
       }
 
     }
+    $('.filter__input, .map-filter__input').off('click');
     $('.filter__input, .map-filter__input').on('click', clickFilterInput);
 
     $('.header-catalog__cities-btn').click(function (e) { //Главные кнопки переключения между Москвой и СПб
@@ -1166,15 +1163,16 @@
         mapComplex.setCenter(coordsCenter);
         $('.sort-box__title-box .title').text('Новостройки Санкт-Петербурга');
       }
-      
+
     });
 
     $('.checkboxes input').on('click', function () {
+
       let $field = $(this).closest('.select-input').children('.filter__input');
       if (!$($field).length) {
         $field = $(this).closest('.select-input').children('.map-filter__input');
       }
-      
+
       let value = $field.val();
       let str = $(this).siblings('.text').text().replace(/\s+/g, " ") + "; ";
       if ($(this).prop('checked')) {
@@ -1207,12 +1205,9 @@
       }
     });
 
-    
+
   });
 })();
-
-
-
 
 ;
 (function () {
@@ -1295,14 +1290,17 @@
 })();
 ;
 (function () {
-  let catalogComplexSection = $('.catalog-complex-box').offset().top;
+
   $(document).ready(function () {
-    
+
+    let catalogComplexSection;
+    if ($('.catalog-complex-box').length) {
+      catalogComplexSection= $('.catalog-complex-box').offset().top;
+    }
     $(window).bind('scroll', function () {
       if ($(this).scrollTop() >= catalogComplexSection) {
         //ДОБАВЛЕНИЕ СЛАЙДОВ В СЛАЙДЕР
-        console.log('ssss');
-        
+
         let $slider = $('.advice-slider');
         let slides = '';
         slides += '<div class="advice-slider__item"><div class="advice-slider__item-video"><iframe style="width:100%; height:216px" src="https://www.youtube.com/embed/LXb3EKWsInQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="advice-slider__item-desc">Перепланировка. С чего начать? Подводные камни</div></div>';
@@ -1310,7 +1308,7 @@
         slides += '<div class="advice-slider__item"><div class="advice-slider__item-video"><iframe style="width:100%; height:216px" src="https://www.youtube.com/embed/LXb3EKWsInQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="advice-slider__item-desc">Перепланировка. С чего начать? Подводные камни</div></div>';
         slides += '<div class="advice-slider__item"><div class="advice-slider__item-video"><iframe style="width:100%; height:216px" src="https://www.youtube.com/embed/LXb3EKWsInQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="advice-slider__item-desc">Перепланировка. С чего начать? Подводные камни</div></div>';
         slides += '<div class="advice-slider__item"><div class="advice-slider__item-video"><iframe style="width:100%; height:216px" src="https://www.youtube.com/embed/LXb3EKWsInQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="advice-slider__item-desc">Перепланировка. С чего начать? Подводные камни</div></div>';
-        
+
         $($slider).append(slides);
 
         $($slider).slick({
@@ -1325,8 +1323,6 @@
               settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2,
-                // centerMode: true,
-                // centerPadding: '10px',
               }
             },
             {
@@ -1334,14 +1330,11 @@
               settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1,
-                // centerMode: true,
-                // centerPadding: '10px',
-                // variableWidth: true
               }
             }
           ]
         });
-        
+
         $(this).unbind('scroll');
       }
     });

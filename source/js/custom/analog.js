@@ -91,7 +91,6 @@
   var fragment = document.createDocumentFragment(); // fragment
   var template = document.querySelector('#analog-template'); // template
   var analogBox = document.querySelector('#analogList'); // box
-  //var analogModal = document.querySelector('#analogModal') // analog Modal
 
   var analogItems = 2;
 

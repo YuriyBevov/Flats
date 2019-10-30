@@ -1,13 +1,16 @@
 ;
 (function () {
-  let catalogComplexSection = $('.catalog-complex-box').offset().top;
+
   $(document).ready(function () {
-    
+
+    let catalogComplexSection;
+    if ($('.catalog-complex-box').length) {
+      catalogComplexSection= $('.catalog-complex-box').offset().top;
+    }
     $(window).bind('scroll', function () {
       if ($(this).scrollTop() >= catalogComplexSection) {
         //ДОБАВЛЕНИЕ СЛАЙДОВ В СЛАЙДЕР
-        console.log('ssss');
-        
+
         let $slider = $('.advice-slider');
         let slides = '';
         slides += '<div class="advice-slider__item"><div class="advice-slider__item-video"><iframe style="width:100%; height:216px" src="https://www.youtube.com/embed/LXb3EKWsInQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="advice-slider__item-desc">Перепланировка. С чего начать? Подводные камни</div></div>';
@@ -15,7 +18,7 @@
         slides += '<div class="advice-slider__item"><div class="advice-slider__item-video"><iframe style="width:100%; height:216px" src="https://www.youtube.com/embed/LXb3EKWsInQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="advice-slider__item-desc">Перепланировка. С чего начать? Подводные камни</div></div>';
         slides += '<div class="advice-slider__item"><div class="advice-slider__item-video"><iframe style="width:100%; height:216px" src="https://www.youtube.com/embed/LXb3EKWsInQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="advice-slider__item-desc">Перепланировка. С чего начать? Подводные камни</div></div>';
         slides += '<div class="advice-slider__item"><div class="advice-slider__item-video"><iframe style="width:100%; height:216px" src="https://www.youtube.com/embed/LXb3EKWsInQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="advice-slider__item-desc">Перепланировка. С чего начать? Подводные камни</div></div>';
-        
+
         $($slider).append(slides);
 
         $($slider).slick({
@@ -30,8 +33,6 @@
               settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2,
-                // centerMode: true,
-                // centerPadding: '10px',
               }
             },
             {
@@ -39,14 +40,11 @@
               settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1,
-                // centerMode: true,
-                // centerPadding: '10px',
-                // variableWidth: true
               }
             }
           ]
         });
-        
+
         $(this).unbind('scroll');
       }
     });

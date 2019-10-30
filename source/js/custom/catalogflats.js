@@ -207,11 +207,13 @@ function toNumber(x) { //Делает пробелы, между числами
       }
 
       let str = '<table class="catalog-table "><thead><th class="icon-flats"></th><th class="square">Площадь, м2</th><th class="floor">Этаж</th><th class="type">Тип отделки</th><th class="cost">Стоимость кв, руб</th><th class="plan">Планировка</th></thead><tbody><tr class="tr-empty"><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td rowspan="0" class="catalog-img-flat"><span class="wrap-heart"><svg class="heart" viewBox="0 0 512 512"><path d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"></path></svg><svg  class="heart-fill hidden" viewBox="0 0 512 512"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg></span><img src="' + flats[0].imgPlan + '" alt=""><button type="button" class="btnToBook pink__btn" data-id="' + flats[0].id + '">Забронировать</button></td></tr>';
-      j = 0;
+      let j = 0, idActiveItem, imgPathActiveItem;
       for (let i = (currentPage - 1) * entryOnPage; i < flats.length && i < currentPage * entryOnPage; i++) {
         j++;
         if (j == 1) {
           str += '<tr class="tr-catalog-item tr-catalog-item--active" data-id="' + flats[i].id + '" data-img-plan="' + flats[i].imgPlan + '">';
+          idActiveItem = flats[i].id;
+          imgPathActiveItem = flats[i].imgPlan;
         } else {
           str += '<tr class="tr-catalog-item" data-id="' + flats[i].id + '" data-img-plan="' + flats[i].imgPlan + '">';
         }
@@ -231,6 +233,8 @@ function toNumber(x) { //Делает пробелы, между числами
       }
       str += '</tbody></table>';
       $tableList.append(str);
+      
+      updateImage(imgPathActiveItem, idActiveItem);
       if (totalPage > 1) {
 
       }
@@ -273,7 +277,22 @@ function toNumber(x) { //Делает пробелы, между числами
       $('.btnToBook').off('click');
       $('.btnToBook').on('click', function () {
         let id = $(this).attr('data-id');
-        alert('Квартира с id = '+ id + ' забронирована');
+        $('.modal-to-book').addClass('modal-to-book--active');
+        let str = '';
+        if (flats[id].room == 1) {
+          str = 'Забронировать 1-комнатную квартиру';
+        }
+        if (flats[id].room == 2) {
+          str = 'Забронировать 2-комнатную квартиру';
+        }
+        if (flats[id].room == 3) {
+          str = 'Забронировать 3-комнатную квартиру';
+        }
+        if (flats[id].room == 4) {
+          str = 'Забронировать студию';
+        }
+        $('.btn-submit-to-book').attr('data-id', id);
+        $('.modal-to-book .modal__title').text(str)
         
       });
       $('.wrap-heart').off('click');
@@ -367,8 +386,13 @@ function toNumber(x) { //Делает пробелы, между числами
       $('.catalog-img-flat img').attr('src', pathImg);
       $('.btnToBook').attr('data-id', id);
     }
+    $('.modal-to-book__form-input.phone').off();
+    $('.modal-to-book__form-input.phone').on('keypress', function (e) {
+      validate(e);//функция из sctipt.js
+    });
+
     $('body').on('click', function (e) { //Закрытие модального окна по клику на фон
-      if ($('.catalog__modal').has(e.target).length === 0 && $('.flats__link').has(e.target).length === 0 && !$(e.target).closest('.catalog__modal').length) { //Если не содержит этот target
+      if ($('.catalog__modal').has(e.target).length === 0 && $('.flats__link').has(e.target).length === 0 && !$(e.target).closest('.catalog__modal').length && !$(e.target).closest('.modal-to-book').length) { //Если не содержит этот target
         if (!$('.catalog__modal').hasClass('modal--closed') && !$(e.target).hasClass('flats__link')) {
           $('.catalog__modal').addClass('modal--closed');
           $('.catalog__modal').attr('data-flats', '0');

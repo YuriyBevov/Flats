@@ -731,18 +731,19 @@
         <button type="button" class="blog__show-btn show__btn">Читать полностью</button>
       </div>
     </section>
+
     <section class="chart">
       <div class="chart__wrapper">
 
         <div class="chart__box">
           <h2 class="chart__title">Изменение цен за 1 м2 (тыс. руб)</h2>
           <div class="chart__button-box">
-            <button type="button" class="chart__btn chart__btn--studio">Студия</button>
-            <button type="button" class="chart__btn">1</button>
-            <button type="button" class="chart__btn chart__btn--active">2</button>
-            <button type="button" class="chart__btn">3</button>
-            <button type="button" class="chart__btn">4</button>
-            <button type="button" class="chart__btn">5+</button>
+            <button type="button" class="chart__btn chart__btn--studio" data-item='studio'>Студия</button>
+            <button type="button" class="chart__btn" data-item='1'>1</button>
+            <button type="button" class="chart__btn chart__btn--active" data-item='2'>2</button>
+            <button type="button" class="chart__btn" data-item='3'>3</button>
+            <button type="button" class="chart__btn" data-item='4'>4</button>
+            <button type="button" class="chart__btn" data-item='5'>5+</button>
           </div>
           <canvas id="myChart"></canvas>
         </div>
@@ -764,18 +765,6 @@
         <h2 class="documents__title">Документы</h2>
         <ul class="documents__list">
           <!-- добавление документов в documents.js -->
-          <!-- <li class="documents__item fancybox" data-fancybox-type="iframe" href="files/lab_2.21 (2).pdf">
-            <p class="documents__item-name">Договор ДДУ</p>
-            <span class="documents__item-size">125 кб</span>
-          </li>
-          <li class="documents__item fancybox" data-fancybox-type="iframe" href="files/lab_2.21 (2).pdf">
-            <p class="documents__item-name">Договор ДДУ</p>
-            <span class="documents__item-size">125 кб</span>
-          </li>
-          <li class="documents__item fancybox" data-fancybox-type="iframe" href="files/lab_2.21 (2).pdf">
-            <p class="documents__item-name">Договор ДДУ</p>
-            <span class="documents__item-size">125 кб</span>
-          </li> -->
         </ul>
         <button type="button" class="documents__show-btn show__btn">Показать еще 5 документов</button>
         <button type="button" id="consultationBtn" class="documents__btn light__btn">Получить консультацию
@@ -1309,52 +1298,6 @@
     </div>
   </section>
 
-
-
-
-  <!-- <template id="feedback-template">
-    <div class="feedback__box">
-
-      <div class="feedback__container">
-        <div class="feedback__avatar-box">
-          <img src="" alt="аватарка" class="feedback__avatar" width="16" height="20">
-        </div>
-
-        <div class="feedback__author-container">
-          <b class="feedback__author"></b>
-          <small class="feedback__time"></small>
-        </div>
-      </div>
-
-      <p class="feedback__text feedback__text--full">
-
-      </p>
-
-      <div class="feedback__buttons">
-        <button type="button" class="feedback__answer-btn">Ответить</button>
-        <button type="button" class="feedback__btn feedback__btn--unfurl hidden">Читать весь отзыв</button>
-        <div class="feedback__answer-box hidden">
-          <div class="feedback__answer">
-            <div class="feedback__author-avatarBox">
-              <img src="" alt="аватарка" class="feedback__author-avatar" width="16" height="20">
-            </div>
-            <div class="feedback__answer-wrapper">
-              <p class="feedback__answer-description">ответ на отзыв @<span class="feedback__answer-author">Самойлова Виктория</span></p>
-              <textarea class="feedback__answer-textarea" type="textarea" rows="8" cols="45" placeholder="Текст сообщения..." required></textarea>
-
-              <div class="feedback__answer-checkbox">
-                <input id="feedback__answer-checkbox" type="checkbox" required>
-                <label for="feedback__answer-checkbox">Согласен с правилами публикации на сайте</label>
-              </div>
-
-              <input class="feedback__answer-sellBtn pink__btn" type="submit" value="Отправить комментарий">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </template> -->
-
   <template id="analog-template">
     <li class="analog__item">
       <picture>
@@ -1375,16 +1318,6 @@
           </p>
         </address>
       </div>
-    </li>
-  </template>
-
-  <template id="progress-gallery">
-    <li class="progress__gallery-item modal-image__item">
-      <picture>
-        <source type="image/webp" srcset="">
-
-        <img class="progress__image" src="" data-big-src="" alt="фото ЖК" width="310" height="180">
-      </picture>
     </li>
   </template>
 
@@ -1415,6 +1348,8 @@
       </div>
     </div>
   </div>
+
+
   <div class="modal-feedback">
     <div class="modal-feedback__wrapper">
       <div class="modal__title-box">
@@ -1430,6 +1365,27 @@
       </form>
     </div>
   </div>
+
+  <div class="modal-to-book">
+    <div class="modal-to-book__wrapper">
+      <div class="modal__title-box">
+        <h3 class="modal__title">Забронировать 1-комнатную квартиру</h3>
+        <button type='button' class="modal__close-btn"><img src="img/modal-close.svg" alt=""></button>
+      </div>
+      <form action="" class="modal-to-book__form">
+        <div class="modal-to-book__form-field">
+          <input type="text" class='modal-to-book__form-input' placeholder="Ваше имя"></div>
+        <div class="modal-to-book__form-field">
+          <input type="text" class='modal-to-book__form-input' placeholder="Ваша фамилия"></div>
+        <div class="modal-to-book__form-field">
+          <input type="text" class='modal-to-book__form-input phone' placeholder="Ваш номер телефона"></div>
+
+        <button type="input" class="btn-submit-to-book pink__btn">Забронировать</button>
+      </form>
+    </div>
+  </div>
+
+
   <div class="modal-image">
     <span class="modal-image__close">&#10006;</span>
     <img src="img/analog_1.jpg" alt="image">
@@ -1440,7 +1396,6 @@
   <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
   <script src="js/slick.min.js"></script>
   <script src="js/totalScript.js"></script>
-  <!---->
 
 </body>
 

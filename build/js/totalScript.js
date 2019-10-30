@@ -92,7 +92,6 @@
   var fragment = document.createDocumentFragment(); // fragment
   var template = document.querySelector('#analog-template'); // template
   var analogBox = document.querySelector('#analogList'); // box
-  //var analogModal = document.querySelector('#analogModal') // analog Modal
 
   var analogItems = 2;
 
@@ -270,7 +269,6 @@
   var showCard = function () {
     if (bankList.length > visibleItems) {
       for(var i = visibleItems; i < bankList.length; i++){
-        // console.log('ok')
         bankItem[i].classList.add('visually-hidden');
       }
     } else {
@@ -287,10 +285,8 @@
   }
 
   showMoreBtn.addEventListener('click', function() {
-    // console.log('btn')
     if ((bankList.length - visibleItems) > 4) {
       visibleItems += 4;
-      // console.log(visibleItems);
       showMoreCard();
     } else {
       visibleItems = bankList.length;
@@ -512,11 +508,13 @@ function toNumber(x) { //Делает пробелы, между числами
       }
 
       let str = '<table class="catalog-table "><thead><th class="icon-flats"></th><th class="square">Площадь, м2</th><th class="floor">Этаж</th><th class="type">Тип отделки</th><th class="cost">Стоимость кв, руб</th><th class="plan">Планировка</th></thead><tbody><tr class="tr-empty"><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td rowspan="0" class="catalog-img-flat"><span class="wrap-heart"><svg class="heart" viewBox="0 0 512 512"><path d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"></path></svg><svg  class="heart-fill hidden" viewBox="0 0 512 512"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg></span><img src="' + flats[0].imgPlan + '" alt=""><button type="button" class="btnToBook pink__btn" data-id="' + flats[0].id + '">Забронировать</button></td></tr>';
-      j = 0;
+      let j = 0, idActiveItem, imgPathActiveItem;
       for (let i = (currentPage - 1) * entryOnPage; i < flats.length && i < currentPage * entryOnPage; i++) {
         j++;
         if (j == 1) {
           str += '<tr class="tr-catalog-item tr-catalog-item--active" data-id="' + flats[i].id + '" data-img-plan="' + flats[i].imgPlan + '">';
+          idActiveItem = flats[i].id;
+          imgPathActiveItem = flats[i].imgPlan;
         } else {
           str += '<tr class="tr-catalog-item" data-id="' + flats[i].id + '" data-img-plan="' + flats[i].imgPlan + '">';
         }
@@ -536,6 +534,8 @@ function toNumber(x) { //Делает пробелы, между числами
       }
       str += '</tbody></table>';
       $tableList.append(str);
+      
+      updateImage(imgPathActiveItem, idActiveItem);
       if (totalPage > 1) {
 
       }
@@ -578,7 +578,22 @@ function toNumber(x) { //Делает пробелы, между числами
       $('.btnToBook').off('click');
       $('.btnToBook').on('click', function () {
         let id = $(this).attr('data-id');
-        alert('Квартира с id = '+ id + ' забронирована');
+        $('.modal-to-book').addClass('modal-to-book--active');
+        let str = '';
+        if (flats[id].room == 1) {
+          str = 'Забронировать 1-комнатную квартиру';
+        }
+        if (flats[id].room == 2) {
+          str = 'Забронировать 2-комнатную квартиру';
+        }
+        if (flats[id].room == 3) {
+          str = 'Забронировать 3-комнатную квартиру';
+        }
+        if (flats[id].room == 4) {
+          str = 'Забронировать студию';
+        }
+        $('.btn-submit-to-book').attr('data-id', id);
+        $('.modal-to-book .modal__title').text(str)
         
       });
       $('.wrap-heart').off('click');
@@ -672,8 +687,13 @@ function toNumber(x) { //Делает пробелы, между числами
       $('.catalog-img-flat img').attr('src', pathImg);
       $('.btnToBook').attr('data-id', id);
     }
+    $('.modal-to-book__form-input.phone').off();
+    $('.modal-to-book__form-input.phone').on('keypress', function (e) {
+      validate(e);//функция из sctipt.js
+    });
+
     $('body').on('click', function (e) { //Закрытие модального окна по клику на фон
-      if ($('.catalog__modal').has(e.target).length === 0 && $('.flats__link').has(e.target).length === 0 && !$(e.target).closest('.catalog__modal').length) { //Если не содержит этот target
+      if ($('.catalog__modal').has(e.target).length === 0 && $('.flats__link').has(e.target).length === 0 && !$(e.target).closest('.catalog__modal').length && !$(e.target).closest('.modal-to-book').length) { //Если не содержит этот target
         if (!$('.catalog__modal').hasClass('modal--closed') && !$(e.target).hasClass('flats__link')) {
           $('.catalog__modal').addClass('modal--closed');
           $('.catalog__modal').attr('data-flats', '0');
@@ -1891,7 +1911,6 @@ function toNumber(x) { //Делает пробелы, между числами
 
 $('body').on('click', function (e) {
 
-  // if (!$(e.target).parents('.galery__item-img').length && !$(e.target).hasClass('progress__btn') && !$(e.target).closest('.progress__gallery-list').length && !$(e.target).hasClass('show__btn-slider')) {
   if (!$(e.target).parents('.galery__item-img').length && !$(e.target).closest('.progress__gallery-list').length && !$(e.target).hasClass('show__btn-slider')&&!$(e.target).closest('.expectation__photo-box').length) {
     $('.modal-photo-galery').removeClass('modal-photo-galery--active');
     galeryDestroy();
@@ -1909,11 +1928,6 @@ function galeryDestroy() {
 }
 
 function initSlidersModalPhoto(slider, begin) {
-  // $(slider).on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) { //Счетчик на слайдах
-  //   $status = $(slick.$slider[0]).siblings('.catalog-complex__slider-counter');
-  //   var i = (currentSlide ? currentSlide : 0) + 1;
-  //   $status.text(i + ' / ' + slick.slideCount);
-  // });
   if (slider.hasClass('slick-initialized')) {
     $(slider).slick('unslick');
   }
@@ -1936,97 +1950,406 @@ function initSlidersModalPhoto(slider, begin) {
     $('.modal-photo-galery').removeClass('modal-photo-galery--active');
   });
 }
-$(document).ready(function (currentData) {
 
-var chartData = [];
+// $(document).ready(function (currentData) {
 
-chartData[0] = [63, 83, 36, 90, 43, 125, 67]; //студии
-chartData[1] = [80, 111, 44, 90, 45, 125, 110]; // 1к
-chartData[2] = [45, 58, 87, 23, 95, 41, 54]; // 2к
-chartData[3] = [80, 88, 75, 148, 95, 125, 46]; // 3к
-chartData[4] = [6, 32, 5, 90, 95, 125, 110]; // 4к
-chartData[5] = [11, 83, 75, 90, 95, 125, 30]; //5+к
+// var chartData = [];
+// chartData[0] = [63, 83, 36, 90, 43, 125, 67]; //студии
+// chartData[1] = [80, 111, 44, 90, 45, 125, 110]; // 1к
+// chartData[2] = [45, 58, 87, 23, 95, 41, 54]; // 2к
+// chartData[3] = [80, 88, 75, 148, 95, 125, 46]; // 3к
+// chartData[4] = [6, 32, 5, 90, 95, 125, 110]; // 4к
+// chartData[5] = [11, 83, 75, 90, 95, 125, 30]; //5+к
 
-var currentData = [80, 111, 44, 90, 45, 125, 110];
+// var currentData = [80, 111, 44, 90, 45, 125, 110];
 
-var btn = document.querySelectorAll('.chart__btn');
+// var btn = document.querySelectorAll('.chart__btn');
 
-for(var i = 0; i < btn.length; i++){
-  $(btn[i]).attr('data-item', i);
-}
+// for(var i = 0; i < btn.length; i++){
+//   $(btn[i]).attr('data-item', i);
+// }
 
-$(btn).on('click', function () {
-  var number = $(this).attr('data-item');
-  currentData = chartData[number];
+// $(btn).on('click', function () {
+//   var number = $(this).attr('data-item');
+//   currentData = chartData[number];
 
-  $('.chart__btn--active').removeClass('chart__btn--active');
-  $(this).addClass('chart__btn--active');
+//   $('.chart__btn--active').removeClass('chart__btn--active');
+//   $(this).addClass('chart__btn--active');
 
-  fillChart(currentData);
-});
+//   fillChart(currentData);
+// });
 
 
-var fillChart = function (currentData) {
+// var fillChart = function (currentData) {
 
-  var ctx = document.getElementById('myChart').getContext('2d');
-  var dataLabels = ['нояб’18', 'дек’18', 'янв’19', 'фев’19', 'март’19', 'апр’19',
-    'май’19'
-  ]; //  массив для изменяемыхданных
+//   var ctx = document.getElementById('myChart').getContext('2d');
+//   var dataLabels = ['нояб’18', 'дек’18', 'янв’19', 'фев’19', 'март’19', 'апр’19',
+//     'май’19'
+//   ]; //  массив для изменяемыхданных
 
-  // console.log(currentData);
+//   // console.log(currentData);
 
-  var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
+//   var chart = new Chart(ctx, {
+//     // The type of chart we want to create
+//     type: 'line',
 
-    // The data for our dataset
-    data: {
-      labels: dataLabels,
-      datasets: [{
-        label: '',
-        backgroundColor: 'rgba(233,70,70, 0.1)',
-        borderColor: 'rgb(233,70,70)',
-        borderWidth: 1,
-        pointHoverBackgroundColor: 'rgb(233,70,70)',
-        spanGaps: true,
-        data: currentData
-      }]
-    },
+//     // The data for our dataset
+//     data: {
+//       labels: dataLabels,
+//       datasets: [{
+//         label: '',
+//         backgroundColor: 'rgba(233,70,70, 0.1)',
+//         borderColor: 'rgb(233,70,70)',
+//         borderWidth: 1,
+//         pointHoverBackgroundColor: 'rgb(233,70,70)',
+//         spanGaps: true,
+//         data: currentData
+//       }]
+//     },
 
-    // Configuration options go here
-    options: {
-      legend: {
-        display: false
-      },
-      tooltips: {
-        backgroundColor: '#7be37b',
-        bodyFontSize: 16,
-        bodyFontColor: '#fefcfc',
-      },
-      scales: {
-        xAxes: [{
-          gridLines: {
-            display: false
-          }
-        }],
-        yAxes: [{
-          scaleLabel: {
-            display: true
-          },
-          ticks: {
-            min: 0,
-            max: 150,
-            stepSize: 25
-          }
-        }]
-      }
+//     // Configuration options go here
+//     options: {
+//       legend: {
+//         display: false
+//       },
+//       tooltips: {
+//         backgroundColor: '#7be37b',
+//         bodyFontSize: 16,
+//         bodyFontColor: '#fefcfc',
+//       },
+//       scales: {
+//         xAxes: [{
+//           gridLines: {
+//             display: false
+//           }
+//         }],
+//         yAxes: [{
+//           scaleLabel: {
+//             display: true
+//           },
+//           ticks: {
+//             min: 0,
+//             max: 150,
+//             stepSize: 25
+//           }
+//         }]
+//       }
+//     }
+//   });
+// }
+
+// fillChart(currentData);
+// });
+
+
+;
+(function () {
+  $(document).ready(function () {
+    let chartData = [];
+    chartData['studio'] = [63, 83, 36, 90, 43, 125, 67]; //студии
+    chartData['1'] = [80, 111, 44, 90, 45, 125, 110]; // 1к
+    chartData['2'] = [45, 58, 87, 23, 95, 41, 54]; // 2к
+    chartData['3'] = [80, 88, 75, 148, 95, 125, 46]; // 3к
+    chartData['4'] = [6, 32, 5, 90, 95, 125, 110]; // 4к
+    chartData['5'] = [11, 83, 75, 90, 95, 125, 30]; //5+к
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var dataLabels = ['нояб’18', 'дек’18', 'янв’19', 'фев’19', 'март’19', 'апр’19', 'май’19'];
+    var data = [];
+    for (let i = 0; i < chartData['2'].length; i++) {
+      const element = chartData['2'][i];
+      data.push(element);
     }
+
+    var chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: dataLabels,
+        datasets: [{
+          label: '',
+          backgroundColor: 'rgba(233,70,70, 0.1)',
+          borderColor: 'rgb(233,70,70)',
+          borderWidth: 2,
+          pointHoverBackgroundColor: 'rgb(233,70,70)',
+          pointBackgroundColor: '#fff',
+          spanGaps: true,
+          data: data,
+          pointRadius: 7,
+          pointHoverRadius: 7,
+          pointHitRadius: 7,
+          
+        }]
+      },
+
+      options: {
+        bezierCurve : false,
+        title: {
+          display: false,
+        },
+        legend: {
+          display: false
+        },
+        tooltips: {
+          // backgroundColor: '#7be37b',
+          // bodyFontSize: 16,
+          // bodyFontColor: '#fefcfc',
+          // yAlign: 'bottom',
+          // xPadding: 12,
+          // // yPadding: 10,
+          // intersect: false,
+          // mode: 'point',
+          // displayColors: false,
+          // callbacks: {
+          //   label: function(tooltipItem) {
+          //       return Number(tooltipItem.yLabel);
+          //   },
+          //   title: function (tooltipItem) {
+          //     return false;
+          //   }
+          // },
+          enabled: false,
+          custom: function (tooltipModel) {
+            var tooltipEl = document.getElementById('chartjs-tooltip');
+            if (!tooltipEl) {
+              tooltipEl = document.createElement('div');
+              tooltipEl.id = 'chartjs-tooltip';
+              tooltipEl.innerHTML = '<div class="body"><span class="text"></span><span class="figure"></span></div>';
+              document.body.appendChild(tooltipEl);
+            }
+
+            if (tooltipModel.opacity === 0) {
+              tooltipEl.style.opacity = 0;
+              return;
+            }
+            tooltipEl.classList.remove('above', 'below', 'no-transform');
+            if (tooltipModel.yAlign) {
+
+              tooltipEl.classList.add(tooltipModel.yAlign);
+            } else {
+              tooltipEl.classList.add('no-transform');
+            }
+
+            if (tooltipModel.body) {
+              $(tooltipEl).children().children('.text').text(tooltipModel.body[0].lines[0]);
+            }
+
+            var position = this._chart.canvas.getBoundingClientRect();
+
+            tooltipEl.style.opacity = 1;
+            tooltipEl.style.position = 'absolute';
+
+            tooltipEl.style.fontFamily = 'Open Sans';
+
+            tooltipEl.style.fontWeight = '700';
+            tooltipEl.style.color = '#fff';
+            tooltipEl.style.display = 'flex';
+            tooltipEl.style.justifyContent = 'center';
+
+            tooltipEl.style.borderRadius = '4px';
+            tooltipEl.style.textAlign = 'center';
+            tooltipEl.style.fontStyle = tooltipModel._bodyFontStyle;
+            tooltipEl.style.pointerEvents = 'none';
+            tooltipEl.style.backgroundColor = '#7be37b';
+            tooltipEl.style.zIndex = '100';
+
+            if ($(window).width() <= 768) {
+              tooltipEl.style.height = '22px';
+              tooltipEl.style.width = '36px';
+              tooltipEl.style.fontSize = 11 + 'px';
+              tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX - 18 + 'px';
+              tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY - 40 + 'px';
+            } else {
+              tooltipEl.style.fontSize = 16 + 'px';
+              tooltipEl.style.height = '35px';
+              tooltipEl.style.width = '56px';
+              tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX - 28 + 'px';
+              tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY - 60 + 'px';
+            }
+
+            tooltipEl.classList.add('tooltipChart');
+          }
+        },
+        scales: {
+          // xAxes: [{
+          //   gridLines: {
+          //     display: false,
+          //   },
+          //   ticks: {
+          //     fontFamily: "'Open Sans', sans-serif",
+          //     fontSize: 14,
+          //     fontColor: "#545454",
+          //     color: 'blue'
+          //   }
+          // }],
+          // yAxes: [{
+          //   color: '#8d7c7c',
+          //   gridLines: {
+          //     display: true,
+          //     color: "#efdfdf",
+          //     lineWidth: 1,
+          //     drawTicks: true,
+          //     tickMarkLength: 2,
+          //     drawTicks: true,
+          //   },
+          //   scaleLabel: {
+          //         display: true,
+          //       },
+          //   ticks: {
+          //     fontFamily: "'Open Sans', sans-serif",
+          //     fontSize: 14,
+          //     min: 0,
+          //     max: 150,
+          //     stepSize: 25,
+          //   }
+          // }]
+          xAxes: [{
+            
+            gridLines: {
+              display: true,
+						  zeroLineWidth: 1,
+              zeroLineColor: "trasparent",
+              drawOnChartArea: false,
+              lineWidth: 0
+            },
+            ticks: {
+              fontSize: 14,
+            }
+          }],
+          yAxes: [{
+            color: '#8d7c7c',
+            gridLines: {
+              // // drawOnChartArea: false,
+              // drawTicks: true,
+              lineWidth: 2,
+              zeroLineWidth: 1,
+            },
+            scaleLabel: {
+              display: true,
+            },
+            ticks: {
+              padding: 15,
+              min: 0,
+              max: 150,
+              stepSize: 25,
+              fontSize: 14
+            }
+          }]
+        }
+      }
+    });
+    let desctopOptions = [];
+    desctopOptions['borderWidth'] = 2;
+    desctopOptions['pointRadius'] = 7;
+    desctopOptions['pointHoverRadius'] = 7;
+    desctopOptions['pointHitRadius'] = 7;
+    desctopOptions['fontSizeAxes'] = 14;
+    desctopOptions['paddingTicks'] = 15;
+    desctopOptions['gridLinesLineWidthYAxes'] = 2;
+    let options = [];
+    options['borderWidth'] = 1;
+    options['pointRadius'] = 3;
+    options['pointHoverRadius'] = 4;
+    options['pointHitRadius'] = 3;
+    options['fontSizeAxes'] = 10;
+    options['paddingTicks'] = 10;
+    options['gridLinesLineWidthYAxes'] = 1;
+    if ($(window).width() <= 768) {
+      updateSize(chart, options);
+    }
+    $(window).on('resize', function () {
+      if ($(window).width() <= 768) {
+        updateSize(chart, options);
+      } else {
+        updateSize(chart, desctopOptions);
+
+      }
+    });
+
+
+    $('.chart__btn').on('click', function () {
+      $('.chart__btn--active').removeClass('chart__btn--active');
+      $(this).addClass('chart__btn--active');
+      let flat = $(this).attr('data-item');
+      let Newdata = chartData[flat];
+      updateData(chart, Newdata);
+    });
+
+    function updateSize(chart, options) {
+      console.log(chart.options.scales.yAxes[0].gridLines);
+
+      chart.data.datasets[0].borderWidth = options['borderWidth'];
+      chart.data.datasets[0].pointRadius = options['pointRadius'];
+      chart.data.datasets[0].pointHoverRadius = options['pointHoverRadius'];
+      chart.data.datasets[0].pointHitRadius = options['pointHitRadius'];
+      chart.options.scales.xAxes[0].ticks.fontSize = options['fontSizeAxes'];
+      chart.options.scales.xAxes[0].ticks.major.fontSize = options['fontSizeAxes'];
+      chart.options.scales.xAxes[0].ticks.minor.fontSize = options['fontSizeAxes'];
+      chart.options.scales.yAxes[0].ticks.fontSize = options['fontSizeAxes'];
+      chart.options.scales.yAxes[0].ticks.major.fontSize = options['fontSizeAxes'];
+      chart.options.scales.yAxes[0].ticks.minor.fontSize = options['fontSizeAxes'];
+      chart.options.scales.yAxes[0].ticks.padding = options['paddingTicks'];
+      chart.options.scales.yAxes[0].gridLines.lineWidth = options['gridLinesLineWidthYAxes'];
+      chart.update();
+    }
+
+    function updateData(chart, Newdata) {
+      let length = chart.data.datasets[0].data.length;
+      for (let i = 0; i < length; i++) {
+        chart.data.datasets[0].data.pop();
+      }
+      for (let i = 0; i < Newdata.length; i++) {
+        chart.data.datasets[0].data.push(Newdata[i]);
+      }
+      chart.update();
+    }
+    Chart.pluginService.register({
+      afterDraw: function (chart, easing) {
+        if (chart.config.options && chart.config.options.scales) {
+          if (chart.config.options.scales.xAxes)
+            chart.config.options.scales.xAxes.forEach(function (xAxisConfig) {
+              if (!xAxisConfig.color)
+                return;
+  
+              var ctx = chart.chart.ctx;
+              var chartArea = chart.chartArea;
+              var xAxis = chart.scales[xAxisConfig.id];
+  
+              // just draw the scale again with different colors
+              var color = xAxisConfig.gridLines.color;
+              xAxisConfig.gridLines.color = xAxisConfig.color;
+              xAxis.draw(chartArea);
+              xAxisConfig.gridLines.color = color;
+            });
+  
+          if (chart.config.options.scales.yAxes)
+            chart.config.options.scales.yAxes.forEach(function (yAxisConfig) {
+              if (!yAxisConfig.color)
+                return;
+  
+              var ctx = chart.chart.ctx;
+              var chartArea = chart.chartArea;
+              var yAxis = chart.scales[yAxisConfig.id];
+  
+              // here, since we also have the grid lines, set a clip area for the left of the y axis
+              ctx.save();
+              ctx.rect(0, 0, chartArea.left + yAxisConfig.gridLines.lineWidth - 1, chartArea.bottom + yAxisConfig.gridLines.lineWidth - 1);
+              ctx.clip();
+                
+              var color = yAxisConfig.gridLines.color;
+              yAxisConfig.gridLines.color = yAxisConfig.color;
+              yAxis.draw(chartArea);
+              yAxisConfig.gridLines.color = color;
+  
+              ctx.restore();
+            });
+  
+          // we need to draw the tooltip so that it comes over the (redrawn) elements
+          chart.tooltip.transition(easing).draw();
+        }
+      }
+    });
   });
-}
-
-fillChart(currentData);
-});
-
+})();
 ;
 (function () {
   $(document).ready(function () {
@@ -2114,36 +2437,20 @@ fillChart(currentData);
         }
         $(parent).append(strHTML);
       }
-      
+
       $('.progress__image').off('click');
       $('.progress__image').on('click', clickImg);
       if ($(parent).hasClass('galery__slider')) {
         let $slider = $('.galery__slider');
         initSlidersModalPhoto($slider, begin);//функция из modal-photo-galery.js
-        // setTimeout(initSlidersModalPhoto, 10, $slider);
       }
-     
+
       function clickImg() {
         let begin = $(this).attr('data-index');
         updateGalery(filterList, $('.galery__slider'), begin);
         $('.modal-photo-galery').addClass('modal-photo-galery--active');
       }
-      // $('.modal-image__item').on('click', function () {
-      //   // let src = $(this).find('img').attr('src');
-      //   // let srcBig = $(this).find('img').attr('data-big-src');
-      //   // $('.modal-image').addClass('modal-image--active');
-      //   // if (srcBig != '') {
-      //   //   $('.modal-image img').attr('src', srcBig);
-      //   // } else {
-      //   //   $('.modal-image img').attr('src', src);
-      //   // }
-      //   updateGalery(filterList, $('.galery__slider'));
-      //   $('.modal-photo-galery').addClass('modal-photo-galery--active');
-      // });
-
     }
-
-    
 
     function getFilterList(arrayPhotos, filter) { //Получить отфильтрованный список
       let tempList = [];
@@ -2159,1179 +2466,10 @@ fillChart(currentData);
       updateGalery(filterList, $('.galery__slider'));
       $('.modal-photo-galery').addClass('modal-photo-galery--active');
     });
-    
-   
-    
+
   });
 })();
 
-
-
-
-
-
-
-// 'use strict';
-
-// (function (){
-
-// var progressGalleryArray = [];
-
-// progressGalleryArray[0] = [
-//   { year: 2019,
-//     month: 'january',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'january',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'january',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'january',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'january',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'january',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'january',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'january',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'january',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'january',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[1] = [
-//   { year: 2019,
-//     month: 'february',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'february',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'february',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[2] = [
-//   { year: 2019,
-//     month: 'march',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'march',
-//     photo: 'img/img'
-//   },
-
-//   { year: 2019,
-//     month: 'march',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'march',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[3] = [
-//   { year: 2019,
-//     month: 'aprel',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'aprel',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'aprel',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'aprel',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'aprel',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'aprel',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[4] = [
-//   { year: 2019,
-//     month: 'may',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'may',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'may',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'may',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'may',
-//     photo: 'img/progress_foto.png'
-//   }
-// ];
-
-// progressGalleryArray[5] = [
-//   { year: 2019,
-//     month: 'june',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'june',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'june',
-//     photo: 'img/progress_foto.png'
-//   }
-
-// ];
-
-// progressGalleryArray[6] = [
-//   { year: 2019,
-//     month: 'jule',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'jule',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'jule',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'jule',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'jule',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'jule',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[7] = [
-//   { year: 2019,
-//     month: 'august',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'august',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'august',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'august',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'august',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'august',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[8] = [
-//   { year: 2019,
-//     month: 'september',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'september',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'september',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'september',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'september',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'september',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[9] = [
-//   { year: 2019,
-//     month: 'october',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'october',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'october',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'october',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'october',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'october',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[10] = [
-//   { year: 2019,
-//     month: 'november',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'november',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'november',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'november',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'november',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'november',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[11] = [
-//   { year: 2019,
-//     month: 'december',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'december',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'december',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'december',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2019,
-//     month: 'december',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2019,
-//     month: 'december',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[12] = [
-//   { year: 2020,
-//     month: 'january',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'january',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'january',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'january',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'january',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'january',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'january',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'january',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'january',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'january',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[13] = [
-//   { year: 2020,
-//     month: 'february',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'february',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'february',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[14] = [
-//   { year: 2020,
-//     month: 'march',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'march',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'march',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'march',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[15] = [
-//   { year: 2020,
-//     month: 'aprel',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'aprel',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'aprel',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'aprel',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'aprel',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'aprel',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[16] = [
-//   { year: 2020,
-//     month: 'may',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'may',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'may',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'may',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'may',
-//     photo: 'img/progress_foto.png'
-//   }
-// ];
-
-// progressGalleryArray[17] = [
-//   { year: 2020,
-//     month: 'june',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'june',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'june',
-//     photo: 'img/progress_foto.png'
-//   }
-
-// ];
-
-// progressGalleryArray[18] = [
-//   { year: 2020,
-//     month: 'jule',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'jule',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'jule',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'jule',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'jule',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'jule',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[19] = [
-//   { year: 2020,
-//     month: 'august',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'august',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'august',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'august',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'august',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'august',
-//     photo: '/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[20] = [
-//   { year: 2020,
-//     month: 'september',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'september',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'september',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'september',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'september',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'september',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[21] = [
-//   { year: 2020,
-//     month: 'october',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'october',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'october',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'october',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'october',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'october',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[22] = [
-//   { year: 2020,
-//     month: 'november',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'november',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'november',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'november',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'november',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'november',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[23] = [
-//   { year: 2020,
-//     month: 'december',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'december',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'december',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'december',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2020,
-//     month: 'december',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2020,
-//     month: 'december',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[24] = [
-//   { year: 2021,
-//     month: 'january',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'january',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'january',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'january',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'january',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'january',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'january',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'january',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'january',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'january',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[25] = [
-//   { year: 2021,
-//     month: 'february',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'february',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'february',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[26] = [
-//   { year: 2021,
-//     month: 'march',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'march',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'march',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'march',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[27] = [
-//   { year: 2021,
-//     month: 'aprel',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'aprel',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'aprel',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'aprel',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'aprel',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'aprel',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[28] = [
-//   { year: 2021,
-//     month: 'may',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'may',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'may',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'may',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'may',
-//     photo: 'img/progress_foto.png'
-//   }
-// ];
-
-// progressGalleryArray[29] = [
-//   { year: 2021,
-//     month: 'june',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'june',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'june',
-//     photo: 'img/progress_foto.png'
-//   }
-
-// ];
-
-// progressGalleryArray[30] = [
-//   { year: 2021,
-//     month: 'jule',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'jule',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'jule',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'jule',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'jule',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'jule',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[31] = [
-//   { year: 2021,
-//     month: 'august',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'august',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'august',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'august',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: august,
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: august,
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[32] = [
-//   { year: 2021,
-//     month: 'september',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'september',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'september',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'september',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'september',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'september',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[33] = [
-//   { year: 2021,
-//     month: 'october',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'october',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'october',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'october',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'october',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'october',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[34] = [
-//   { year: 2021,
-//     month: 'november',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'november',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'november',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'november',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'november',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'november',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// progressGalleryArray[35] = [
-//   { year: 2021,
-//     month: 'december',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'december',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'december',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'december',
-//     photo: 'img/analog_1.jpg'
-//   },
-
-//   { year: 2021,
-//     month: 'december',
-//     photo: 'img/progress_foto.png'
-//   },
-
-//   { year: 2021,
-//     month: 'december',
-//     photo: 'img/analog_1.jpg'
-//   }
-// ];
-
-// var photosToShow = [];
-
-// var year = $('.progress__form-select--year option:selected');
-// var month = $('.progress__form-select--month option:selected');
-
-// $('.progress__form-select--year').change(function() {
-//   year = $('.progress__form-select--year option:selected');
-//   clearPhotosToShow();
-//   setPhoto();
-//   createProgressGalleryNode();
-//   console.log(year)
-// });
-
-// $('.progress__form-select--month').change(function() {
-//   month = $('.progress__form-select--month option:selected');
-//   clearPhotosToShow();
-//   setPhoto();
-//   createProgressGalleryNode();
-//   console.log(month)
-// });
-
-// var setPhoto = function () {
-//   for (var i = 0; i < progressGalleryArray.length; i++) {
-//     for(var j = 0; j < progressGalleryArray[i].length; j++) {
-//       console.log(i,j);
-
-//       if(progressGalleryArray[i][j].year == year.val() && progressGalleryArray[i][j].month == month.val()) {
-//         photosToShow.push(progressGalleryArray[i][j]);
-//         console.log('ok')
-//       } else {
-//           console.log(false);
-//       }
-//     }
-//   }
-//   console.log(photosToShow);
-// };
-
-// var clearPhotosToShow = function () {
-//   photosToShow = [];
-//   console.log(photosToShow);
-// }
-
-// // template
-
-// var fragment = document.createDocumentFragment(); // fragment
-// var template = document.querySelector('#progress-gallery'); // template
-// var progressGalleryBox = document.querySelector('#progressGalleryList'); // box
-// // var progressGalleryModal = document.querySelector('#progressGalleryModal') // analog Modal
-
-// var photosCount = 4;
-
-// var fillProgressGallery = function (element, photoData) {
-//   element.querySelector('.progress__image').setAttribute('src', photoData.photo);
-// };
-
-// var createProgressGalleryNode = function () {
-
-//   $('#progressGalleryList').empty();
-
-//   for(var i = 0; i < photosCount; i++) {
-//     var currentPhoto = template.content.cloneNode(true); // clone template
-//     var photoData = photosToShow[i]; // current analog
-
-//     fillProgressGallery(currentPhoto, photoData); // run fill func
-
-//     fragment.appendChild(currentPhoto);
-//   };
-//     progressGalleryBox.appendChild(fragment);
-// };
-
-//   setPhoto();
-
-//   createProgressGalleryNode();
-
-// }());
 ;
 (function () {
   $(document).ready(function () {
@@ -3372,7 +2510,16 @@ fillChart(currentData);
 })();
 
 
-
+function validate(evt) {
+  var theEvent = evt || window.event;
+  var key = theEvent.keyCode || theEvent.which;
+  key = String.fromCharCode( key );
+  var regex = /[0-9]|\./;
+  if( !regex.test(key) ) {
+    theEvent.returnValue = false;
+    if(theEvent.preventDefault) theEvent.preventDefault();
+  }
+}
 //--------------------------AOS--------------------------
 $(document).ready(function () {
   AOS.init({
@@ -3682,13 +2829,24 @@ $(document).ready(function () {
       $('.modal-feedback').removeClass('modal-feedback--active');
       }
     }
+    if (!$(e.target).closest('.modal-to-book__wrapper').length && !$(e.target).hasClass('btnToBook')) {
+      $('.modal-to-book').removeClass('modal-to-book--active');
+    }  
+    
   });
   $('#btnOpenMortgage').on('click', function () {
     $('.mortgage.mortgage__modal').removeClass('modal--closed');
   });
+
   $('.mortgage .modal__close-btn').on('click', function () {
     $('.mortgage.mortgage__modal').addClass('modal--closed ');
   });
+
+  $('.modal-to-book__wrapper .modal__close-btn').on('click', function () {
+    $('.modal-to-book').removeClass('modal-to-book--active');
+  });
+
+
   $('.modal-photo-galery .modal__close-btn').on('click', function () {
     $('.modal-photo-galery').removeClass('modal-photo-galery--active');
   });
