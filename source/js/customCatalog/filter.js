@@ -170,7 +170,7 @@
         } //Наш фильтр, с которым мы будем сравнивать объекты
 
         let filterList = getFilterListComplex(complexList, filter); //Возвращает отфильтрованный список комплексов (filter - объект, с которым будут сравниваться другие объекты)
-        // let geoObjectsFilter = getListPlacemarks(filterList);
+
         updateMapObjects(mapComplex, clusterer, filterList);
 
         if (widthWindow <= 768) { //если ширину меньше 768, то закрываем окно фильтра на карте
@@ -201,7 +201,7 @@
           $('.map-filter').css('height', height + 'px');
           $('.map__complex-info').css('height', (height+50)+ 'px');
         } else {
-          // $('#map').css('height', 700+'px');
+
           $('#map').css('height',$('.map-wrapper').height());
           $('.map-filter').css('height', 'auto');
           $('.map__complex-info').css('height', 'auto');
@@ -304,7 +304,7 @@
         let $parentList = $(this).closest('.catalog-complex__list');
         $parentList.find('.item-map').attr('id', '');
         if ($(this).hasClass('map-active')) {
-          // $parentList.find('.map-active').removeClass('map-active');
+
           $(this).removeClass('map-active');
           $(this).closest('.catalog-complex__item').find('.catalog-complex__item-map').addClass('catalog-complex__item-map--events-none');
           mapComplexItem.destroy();
@@ -643,10 +643,6 @@
         infoThreeRoom = getFlatInfo(flatsGroupByRoom['3 ккв']);
       }
 
-
-
-
-
       if (infoStudio != false) {
         str += '<div class="flat-type studio"><div class="flat-type__left-box">Студия от <span class="flat-type__square"><span class="flat-type__square-value">' + infoStudio.minCostSquare + '</span>м<sup>2</sup></span></div><div class="flat-type__right-box"><span class="flat-type__cost-from">' + infoStudio.minCost + '</span> - <span class="flat-type__cost-to">' + infoStudio.maxCost + '</span> млн. руб. </div></div>';
       }
@@ -665,7 +661,7 @@
       } else {
         str += '</div><div class="catalog-complex__description"><p class="description">' + infoList.description + '</p></div><div class="catalog-complex__buttons-wrap"><a href="detail.html" class="catalog-complex__btn-more pink__btn">Подробнее</a><button type="button" data-id-complex="'+infoList.id+'"class="catalog-complex__btn-show-map pink__btn"><img src="img/placeholder-red.svg"alt="">На карте</button></div></div></div>';
       }
-      // $('.catalog-complex__list').append(str);
+
       $(parent).append(str);
     }
 

@@ -1,6 +1,5 @@
-"use strict";
 
-(function () {
+$(document).ready(function () {
 
   var analogArray = [
     {
@@ -114,6 +113,8 @@
       analogBox.appendChild(fragment);
   };
 
-  createAnalogNode();
+  if ($('#analog-template').length) {
+    createAnalogNode();
+  }
 
-})();
+});

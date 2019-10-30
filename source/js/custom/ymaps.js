@@ -1,5 +1,10 @@
 ;(function() {
-  var descriptionTopY = $('#description').offset().top;
+  //var descriptionTopY = $('#description').offset().top;
+
+  let descriptionTopY;
+  if ($('#description').length) {
+    descriptionTopY= $('#description').offset().top;
+  }
 
   $(window).bind('scroll', function () {
     if ($(this).scrollTop() >= descriptionTopY) {
@@ -26,9 +31,7 @@
           .disable(['scrollZoom', 'rightMouseButtonMagnifier'])
           .enable('ruler');
       });
-      
+
     }
   });
 }) ();
-
-

@@ -1,6 +1,9 @@
-'use string';
+;
 
-(function() {
+$(document).ready(function () {
+
+  if ($('#bank').length) {
+
   var bankList = [
     {
       name: 'Сбербанк',
@@ -138,7 +141,6 @@
       bankNode.appendChild(fragment);
   };
 
-
   createBankCard();
 
   var visibleItems = 4;
@@ -174,6 +176,10 @@
     }
   });
 
+
+
   showCard();
 
-}());
+  };
+
+});

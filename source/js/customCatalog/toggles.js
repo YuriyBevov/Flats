@@ -20,10 +20,9 @@
       $(this).addClass('list-character__btn--active');
       reInitSlickFlats();
     });
-    $('.filter__btn-reset, .map-filter__btn-reset').click(function (e) { //Кнопка сброса 
+    $('.filter__btn-reset, .map-filter__btn-reset').click(function (e) { //Кнопка сброса
       $('.checkboxes').removeClass('checkboxes--active');
     });
-
 
     $('.list-type__btn').click(function (e) { //Кнопки отображения по виду
       if (!$(this).hasClass('list-type__btn-map')) {
@@ -31,19 +30,14 @@
         $(this).addClass('list-type__btn--active');
         reInitSlickFlats();
       }
-
     });
 
-   
     $('.catalog-nav__item ').click(function (e) { //header buttons
       if (!$(this).hasClass('catalog-nav__item-menu')) {
         $(this).siblings().removeClass('catalog-nav__item--active');
         $(this).addClass('catalog-nav__item--active');
-        
       }
-
     });
-
 
     $('body').on('click', function (e) {
       let $nav = $('.header-catalog__nav');
@@ -70,10 +64,8 @@
         arrows: true,
         prevArrow: '<button id="prev" type="button" class="catalog-complex__slider-prev-btn"><img src="img/catalog-slider-prev.svg" alt="img"></button>',
         nextArrow: '<button id="next" type="button" class="catalog-complex__slider-next-btn"><img src="img/catalog-slider-next.svg" alt="img"></button>',
-
       });
     }
-
 
   });
 })();

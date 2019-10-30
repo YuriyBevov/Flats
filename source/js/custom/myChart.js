@@ -1,97 +1,8 @@
-// $(document).ready(function (currentData) {
-
-// var chartData = [];
-// chartData[0] = [63, 83, 36, 90, 43, 125, 67]; //студии
-// chartData[1] = [80, 111, 44, 90, 45, 125, 110]; // 1к
-// chartData[2] = [45, 58, 87, 23, 95, 41, 54]; // 2к
-// chartData[3] = [80, 88, 75, 148, 95, 125, 46]; // 3к
-// chartData[4] = [6, 32, 5, 90, 95, 125, 110]; // 4к
-// chartData[5] = [11, 83, 75, 90, 95, 125, 30]; //5+к
-
-// var currentData = [80, 111, 44, 90, 45, 125, 110];
-
-// var btn = document.querySelectorAll('.chart__btn');
-
-// for(var i = 0; i < btn.length; i++){
-//   $(btn[i]).attr('data-item', i);
-// }
-
-// $(btn).on('click', function () {
-//   var number = $(this).attr('data-item');
-//   currentData = chartData[number];
-
-//   $('.chart__btn--active').removeClass('chart__btn--active');
-//   $(this).addClass('chart__btn--active');
-
-//   fillChart(currentData);
-// });
-
-
-// var fillChart = function (currentData) {
-
-//   var ctx = document.getElementById('myChart').getContext('2d');
-//   var dataLabels = ['нояб’18', 'дек’18', 'янв’19', 'фев’19', 'март’19', 'апр’19',
-//     'май’19'
-//   ]; //  массив для изменяемыхданных
-
-//   // console.log(currentData);
-
-//   var chart = new Chart(ctx, {
-//     // The type of chart we want to create
-//     type: 'line',
-
-//     // The data for our dataset
-//     data: {
-//       labels: dataLabels,
-//       datasets: [{
-//         label: '',
-//         backgroundColor: 'rgba(233,70,70, 0.1)',
-//         borderColor: 'rgb(233,70,70)',
-//         borderWidth: 1,
-//         pointHoverBackgroundColor: 'rgb(233,70,70)',
-//         spanGaps: true,
-//         data: currentData
-//       }]
-//     },
-
-//     // Configuration options go here
-//     options: {
-//       legend: {
-//         display: false
-//       },
-//       tooltips: {
-//         backgroundColor: '#7be37b',
-//         bodyFontSize: 16,
-//         bodyFontColor: '#fefcfc',
-//       },
-//       scales: {
-//         xAxes: [{
-//           gridLines: {
-//             display: false
-//           }
-//         }],
-//         yAxes: [{
-//           scaleLabel: {
-//             display: true
-//           },
-//           ticks: {
-//             min: 0,
-//             max: 150,
-//             stepSize: 25
-//           }
-//         }]
-//       }
-//     }
-//   });
-// }
-
-// fillChart(currentData);
-// });
-
-
 ;
-(function () {
+
   $(document).ready(function () {
+    if($('#myChart').length) {
+
     let chartData = [];
     chartData['studio'] = [63, 83, 36, 90, 43, 125, 67]; //студии
     chartData['1'] = [80, 111, 44, 90, 45, 125, 110]; // 1к
@@ -124,7 +35,7 @@
           pointRadius: 7,
           pointHoverRadius: 7,
           pointHitRadius: 7,
-          
+
         }]
       },
 
@@ -137,23 +48,7 @@
           display: false
         },
         tooltips: {
-          // backgroundColor: '#7be37b',
-          // bodyFontSize: 16,
-          // bodyFontColor: '#fefcfc',
-          // yAlign: 'bottom',
-          // xPadding: 12,
-          // // yPadding: 10,
-          // intersect: false,
-          // mode: 'point',
-          // displayColors: false,
-          // callbacks: {
-          //   label: function(tooltipItem) {
-          //       return Number(tooltipItem.yLabel);
-          //   },
-          //   title: function (tooltipItem) {
-          //     return false;
-          //   }
-          // },
+
           enabled: false,
           custom: function (tooltipModel) {
             var tooltipEl = document.getElementById('chartjs-tooltip');
@@ -217,40 +112,9 @@
           }
         },
         scales: {
-          // xAxes: [{
-          //   gridLines: {
-          //     display: false,
-          //   },
-          //   ticks: {
-          //     fontFamily: "'Open Sans', sans-serif",
-          //     fontSize: 14,
-          //     fontColor: "#545454",
-          //     color: 'blue'
-          //   }
-          // }],
-          // yAxes: [{
-          //   color: '#8d7c7c',
-          //   gridLines: {
-          //     display: true,
-          //     color: "#efdfdf",
-          //     lineWidth: 1,
-          //     drawTicks: true,
-          //     tickMarkLength: 2,
-          //     drawTicks: true,
-          //   },
-          //   scaleLabel: {
-          //         display: true,
-          //       },
-          //   ticks: {
-          //     fontFamily: "'Open Sans', sans-serif",
-          //     fontSize: 14,
-          //     min: 0,
-          //     max: 150,
-          //     stepSize: 25,
-          //   }
-          // }]
+
           xAxes: [{
-            
+
             gridLines: {
               display: true,
 						  zeroLineWidth: 1,
@@ -265,8 +129,6 @@
           yAxes: [{
             color: '#8d7c7c',
             gridLines: {
-              // // drawOnChartArea: false,
-              // drawTicks: true,
               lineWidth: 2,
               zeroLineWidth: 1,
             },
@@ -356,44 +218,44 @@
             chart.config.options.scales.xAxes.forEach(function (xAxisConfig) {
               if (!xAxisConfig.color)
                 return;
-  
+
               var ctx = chart.chart.ctx;
               var chartArea = chart.chartArea;
               var xAxis = chart.scales[xAxisConfig.id];
-  
+
               // just draw the scale again with different colors
               var color = xAxisConfig.gridLines.color;
               xAxisConfig.gridLines.color = xAxisConfig.color;
               xAxis.draw(chartArea);
               xAxisConfig.gridLines.color = color;
             });
-  
+
           if (chart.config.options.scales.yAxes)
             chart.config.options.scales.yAxes.forEach(function (yAxisConfig) {
               if (!yAxisConfig.color)
                 return;
-  
+
               var ctx = chart.chart.ctx;
               var chartArea = chart.chartArea;
               var yAxis = chart.scales[yAxisConfig.id];
-  
+
               // here, since we also have the grid lines, set a clip area for the left of the y axis
               ctx.save();
               ctx.rect(0, 0, chartArea.left + yAxisConfig.gridLines.lineWidth - 1, chartArea.bottom + yAxisConfig.gridLines.lineWidth - 1);
               ctx.clip();
-                
+
               var color = yAxisConfig.gridLines.color;
               yAxisConfig.gridLines.color = yAxisConfig.color;
               yAxis.draw(chartArea);
               yAxisConfig.gridLines.color = color;
-  
+
               ctx.restore();
             });
-  
+
           // we need to draw the tooltip so that it comes over the (redrawn) elements
           chart.tooltip.transition(easing).draw();
         }
       }
     });
+    }
   });
-})();

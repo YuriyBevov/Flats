@@ -7,7 +7,7 @@ function toNumber(x) { //Делает пробелы, между числами
   $(document).ready(function () {
 
     let arrImg = ['img/analog_1.jpg', 'img/img-video-2.jpg'] //массив фоток для одной квартиры (в данном случае этот массив пойдет всем квартирам)
-    let flats = []; //Список квартир 
+    let flats = []; //Список квартир
     flats[0] = {
       'id': 0, 'square': 18, 'floor': 3, 'totalFloor': 3, 'type': 'Без отделки', 'cost': '2400000', 'room': 1, 'imgPlan': 'img/layout.png', 'images': arrImg,
     };
@@ -156,7 +156,7 @@ function toNumber(x) { //Делает пробелы, между числами
     let countRoomFlats, arrayFlats;
     $('.flats__modalBtn').on('click', function (e) {
       e.preventDefault();
-      
+
       currentPage = 1;
       countRoomFlats = $(this).attr('data-flats');
       let $modalWindow = $('.catalog__modal');
@@ -171,7 +171,6 @@ function toNumber(x) { //Делает пробелы, между числами
         clearListTable();
         return;
       }
-
 
       if (countRoomFlats == '1') { //если 1-к квартиры
         $modalWindow.removeClass('modal--closed');
@@ -189,11 +188,7 @@ function toNumber(x) { //Делает пробелы, между числами
       arrayFlats = getFlatsByRoom(flats, parseInt(countRoomFlats));
       flatsOut(arrayFlats, countRoomFlats, true);
       $('catalog__modal').scrollTop(0);
-
     });
-
-
-
 
 
     function flatsOut(flats, countRoom, pagination) { //Выводит квартиры в модальное окно. Создает одну таблицу
@@ -224,7 +219,7 @@ function toNumber(x) { //Делает пробелы, между числами
         str += '<td><div>' + toNumber(flats[i].cost) + '</div></td>';
         str += '</tr>';
         str += '<div class="catalog-item"><div class="catalog-item__num">' + countRoom + '-к квартира № 115</div><div class="catalog__slide-wrap"><div class="catalog__slider">';
-        
+
         for (let j = 0; j < flats[i].images.length; j++) {
           const img = flats[i].images[j];
           str += '<div class="catalog__slider-item"><img src="'+img+'" alt="image"></div>';
@@ -233,18 +228,16 @@ function toNumber(x) { //Делает пробелы, между числами
       }
       str += '</tbody></table>';
       $tableList.append(str);
-      
+
       updateImage(imgPathActiveItem, idActiveItem);
       if (totalPage > 1) {
-
       }
       catalogSliderInit(); //Включить слайдеры
-      
+
       if (pagination) {
-        
         updatePagination(totalPage); //Обновляем пагинацию
       }
-     
+
       initObr(); //Обновляем обработчики
     }
 
@@ -252,7 +245,7 @@ function toNumber(x) { //Делает пробелы, между числами
       $('.tr-catalog-item').off('click');
       $('.tr-catalog-item').on('click', function () {
         $(this).addClass('tr-catalog-item--active').siblings('.tr-catalog-item').removeClass('tr-catalog-item--active');
-        let img = $(this).attr('data-img-plan'); //берем картинку планировки 
+        let img = $(this).attr('data-img-plan'); //берем картинку планировки
         let id = $(this).attr('data-id'); //берем id
         updateImage(img, id); //Обновляем картинку планировки
       });
@@ -293,22 +286,18 @@ function toNumber(x) { //Делает пробелы, между числами
         }
         $('.btn-submit-to-book').attr('data-id', id);
         $('.modal-to-book .modal__title').text(str)
-        
+
       });
       $('.wrap-heart').off('click');
       $('.wrap-heart').on('click', function () {
         $(this).children('.heart-fill').toggleClass('hidden');
-        
       });
-
-
     }
 
     function updatePagination(total) {
       let $parent = $('.catalog-pagination__list');
       $parent.html('');
-      
-        
+
       let str = '';
       for (let i = 0; i < total; i++) {
         if (i == currentPage) {
@@ -317,7 +306,7 @@ function toNumber(x) { //Делает пробелы, между числами
           str += '<div class="catalog-pagination__item">' + (i + 1) + '</div>';
         }
         }
-        
+
       if (totalPage > 1 && currentPage == 1) {
         $('.btn-show-more').removeClass('hidden');
         $parent.addClass('hidden');
@@ -335,24 +324,20 @@ function toNumber(x) { //Делает пробелы, между числами
     function catalogSliderInit() {
       $('.catalog__slider').slick({
         arrows: false,
-        // arrows: true,
-        // prevArrow: '<button id="prev" type="button" class="catalog__slider-prevBtn"></button>',
-        // nextArrow: '<button id="next" type="button" class="catalog__slider-nextBtn"></button>',
         slidesToShow: 1,
-        // mobileFirst: true,
       });
       $('.catalog__slider-item img').off('click');
       $('.catalog__slider-item img').on('click', function () {
         $(this).closest('.catalog__slider').slick('slickNext');
       });
-      
+
     }
 
     function catalogSliderDestroy() {
       if ($('.catalog__slider').length) {
         $('.catalog__slider').slick('unslick');
       }
-     
+
     }
 
     function getCountFlatsByRoom(arrObj, num) { //Считает кол-во квартир определенного типа (1ком., 2ком., студия и т.д.)
@@ -399,11 +384,6 @@ function toNumber(x) { //Делает пробелы, между числами
           clearListTable();
         }
       }
-      // if (!$(e.target).closest('.catalog__modal')&& !$(e.target).hasClass('.flats__link')) {
-      //   $('.catalog__modal').addClass('modal--closed');
-      //     $('.catalog__modal').attr('data-flats', '0');
-      //     clearListTable();
-      // }
     });
   });
 })();

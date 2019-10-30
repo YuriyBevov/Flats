@@ -1,6 +1,4 @@
 ;
-(function () {
-
   $(document).ready(function () {
 
     let catalogComplexSection;
@@ -49,6 +47,3 @@
       }
     });
   });
-
-
-})();
