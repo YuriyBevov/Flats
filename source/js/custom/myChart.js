@@ -184,7 +184,6 @@
     });
 
     function updateSize(chart, options) {
-      console.log(chart.options.scales.yAxes[0].gridLines);
 
       chart.data.datasets[0].borderWidth = options['borderWidth'];
       chart.data.datasets[0].pointRadius = options['pointRadius'];

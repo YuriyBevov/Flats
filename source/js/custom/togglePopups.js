@@ -8,7 +8,7 @@ $(document).ready(function () {
     $('.main-nav__list').toggle('hidden');
   });
 
-  $('body').on('click', function (e) {
+  /*$('body').on('click', function (e) {
     if(!$(e.target).hasClass('light__btn')){
     if (!$('.modal').hasClass('modal--closed')) {
       if (!$(e.target).closest('.modal__wrapper').length) {
@@ -27,7 +27,7 @@ $(document).ready(function () {
       $('.modal-to-book').removeClass('modal-to-book--active');
     }
 
-  });
+  });*/
 
 
   $('.modal-to-book__wrapper .modal__close-btn').on('click', function () {

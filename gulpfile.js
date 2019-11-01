@@ -23,11 +23,11 @@ var concat = require('gulp-concat');
 gulp.task('scripts', function () {
   return gulp.src(['source/js/libs/*.js'])
     .pipe(concat('tempMin.js'))
-    .pipe(jsmin())
+    //.pipe(jsmin())
     // .pipe(gulp.dest('source/js/temp'))
     // .pipe(gulp.src(['source/js/temp/*.js', 'source/js/script.js']))
     .pipe(gulp.src('source/js/custom/*.js'))
-    .pipe(concat('totalScript.js'))
+    .pipe(concat('script.js'))
     .pipe(gulp.dest('./build/js'))
 
     // .pipe(gulp.src(['source/js/jquery-3.4.1.min.js', 'source/js/lazyload.min.js', 'source/js/script.js', 'source/js/']))
@@ -39,7 +39,7 @@ gulp.task('scriptsCatalog', function () {
     .pipe(concat('tempMin.js'))
     .pipe(jsmin())
     .pipe(gulp.src('source/js/customCatalog/*.js'))
-    .pipe(concat('totalScriptsCatalog.js'))
+    .pipe(concat('catalog.js'))
     .pipe(gulp.dest('./build/js'))
 });
 
@@ -55,8 +55,8 @@ gulp.task('watchEgorCatalog', function () {
   gulp.watch(['source/js/customCatalog/*.js','source/js/libs/*.js'], gulp.parallel('scriptsCatalog'));
   gulp.watch(['source/img/**/*.{jpg,png,svg}'], gulp.parallel('image'));
 });
-//---------------------------------------------
 
+//---------------------------------------------
 
 gulp.task("css", function () {
   return gulp.src("source/less/style.less")

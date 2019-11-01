@@ -4,7 +4,7 @@
     let catalogComplexSection;
     if ($('.catalog-complex-box').length) {
       catalogComplexSection= $('.catalog-complex-box').offset().top;
-    }
+
     $(window).bind('scroll', function () {
       if ($(this).scrollTop() >= catalogComplexSection) {
         //ДОБАВЛЕНИЕ СЛАЙДОВ В СЛАЙДЕР
@@ -46,4 +46,5 @@
         $(this).unbind('scroll');
       }
     });
+  }
   });

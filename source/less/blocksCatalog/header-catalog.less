@@ -75,7 +75,7 @@
 .catalog-nav {
   z-index: 101;
   padding-left: 28px;
-  
+
 
 
   &__item {
@@ -243,7 +243,7 @@
 }
 
 @media (max-width:@laptop-width) {
-  
+
 
   .catalog-nav {
     opacity: 0;
@@ -282,7 +282,7 @@
 
     &__item {
       margin-left: 30px;
-      
+
       a {
         width: 100%;
         display: flex;
@@ -304,7 +304,7 @@
       padding: 0;
       margin: 0;
     }
-    
+
     &__item-menu {
       flex-direction: column;
 
@@ -326,13 +326,13 @@
       // }
     }
   }
-  
+
   .catalog-nav__drop {
     width: 200px;
     padding: 10px 30px 0 20px;
     visibility: hidden;
     opacity: 0;
-    
+
     .catalog-nav__item {
       margin: 0;
       margin-bottom: 20px;
@@ -405,6 +405,7 @@
 
     .btn-open-nav {
       display: block;
+      cursor: pointer;
     }
   }
 
@@ -413,7 +414,6 @@
 @media (max-width:@tablet-width) {
   .header-catalog {
 
-    // padding: 0 56px;
     &__wrap {
       height: auto;
       margin-top: 16px;
@@ -426,7 +426,6 @@
       width: 338px;
       justify-content: space-between;
     }
-
 
     &__right-box {
       justify-content: flex-end;
@@ -461,14 +460,14 @@
   }
 
   .catalog-nav {
-    top: 36px;
+    top: 46px;
     z-index: 101;
   }
 }
 
 @media (max-width:@mobile-large-width) {
-  .catalog-nav{
-    top: 66px;
+  .catalog-nav {
+    top: 100px;
     width: 100%;
     max-width: 100%;
     z-index: 101;
@@ -505,13 +504,11 @@
         }
       }
     }
-
   }
 }
 
 @media (max-width:@mobile-middle-width) {
   .header-catalog {
-
 
     &__cities {
       flex-direction: row;
@@ -524,30 +521,8 @@
       padding: 0 18px;
     }
 
-
-    // &__right-box{
-    //   justify-content: flex-end;
-    // }
     &__cities-btn {
       width: 136px;
     }
-
-    // &__logo {
-    //   max-width: 86px;
-    //   height: 50px;
-    //   flex-shrink: 0;
-    //   img{
-    //     width: 100%;
-    //     height: auto;
-    //   }
-    // }
-
-    // .hr{
-    //   display: block;
-    //   margin-bottom: 0;
-    //   margin-top: 12px;
-    //   margin-left: -18px;
-    //   margin-right: -18px;
-    // }
   }
 }

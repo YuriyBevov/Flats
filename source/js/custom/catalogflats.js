@@ -188,8 +188,8 @@ function toNumber(x) { //Делает пробелы, между числами
       arrayFlats = getFlatsByRoom(flats, parseInt(countRoomFlats));
       flatsOut(arrayFlats, countRoomFlats, true);
       $('catalog__modal').scrollTop(0);
-    });
 
+    });
 
     function flatsOut(flats, countRoom, pagination) { //Выводит квартиры в модальное окно. Создает одну таблицу
       catalogSliderDestroy(); //Отключить слайдеры
@@ -224,17 +224,19 @@ function toNumber(x) { //Делает пробелы, между числами
           const img = flats[i].images[j];
           str += '<div class="catalog__slider-item"><img src="'+img+'" alt="image"></div>';
         }
-        '</div></div><div class="catalog-item__cost">' + toNumber(flats[i].cost) + '</div><div class="catalog-item__inner-flats"><div class="left-block"><span class="catalog-item__square">' + flats[i].square + ' м2</span><span class="catalog-item__floor">' + flats[i].floor + '/' + flats[i].totalFloor + ' этаж</span></div><span class="more">Подробнее</span></div><button type="button" class="catalog-item__btn pink__btn">Записаться на просмотр</button></div>';
+        str+='</div></div><div class="catalog-item__cost">' + toNumber(flats[i].cost) + '</div><div class="catalog-item__inner-flats"><div class="left-block"><span class="catalog-item__square">' + flats[i].square + ' м2</span><span class="catalog-item__floor">' + flats[i].floor + '/' + flats[i].totalFloor + ' этаж</span></div><span class="more">Подробнее</span></div><button type="button" class="catalog-item__btn pink__btn" data-id="'+ flats[i].id +'">Записаться на просмотр</button></div>';
       }
       str += '</tbody></table>';
       $tableList.append(str);
 
       updateImage(imgPathActiveItem, idActiveItem);
       if (totalPage > 1) {
+
       }
       catalogSliderInit(); //Включить слайдеры
 
       if (pagination) {
+
         updatePagination(totalPage); //Обновляем пагинацию
       }
 
@@ -298,13 +300,14 @@ function toNumber(x) { //Делает пробелы, между числами
       let $parent = $('.catalog-pagination__list');
       $parent.html('');
 
+
       let str = '';
       for (let i = 0; i < total; i++) {
         if (i == currentPage) {
           str += '<div class="catalog-pagination__item catalog-pagination__item--active">' + (i + 1) + '</div>';
         } else {
           str += '<div class="catalog-pagination__item">' + (i + 1) + '</div>';
-        }
+          }
         }
 
       if (totalPage > 1 && currentPage == 1) {
@@ -318,7 +321,6 @@ function toNumber(x) { //Делает пробелы, между числами
         $parent.addClass('hidden');
       }
       $parent.append(str);
-
     }
 
     function catalogSliderInit() {
@@ -330,17 +332,15 @@ function toNumber(x) { //Делает пробелы, между числами
       $('.catalog__slider-item img').on('click', function () {
         $(this).closest('.catalog__slider').slick('slickNext');
       });
-
     }
 
     function catalogSliderDestroy() {
       if ($('.catalog__slider').length) {
         $('.catalog__slider').slick('unslick');
       }
-
     }
 
-    function getCountFlatsByRoom(arrObj, num) { //Считает кол-во квартир определенного типа (1ком., 2ком., студия и т.д.)
+    function getCountFlatsByRoom(arrObj, num) { // Считает кол-во квартир определенного типа (1ком., 2ком., студия и т.д.)
       let sum = 0;
       for (let i = 0; i < arrObj.length; i++) {
         const room = arrObj[i].room;
@@ -351,7 +351,7 @@ function toNumber(x) { //Делает пробелы, между числами
       return sum;
     }
 
-    function getFlatsByRoom(arrObj, num) { //Возвращает квартиры определенного типа
+    function getFlatsByRoom(arrObj, num) { // Возвращает квартиры определенного типа
       let tempArray = [];
       for (let i = 0; i < arrObj.length; i++) {
         const room = arrObj[i].room;
@@ -362,7 +362,7 @@ function toNumber(x) { //Делает пробелы, между числами
       return tempArray;
     }
 
-    function clearListTable() { //Очищает список таблиц
+    function clearListTable() { // Очищает список таблиц
       catalogSliderDestroy();
       $tableList.empty();
     };
@@ -373,10 +373,10 @@ function toNumber(x) { //Делает пробелы, между числами
     }
     $('.modal-to-book__form-input.phone').off();
     $('.modal-to-book__form-input.phone').on('keypress', function (e) {
-      validate(e);//функция из sctipt.js
+      validate(e); // функция из validate.js
     });
 
-    $('body').on('click', function (e) { //Закрытие модального окна по клику на фон
+    $('body').on('click', function (e) { // Закрытие модального окна по клику на фон
       if ($('.catalog__modal').has(e.target).length === 0 && $('.flats__link').has(e.target).length === 0 && !$(e.target).closest('.catalog__modal').length && !$(e.target).closest('.modal-to-book').length) { //Если не содержит этот target
         if (!$('.catalog__modal').hasClass('modal--closed') && !$(e.target).hasClass('flats__link')) {
           $('.catalog__modal').addClass('modal--closed');

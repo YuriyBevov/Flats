@@ -1,0 +1,81 @@
+.mainMortgage__wrapper {
+  .container();
+  padding: 0 20px;
+  padding-top: 40px;
+  margin-bottom: 40px;
+}
+
+.mainMortgage__title {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 18px;
+  margin-bottom: 20px;
+  color: @primary-black;
+}
+
+.mainMotgage__btn {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.mainMortage__list {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: baseline;
+}
+
+@media (min-width: @tablet-width) {
+  .mainMortgage__wrapper {
+    .container();
+    padding-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  .mainMortgage__title {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+}
+
+@media (min-width: @desktop-width) {
+  .mainMortgage__wrapper {
+    .container();
+    padding-top: 80px;
+    margin-bottom: 80px;
+  }
+
+  .mainMortgage__title {
+    font-size: 22px;
+    margin-bottom: 60px;
+  }
+
+  .mainMortage__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .mainMortgage__item {
+    margin-right: 40px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .mainMortgage__content {
+    position: relative;
+    padding: 0 150px;
+  }
+
+  .mainMortgage__chance {
+    top: 0;
+    right: 200px;
+  }
+
+  .mainMortgage__footer {
+    margin-bottom: 60px;
+  }
+}

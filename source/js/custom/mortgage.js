@@ -56,55 +56,6 @@ $(document).ready(function () {
     }
     checkExpectancy();
   });
-  //Открытие закрытие модальных окон
-  /*$('body').on('click', function (e) {
-    if(!$(e.target).hasClass('light__btn')){
-    if (!$('.modal').hasClass('modal--closed')) {
-      if (!$(e.target).closest('.modal__wrapper').length) {
-        $('.modal').addClass('modal--closed');
-      }
-    }
-
-    if (!$(e.target).closest('.consultation__wrapper').length) {
-      $('.consultation__modal').addClass('modal--closed');
-      }
-    if (!$(e.target).closest('.modal-feedback__wrapper').length) {
-      $('.modal-feedback').removeClass('modal-feedback--active');
-      }
-    }
-    if (!$(e.target).closest('.modal-to-book__wrapper').length && !$(e.target).hasClass('btnToBook')) {
-      $('.modal-to-book').removeClass('modal-to-book--active');
-    }
-
-  });
-  $('#btnOpenMortgage').on('click', function () {
-    $('.mortgage.mortgage__modal').removeClass('modal--closed');
-  });
-
-  $('.mortgage .modal__close-btn').on('click', function () {
-    $('.mortgage.mortgage__modal').addClass('modal--closed ');
-  });
-
-  $('.modal-to-book__wrapper .modal__close-btn').on('click', function () {
-    $('.modal-to-book').removeClass('modal-to-book--active');
-  });
-
-
-  $('.modal-photo-galery .modal__close-btn').on('click', function () {
-    $('.modal-photo-galery').removeClass('modal-photo-galery--active');
-  });
-
-  $('#btnOpenExcursionModal').on('click', function () {
-    $('.excursion.excursion__modal').removeClass('modal--closed ');
-  });
-  $('.excursion .modal-close-btn').on('click', function () {
-    $('.excursion.excursion__modal').addClass('modal--closed');
-  });
-  $('.modal__header-btn-close').on('click', function () {
-    $(this).closest('.modal').addClass('modal--closed');
-  });*/
-
-
 
   $($mortgagePayment).on('input', function () {
     valueMortgagePayment = $(this).val();
@@ -159,6 +110,7 @@ $(document).ready(function () {
     }
     $result.text(result);
   }
+
   //-----------------калькулятор модальное окно--------------------
   //-----калькулятор
   var contributionVal = 0,
