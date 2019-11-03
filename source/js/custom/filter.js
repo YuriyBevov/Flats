@@ -1066,7 +1066,6 @@
       //------------------------------------------------------------------------
 
       function clickFilterInput() {
-        console.log('click');
 
         $('.filter__form-inner').find('.filter__input').removeClass('filter__input--active-select');
         $('.map-filter__form-inner').find('.map-filter__input').removeClass('filter__input--active-select');
