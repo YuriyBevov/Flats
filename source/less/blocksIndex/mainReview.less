@@ -13,7 +13,8 @@
 
 @media (min-width: @desktop-width) {
   .mainReview__box {
-    margin-bottom: 70px;
+    padding: 80px 20px;
+    padding-bottom: 0;
   }
 }
 
@@ -21,7 +22,6 @@
   width: 100%;
   max-width: 1244px;
   margin: 0 auto;
-  padding: 0 14px;
 }
 
 .mainReview__slider-box {
@@ -30,8 +30,8 @@
   &__title {
     font-size: 22px;
     font-weight: 700;
+    margin-bottom: 50px;
   }
-
 }
 
 .mainReview__slider-slider {
@@ -71,7 +71,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    // transform: translate(0, -50%);
     box-shadow: -2px 0.1px 6px 0px rgba(134, 134, 134, 0.3);
 
   }
@@ -118,6 +117,10 @@
       right: 10px;
     }
   }
+
+  .mainReview__title {
+    width: 728px;
+  }
 }
 @media (max-width:@tablet-width) {
   .mainReview__slider-slider {
@@ -134,7 +137,6 @@
       margin: auto;
     }
   }
-
 
 }
 @media (max-width:@mobile-large-width) {

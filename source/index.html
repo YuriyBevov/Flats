@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="css/style.css" rel="stylesheet">
+  <link href="css/swiper.css" rel="stylesheet">
   <title>Site</title>
 
 <body>
@@ -185,8 +186,8 @@
               <span class="filter-field__name filter-field__name-cost">Стоимость:</span>
               <div class="filter-field-cost__wrap">
                 <input type="text" class='filter__cost-from filter__input' name=" cost-from" id="cost-from"
-                  placeholder="от">
-                <input type=" text" class='filter__cost-to filter__input' name="cost-to" id="cost-to" placeholder="до">
+                  value="от">
+                <input type="text" class='filter__cost-to filter__input' name="cost-to" id="cost-to" value="до">
               </div>
             </div>
 
@@ -351,9 +352,9 @@
               <span class="filter-field__name filter-field__name-square">Площадь:</span>
               <div class="filter-field-cost__wrap">
                 <input type="text" class='filter__square-from filter__input' name=" square-from" id="square-from"
-                  placeholder="от">
-                <input type=" text" class='filter__square-to filter__input' name="square-to" id="square-to"
-                  placeholder="до">
+                  value="от">
+                <input type="text" class='filter__square-to filter__input' name="square-to" id="square-to"
+                  value="до">
               </div>
             </div>
           </div>
@@ -450,12 +451,12 @@
 
   <section class="offer">
     <div class="offer__wrapper">
-      <ul class="offer_list offer__slider" id="offerList">
-        <!-- offerCard template -->
-      </ul>
-      <div class="offer__buttons-box">
-        <a href="detail.html" class="offer__showBtn light__btn">Подробнее</button>
-        <button type='button' class="offer__callBtn pink__btn">Позвонить</button>
+      <h2 class="offer__title">Лучшие предложения</h2>
+      <div class="swiper-container">
+        <ul class="offer__list offer__slider swiper-wrapper" id="offerList">
+          <!-- offerCard template -->
+        </ul>
+        <div class="swiper-scrollbar"></div>
       </div>
     </div>
   </section>
@@ -474,9 +475,7 @@
 
   <section class="mortage mainMortgage">
     <div class="mainMortgage__wrapper">
-
       <h3 class="mainMortgage__title">Подайте заявку во все банки в один клик</h3>
-
       <ul class="mainMortage__list">
         <li class="mainMortgage__item">
           <picture>
@@ -613,35 +612,28 @@
     </div>
   </section>
 
-  <section class="news">
-    <div class="news__wrapper">
-      <h2 class="news__title">Новости</h2>
-      <ul class="news__list news__slider">
-        <li class="news__item">
-          <img src="img/analog_1.jpg" alt="новости">
-          <a href="#" class="news__btn light__btn">Подробнее</a>
+  <section class="tidings">
+    <div class="tidings__wrapper">
+      <h2 class="tidings__title">Новости</h2>
+      <div class="tidings-swiper-container">
+      <ul class="tidings__list">
+        <li class="tidings__item">
+          <a href="#" class="tidings__btn light__btn">Подробнее</a>
         </li>
-        <li class="news__item">
-          <img src="img/analog_1.jpg" alt="новости">
-          <a href="#" class="news__btn light__btn">Подробнее</a>
+        <li class="tidings__item">
+          <a href="#" class="tidings__btn light__btn">Подробнее</a>
         </li>
-        <li class="news__item">
-          <img src="img/analog_1.jpg" alt="новости">
-          <a href="#" class="news__btn light__btn">Подробнее</a>
+        <li class="tidings__item">
+          <a href="#" class="tidings__btn light__btn">Подробнее</a>
         </li>
-        <li class="news__item">
-          <img src="img/analog_1.jpg" alt="новости">
-          <a href="#" class="news__btn light__btn">Подробнее</a>
+        <li class="tidings__item">
+          <a href="#" class="tidings__btn light__btn">Подробнее</a>
         </li>
-        <li class="news__item">
-          <img src="img/analog_1.jpg" alt="новости">
-          <a href="#" class="news__btn light__btn">Подробнее</a>
-        </li>
-        <li class="news__item">
-          <img src="img/analog_1.jpg" alt="новости">
-          <a href="#" class="news__btn light__btn">Подробнее</a>
+        <li class="tidings__item">
+          <a href="#" class="tidings__btn light__btn">Подробнее</a>
         </li>
       </ul>
+      </div>
     </div>
   </section>
 
@@ -819,10 +811,10 @@
             <div class="map-filter-field map-filter-field-cost">
               <span class="map-filter-field__name map-filter-field__name-cost">Стоимость:</span>
               <div class="map-filter-field-cost__wrap">
-                <input type="text" class='map-filter__cost-from map-filter__input' name=" cost-from" id="cost-from"
-                  placeholder="от">
-                <input type=" text" class='map-filter__cost-to map-filter__input' name="cost-to" id="cost-to"
-                  placeholder="до">
+                <input type="text" class='map-filter__cost-from map-filter__input' name="cost-from" id="cost-from"
+                  value="от">
+                <input type="text" class='map-filter__cost-to map-filter__input' name="cost-to" id="cost-to"
+                  value="до">
               </div>
             </div>
 
@@ -978,8 +970,8 @@
               <div class="map-filter-field-cost__wrap">
                 <input type="text" class='map-filter__square-from map-filter__input' name=" square-from"
                   id="square-from" placeholder="от">
-                <input type=" text" class='map-filter__square-to map-filter__input' name="square-to" id="square-to"
-                  placeholder="до">
+                <input type="text" class='map-filter__square-to map-filter__input' name="square-to" id="square-to"
+                  value="до">
               </div>
             </div>
 
@@ -1223,19 +1215,37 @@
     </div>
   </section>
 
+  <section class="callback__modal modal modal--closed">
+    <div class="callback__modal-wrapper modal__wrapper">
+      <div class="modal__title-box callback__title-box">
+        <h3 class="modal__title callback__modal-title">Подать заявку</h3>
+        <button type="button" class="callback__modal-closeBtn">
+          &#10006;<span class="visually-hidden">Закрыть окно</span>
+        </button>
+      </div>
+      <p class="callback__description">Наш менеджер свяжется с вами <b>через 3 минуты</b></p>
+    </div>
+  </section>
+
   <template id="offerCard">
-    <li class="offer__item">
+    <li class="offer__item swiper-slide">
       <div class="offer__img-box">
         <img class="offer__img" src="" alt="фото ЖК" width="320" height="250">
         <p class="offer__name"></p>
       </div>
-      <div class="offer__position-box">
-          <img class="offer__position-icon" src="img/metro-el.svg" alt="иконка автобуса">
-          <span class="offer__position-metro"></span>
-          <span class="offer__position-distance"></span>
-      </div>
-      <div class="offer__info-wrapper">
-        <!-- info template-->
+      <div class="offer__item-box">
+        <div class="offer__position-box">
+            <img class="offer__position-icon" src="img/metro-el.svg" width="10" height="11" alt="иконка автобуса">
+            <span class="offer__position-metro"></span>
+            <span class="offer__position-distance"></span>
+        </div>
+        <div class="offer__info-wrapper">
+          <!-- info template-->
+        </div>
+        <div class="offer__buttons-box">
+          <a href="detail.html" class="offer__showBtn light__btn">Подробнее</a>
+          <button type='button' class="offer__callBtn pink__btn">Позвонить</button>
+        </div>
       </div>
     </li>
   </template>
@@ -1254,6 +1264,8 @@
   <script src="js/jQmigrate.js"></script>
   <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
   <script src="js/slick.min.js"></script>
+  <script src="js/swiper.min.js"></script>
+
   <script src="js/script.js"></script>
 
   </body>
