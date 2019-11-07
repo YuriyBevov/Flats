@@ -8,7 +8,9 @@
 
 .mainReview__title {
   .container();
-  margin-bottom: 25px;
+  width: 320px;
+  margin: 0 auto;
+  margin-bottom: 15px;
 }
 
 @media (min-width: @desktop-width) {
@@ -106,7 +108,6 @@
     &__item-desc{
       width: 240px;
       font-size: 14px;
-      // line-height: 16px;
     }
 
     &__slider-prev-btn {
@@ -116,10 +117,6 @@
     &__slider-next-btn {
       right: 10px;
     }
-  }
-
-  .mainReview__title {
-    width: 728px;
   }
 }
 @media (max-width:@tablet-width) {
@@ -142,5 +139,12 @@
 @media (max-width:@mobile-large-width) {
   .mainReview__slider-box{
     margin-top: 30px;
+  }
+}
+
+@media (min-width: @desktop-width) {
+  .mainReview__btn {
+    width: 300px;
+    min-height: 50px;
   }
 }

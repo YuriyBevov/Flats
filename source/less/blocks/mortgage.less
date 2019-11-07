@@ -108,16 +108,9 @@
   background-color: @primary-white;
   padding: 15px 20px;
 
-
   &:last-child {
     margin-bottom: 0;
   }
-
-  &::placeholder {
-    padding: 15px 20px;
-  }
-
-
 }
 
 .mortgage-field {
@@ -310,12 +303,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  // order: 1;
   order: 2;
 }
 
 .mortgage__info-box {
   width: 320px;
+  font-size: 11px;
   min-height: 30px;
   margin: 0 auto;
   margin-bottom: 26px;
@@ -324,11 +317,10 @@
 
 .mortgage__security {
   display: block;
-  font-size: 11px;
   font-weight: 400;
   line-height: 16px;
   padding-left: 20px;
-  color: #030303;
+  color: @primary-grey;
 }
 
 .mortgage__form-invalid {
@@ -346,8 +338,16 @@
   &+label {
     position: relative;
     cursor: pointer;
-    color: @secondary-red;
     border: 2px solid @primary-grey;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: #929292;
   }
 
   &:checked+label {
@@ -365,6 +365,10 @@
   }
   .mortgage__capital label {
     margin: auto;
+  }
+
+  .mortgage__info-box {
+    font-size: 12px;
   }
 
   .mortgage-field {
@@ -458,18 +462,6 @@
   .mortgage__label {
     font-size: 14px;
   }
-
-  // .Слой_605 {
-  //   background-image: url("Слой 605.png");
-  //   opacity: 0.149;
-  //   position: absolute;
-  //   left: 2px;
-  //   top: 61px;
-  //   width: 1440px;
-  //   height: 11078px;
-  //   z-index: 688;
-  // }
-
 }
 
 @media (min-width: @desktop-width) {
@@ -503,9 +495,7 @@
   }
 
   .mortgage__modal.modal {
-
     background-color: rgba(0, 0, 0, 0.14);
-
   }
 
   .modal__content.mortgage {
@@ -542,8 +532,6 @@
     display: flex;
     justify-content: center;
     margin-top: 36px;
-
-
   }
 
   .mortgage__wrapper {
@@ -610,7 +598,6 @@
 
   .mortgage__security {
     margin-top: 10px;
-    font-size: 12px;
     width: 220px;
   }
 

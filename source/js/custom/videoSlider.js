@@ -56,8 +56,6 @@ $(document).ready(function () {
     slidesToShow: 1,
     arrows: false,
     dots: false,
-    // variableWidth: true,
-    // infinite: false,
     responsive: [{
         breakpoint: 768,
         settings: {
@@ -84,9 +82,9 @@ $(document).ready(function () {
       $video.addClass('slide__video-active');
       $img.addClass('slide__img-none');
       if (readyPlayer == listPlayers.length) {
-              listPlayers[+idSlide].playVideo();
-            }
-      //listPlayers[+idSlide].playVideo();
+        listPlayers[+idSlide].playVideo();
+      }
+
       $(this).removeClass('btn-pause--none');
       return;
     }

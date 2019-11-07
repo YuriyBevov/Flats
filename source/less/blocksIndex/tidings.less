@@ -4,7 +4,7 @@
 }
 
 .tidings__title {
-  font-size: 22px;
+  font-size: 15px;
   font-weight: 600;
   line-height: 18px;
   color: @primary-black;
@@ -41,6 +41,17 @@
   text-decoration: none;
   min-height: 30px;
   border: 1px solid @primary-pink;
+}
+
+@media (min-width: @tablet-width) {
+  .tidings__title {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+
+  .tidings__list {
+    margin-bottom: 40px;
+    }
 }
 
 @media (min-width: @desktop-width) {
