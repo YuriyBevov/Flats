@@ -224,7 +224,7 @@ function toNumber(x) { //Делает пробелы, между числами
           const img = flats[i].images[j];
           str += '<div class="catalog__slider-item"><img src="'+img+'" alt="image"></div>';
         }
-        str+='</div></div><div class="catalog-item__cost">' + toNumber(flats[i].cost) + '</div><div class="catalog-item__inner-flats"><div class="left-block"><span class="catalog-item__square">' + flats[i].square + ' м2</span><span class="catalog-item__floor">' + flats[i].floor + '/' + flats[i].totalFloor + ' этаж</span></div><span class="more">Подробнее</span></div><button type="button" class="catalog-item__btn pink__btn" data-id="'+ flats[i].id +'">Записаться на просмотр</button></div>';
+        str+='</div></div><div class="catalog-item__cost">' + toNumber(flats[i].cost) + '</div><div class="catalog-item__inner-flats"><div class="left-block"><span class="catalog-item__square">' + flats[i].square + ' м2</span><span class="catalog-item__floor">' + flats[i].floor + '/' + flats[i].totalFloor + ' этаж</span></div></div><button type="button" class="catalog-item__btn pink__btn" data-id="'+ flats[i].id +'">Записаться на просмотр</button></div>';
       }
       str += '</tbody></table>';
       $tableList.append(str);
@@ -241,6 +241,10 @@ function toNumber(x) { //Делает пробелы, между числами
       }
 
       initObr(); //Обновляем обработчики
+
+        $('.catalog-item__btn').on('click', function () { // открытие модалки с датапикером
+          $('.excursion__modal').removeClass('modal--closed');
+        });
     }
 
     function initObr() {
@@ -385,5 +389,7 @@ function toNumber(x) { //Делает пробелы, между числами
         }
       }
     });
+
+      //console.log($('.catalog-item__btn').length);
   });
 })();

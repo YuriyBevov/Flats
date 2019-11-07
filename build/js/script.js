@@ -15403,7 +15403,7 @@ function toNumber(x) { //Делает пробелы, между числами
           const img = flats[i].images[j];
           str += '<div class="catalog__slider-item"><img src="'+img+'" alt="image"></div>';
         }
-        str+='</div></div><div class="catalog-item__cost">' + toNumber(flats[i].cost) + '</div><div class="catalog-item__inner-flats"><div class="left-block"><span class="catalog-item__square">' + flats[i].square + ' м2</span><span class="catalog-item__floor">' + flats[i].floor + '/' + flats[i].totalFloor + ' этаж</span></div><span class="more">Подробнее</span></div><button type="button" class="catalog-item__btn pink__btn" data-id="'+ flats[i].id +'">Записаться на просмотр</button></div>';
+        str+='</div></div><div class="catalog-item__cost">' + toNumber(flats[i].cost) + '</div><div class="catalog-item__inner-flats"><div class="left-block"><span class="catalog-item__square">' + flats[i].square + ' м2</span><span class="catalog-item__floor">' + flats[i].floor + '/' + flats[i].totalFloor + ' этаж</span></div></div><button type="button" class="catalog-item__btn pink__btn" data-id="'+ flats[i].id +'">Записаться на просмотр</button></div>';
       }
       str += '</tbody></table>';
       $tableList.append(str);
@@ -15420,6 +15420,10 @@ function toNumber(x) { //Делает пробелы, между числами
       }
 
       initObr(); //Обновляем обработчики
+
+        $('.catalog-item__btn').on('click', function () { // открытие модалки с датапикером
+          $('.excursion__modal').removeClass('modal--closed');
+        });
     }
 
     function initObr() {
@@ -15564,6 +15568,8 @@ function toNumber(x) { //Делает пробелы, между числами
         }
       }
     });
+
+      //console.log($('.catalog-item__btn').length);
   });
 })();
 
@@ -18055,58 +18061,62 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-  var swiper = new Swiper('.swiper-container', {
-    direction: 'horizontal',
-    loop: false,
-    slideToClickedSlide: true,
-    spaceBetween: 20,
+  if($('.swiper-container').length) {
+    var swiper = new Swiper('.swiper-container', {
+      direction: 'horizontal',
+      loop: false,
+      slideToClickedSlide: true,
+      spaceBetween: 20,
 
-    scrollbar: {
-      el: '.swiper-scrollbar',
-      hide: false,
-      draggable: true,
-    },
+      scrollbar: {
+        el: '.swiper-scrollbar',
+        hide: false,
+        draggable: true,
+      },
 
-    breakpoints: {
-      1360: {
-        slidesPerView: 3,
-        spaceBetween: 35,
+      breakpoints: {
+        1360: {
+          slidesPerView: 3,
+          spaceBetween: 35,
+        }
       }
-    }
-  });
+    });
+  }
 });
 
 $(document).ready(function () {
 
-  var tidingsSwiper = undefined;
+  if($('.tidings').length) {
 
-  function initSwiper() {
-    var screenWidth = $(window).outerWidth();
-    if ( (screenWidth < (1360)) && (tidingsSwiper == undefined)) {
-      $('.tidings__list').addClass('swiper-wrapper');
-      $('.tidings__item').addClass('swiper-slide');
-      tidingsSwiper = new Swiper('.tidings-swiper-container', {
-        direction: 'horizontal',
-        loop: false,
-        slideToClickedSlide: true,
-        spaceBetween: 20,
-      });
-    } else if ((screenWidth >= 1360) && (tidingsSwiper != undefined)) {
-      tidingsSwiper.destroy();
-      tidingsSwiper = undefined;
-      $('.tidings__list.swiper-wrapper').removeAttr('style');
-      $('.tidings__item.swiper-slide').removeAttr('style');
-      $('.tidings__list.swiper-wrapper').removeClass('swiper-wrapper');
-      $('.tidings__item.swiper-slide').removeClass('swiper-slide');
+    var tidingsSwiper = undefined;
+
+    function initSwiper() {
+      var screenWidth = $(window).outerWidth();
+      if ( (screenWidth < (1360)) && (tidingsSwiper == undefined)) {
+        $('.tidings__list').addClass('swiper-wrapper');
+        $('.tidings__item').addClass('swiper-slide');
+        tidingsSwiper = new Swiper('.tidings-swiper-container', {
+          direction: 'horizontal',
+          loop: false,
+          slideToClickedSlide: true,
+          spaceBetween: 20,
+        });
+      } else if ((screenWidth >= 1360) && (tidingsSwiper != undefined)) {
+        tidingsSwiper.destroy();
+        tidingsSwiper = undefined;
+        $('.tidings__list.swiper-wrapper').removeAttr('style');
+        $('.tidings__item.swiper-slide').removeAttr('style');
+        $('.tidings__list.swiper-wrapper').removeClass('swiper-wrapper');
+        $('.tidings__item.swiper-slide').removeClass('swiper-slide');
+      }
     }
-  }
-  
-  initSwiper();
 
-  $(window).resize(function() {
     initSwiper();
-  });
 
+    $(window).resize(function() {
+      initSwiper();
+    });
+  }
 });
 
 $(document).ready(function () {
@@ -18140,7 +18150,6 @@ $(document).ready(function () {
 
   });*/
 
-
   $('.modal-to-book__wrapper .modal__close-btn').on('click', function () {
     $('.modal-to-book').removeClass('modal-to-book--active');
   });
@@ -18173,6 +18182,12 @@ $(document).ready(function () {
   $('.consultation .modal__closeBtn').on('click', function() {
     $('.consultation__modal').addClass('modal--closed');
   });
+
+  $('.catalog-item__btn').on('click', function () {
+    console.log($('.catalog-item__btn').length);
+  });
+
+  console.log($('.catalog-item__btn').length);
 
   /*$('.main-nav__list').click(function (e) {
     if ($(this).has(e.target).length === 0) { //Если не содержит этот target (модальное окно)

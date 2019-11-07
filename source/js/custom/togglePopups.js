@@ -29,7 +29,6 @@ $(document).ready(function () {
 
   });*/
 
-
   $('.modal-to-book__wrapper .modal__close-btn').on('click', function () {
     $('.modal-to-book').removeClass('modal-to-book--active');
   });
@@ -62,6 +61,12 @@ $(document).ready(function () {
   $('.consultation .modal__closeBtn').on('click', function() {
     $('.consultation__modal').addClass('modal--closed');
   });
+
+  $('.catalog-item__btn').on('click', function () {
+    console.log($('.catalog-item__btn').length);
+  });
+
+  console.log($('.catalog-item__btn').length);
 
   /*$('.main-nav__list').click(function (e) {
     if ($(this).has(e.target).length === 0) { //Если не содержит этот target (модальное окно)

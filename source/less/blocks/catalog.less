@@ -263,9 +263,9 @@
   .pink__btn {
     min-height: 26px;
     display: block;
-    margin-right: auto;
     width: 180px;
     font-size: 14px;
+    margin: 0 auto;
     transition: all 0.3s;
 
     &:hover {
@@ -279,6 +279,15 @@
   }
 
 }
+
+  @media(min-width: @desktop-width) {
+    .catalog-pagination {
+      .pink__btn {
+        margin: 0;
+        margin-right: auto;
+      }
+    }
+  }
 
 .catalog-table {
   width: 90%;
@@ -376,14 +385,14 @@
       fill: @primary-pink;
     }
     .heart-fill {
-      
+
       fill: @primary-pink;
       right: 0px;
       top: 0px;
       position: absolute;
     }
 
-    
+
   }
 
   thead {
