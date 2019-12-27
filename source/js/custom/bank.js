@@ -176,10 +176,6 @@ $(document).ready(function () {
     }
   });
 
-
-
   showCard();
-
   };
-
 });

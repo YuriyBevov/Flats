@@ -15061,12 +15061,8 @@ $(document).ready(function () {
     }
   });
 
-
-
   showCard();
-
   };
-
 });
 
 $(document).ready(function () {
